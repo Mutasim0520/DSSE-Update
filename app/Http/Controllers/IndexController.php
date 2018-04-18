@@ -82,81 +82,26 @@ class IndexController extends Controller
         $id = decrypt($request->id);
         $MemberProject = Member::find($id);
         $MemberProject->Project->all();
-        $MemberPublication = Member::find($id);
-        $MemberPublication->Publication->all();
+        $MemberPublication = Member::with('Publication')->find($id);
+
         $MemberEducation = Member::find($id);
         $MemberEducation->Education->all();
         $MemberExperience = Member::find($id);
         $MemberExperience->Experience->all();
         $MemberSocialAccount = Member::with('social_account')->find($id);
         $member = Member::find($id);
-        $conference_years = [];
+        $paper_years = [];
         $project_years = [];
-        $journal_years = [];
-        $thesis_years = [];
-        $other_years = [];
-        $book_years =[];
 
         foreach ($MemberPublication['publication'] as $item){
-            if($item->publication_type == 'conference'){
-                $a = array_search(date('Y',strtotime($item['date'])),$conference_years);
+                $a = array_search(date('Y',strtotime($item['date'])),$paper_years);
                 if($a == 'true' || $a){
 
                 }else{
-                    array_push($conference_years,intval(date('Y',strtotime($item->date))));
+                    array_push($paper_years,intval(date('Y',strtotime($item->date))));
                 }
-            }
         }
-        rsort($conference_years);
-
-
-        foreach ($MemberPublication['publication'] as $item){
-            if($item->publication_type == 'thesis'){
-                $a = array_search(date('Y',strtotime($item['date'])),$thesis_years);
-                if($a == 'true' || $a){
-
-                }else{
-                    array_push($thesis_years,intval(date('Y',strtotime($item->date))));
-                }
-            }
-        }
-        rsort($thesis_years);
-
-        foreach ($MemberPublication['publication'] as $item){
-            if($item->publication_type == 'other'){
-                $a = array_search(date('Y',strtotime($item['date'])),$other_years);
-                if($a == 'true' || $a){
-
-                }else{
-                    array_push($other_years,intval(date('Y',strtotime($item->date))));
-                }
-            }
-        }
-        rsort($other_years);
-
-        foreach ($MemberPublication['publication'] as $item){
-            if($item->publication_type == 'book'){
-                $a = array_search(date('Y',strtotime($item['date'])),$book_years);
-                if($a == 'true' || $a){
-
-                }else{
-                    array_push($book_years,intval(date('Y',strtotime($item->date))));
-                }
-            }
-        }
-        rsort($book_years);
-
-        foreach ($MemberPublication['publication'] as $item){
-            if($item->publication_type == 'journal'){
-                $a = array_search(date('Y',strtotime($item['date'])),$journal_years);
-                if($a == 'true' || $a){
-
-                }else{
-                    array_push($journal_years,intval(date('Y',strtotime($item->date))));
-                }
-            }
-        }
-        rsort($journal_years);
+        rsort($paper_years);
 
         foreach ($MemberProject['project'] as $item){
             $a = array_search(date('Y',strtotime($item['finish_date'])),$project_years);
@@ -168,7 +113,7 @@ class IndexController extends Controller
         }
         rsort($project_years);
 
-        return view('user.memberProfile',['book_years'=>$book_years,'thesis_years'=>$thesis_years,'other_years'=>$other_years,'journal_years'=>$journal_years,'project_years'=>$project_years,'conference_years'=>$conference_years,'social_accounts'=>$MemberSocialAccount,'memberProject' => $MemberProject , 'memberPublication' => $MemberPublication , 'MemberExperience'=>$MemberExperience, 'MemberEducation' =>$MemberEducation , 'member' => $member]);
+        return view('user.memberProfile',['paper_years'=>$paper_years,'project_years'=>$project_years,'social_accounts'=>$MemberSocialAccount,'memberProject' => $MemberProject , 'memberPublication' => $MemberPublication , 'MemberExperience'=>$MemberExperience, 'MemberEducation' =>$MemberEducation , 'member' => $member]);
 
     }
 

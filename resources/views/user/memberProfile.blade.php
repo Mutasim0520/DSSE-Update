@@ -57,21 +57,21 @@
                 @include('partials/user._memnav')
             </div><br>
 
-            <div id="book-tab" class="tab-pane fade in active ">
-                <div class="section-head"> Books</div><br>
-                @if(sizeof($book_years)>0)
+            <div id="publication-tab" class="tab-pane fade in active ">
+                <div class="section-head"> Publications</div><br>
+                @if(sizeof($paper_years)>0)
                     <div class="col-md-2">
                         <ul class="nav nav-pills nav-stacked">
-                            <?php $book_year = 0; ?>
-                            @foreach($book_years as $item)
-                                @if($book_year == 0)
+                            <?php $paper_year = 0; ?>
+                            @foreach($paper_years as $item)
+                                @if($paper_year == 0)
                                     <li class="active">
-                                        <a href="#book_{{$item}}" data-toggle="tab">{{$item}}</a>
+                                        <a href="#paper_{{$item}}" data-toggle="tab">{{$item}}</a>
                                     </li>
                                 @else
-                                    <li><a href="#book_{{$item}}" data-toggle="tab">{{$item}}</a></li>
+                                    <li><a href="#paper_{{$item}}" data-toggle="tab">{{$item}}</a></li>
                                 @endif
-                                <?php $book_year++; ?>
+                                <?php $paper_year++; ?>
                             @endforeach
                         </ul>
                     </div>
@@ -79,13 +79,45 @@
                         <?php
                         $counter = 0;
                         ?>
-                        @foreach($book_years as $year)
+                        @foreach($paper_years as $year)
                             @if($counter == 0)
                                 <div class="tab tab-pane fade in active" id="book_{{$year}}">
                                     <div class="group excerpts">
                                         @foreach($memberPublication->publication as $item)
-                                            @if($item->publication_type == "book")
                                                 @if(intval($year) == intval(date('Y',strtotime($item->date))))
+                                                @if($item->publication_type == "book")
+                                                    <article class="full">
+                                                        <figure class="list member_item">
+                                                            <span class=" item-head"> Name: </span><span><a href="/indivisual/publication/{{encrypt($item->publication_id)}}">{{ $item->name }}</a></span><br>
+                                                            <span class=" item-head"><a href="/conferenceWiseItem/{{$item->conference_name}}">{{ $item->conference_name }}</a></span><br>
+                                                            <span class=" item-head"> Date: </span><span> {{ $item->date }}</span><br>
+                                                        </figure>
+                                                    </article>
+                                                @elseif($item->publication_type == "journal")
+                                                    <article class="full">
+                                                        <figure class="list member_item">
+                                                            <span class=" item-head"> Name: </span><span><a href="/indivisual/publication/{{encrypt($item->publication_id)}}">{{ $item->name }}</a></span><br>
+                                                            <span class=" item-head"><a href="/conferenceWiseItem/{{$item->conference_name}}">{{ $item->conference_name }}</a></span><br>
+                                                            <span class=" item-head"> Date: </span><span> {{ $item->date }}</span><br>
+                                                        </figure>
+                                                    </article>
+                                                @elseif($item->publication_type == "conference")
+                                                    <article class="full">
+                                                        <figure class="list member_item">
+                                                            <span class=" item-head"> Name: </span><span><a href="/indivisual/publication/{{encrypt($item->publication_id)}}">{{ $item->name }}</a></span><br>
+                                                            <span class=" item-head"><a href="/conferenceWiseItem/{{$item->conference_name}}">{{ $item->conference_name }}</a></span><br>
+                                                            <span class=" item-head"> Date: </span><span> {{ $item->date }}</span><br>
+                                                        </figure>
+                                                    </article>
+                                                @elseif($item->publication_type == "thesis")
+                                                    <article class="full">
+                                                        <figure class="list member_item">
+                                                            <span class=" item-head"> Name: </span><span><a href="/indivisual/publication/{{encrypt($item->publication_id)}}">{{ $item->name }}</a></span><br>
+                                                            <span class=" item-head"><a href="/conferenceWiseItem/{{$item->conference_name}}">{{ $item->conference_name }}</a></span><br>
+                                                            <span class=" item-head"> Date: </span><span> {{ $item->date }}</span><br>
+                                                        </figure>
+                                                    </article>
+                                                @elseif($item->publication_type == "other")
                                                     <article class="full">
                                                         <figure class="list member_item">
                                                             <span class=" item-head"> Name: </span><span><a href="/indivisual/publication/{{encrypt($item->publication_id)}}">{{ $item->name }}</a></span><br>
@@ -99,11 +131,43 @@
                                     </div>
                                 </div>
                             @else
-                                <div class = "tab tab-pane fade" id="book_{{$year}}">
+                                <div class = "tab tab-pane fade" id="paper_{{$year}}">
                                     <div class="group excerpts">
                                         @foreach($memberPublication->publication as $item)
-                                            @if($item->publication_type == "book")
                                                 @if(intval($year) == intval(date('Y',strtotime($item->date))))
+                                                @if($item->publication_type == "book")
+                                                    <article class="full">
+                                                        <figure class="list member_item">
+                                                            <span class=" item-head"> Name: </span><span><a href="/indivisual/publication/{{encrypt($item->publication_id)}}">{{ $item->name }}</a></span><br>
+                                                            <span class=" item-head"><a href="/conferenceWiseItem/{{$item->conference_name}}">{{ $item->conference_name }}</a></span><br>
+                                                            <span class=" item-head"> Date: </span><span> {{ $item->date }}</span><br>
+                                                        </figure>
+                                                    </article>
+                                                @elseif($item->publication_type == "journal")
+                                                    <article class="full">
+                                                            <figure class="list member_item">
+                                                                <span class=" item-head"> Name: </span><span><a href="/indivisual/publication/{{encrypt($item->publication_id)}}">{{ $item->name }}</a></span><br>
+                                                                <span class=" item-head"><a href="/conferenceWiseItem/{{$item->conference_name}}">{{ $item->conference_name }}</a></span><br>
+                                                                <span class=" item-head"> Date: </span><span> {{ $item->date }}</span><br>
+                                                            </figure>
+                                                        </article>
+                                                @elseif($item->publication_type == "conference")
+                                                    <article class="full">
+                                                        <figure class="list member_item">
+                                                            <span class=" item-head"> Name: </span><span><a href="/indivisual/publication/{{encrypt($item->publication_id)}}">{{ $item->name }}</a></span><br>
+                                                            <span class=" item-head"><a href="/conferenceWiseItem/{{$item->conference_name}}">{{ $item->conference_name }}</a></span><br>
+                                                            <span class=" item-head"> Date: </span><span> {{ $item->date }}</span><br>
+                                                        </figure>
+                                                    </article>
+                                                @elseif($item->publication_type == "thesis")
+                                                    <article class="full">
+                                                        <figure class="list member_item">
+                                                            <span class=" item-head"> Name: </span><span><a href="/indivisual/publication/{{encrypt($item->publication_id)}}">{{ $item->name }}</a></span><br>
+                                                            <span class=" item-head"><a href="/conferenceWiseItem/{{$item->conference_name}}">{{ $item->conference_name }}</a></span><br>
+                                                            <span class=" item-head"> Date: </span><span> {{ $item->date }}</span><br>
+                                                        </figure>
+                                                    </article>
+                                                @elseif($item->publication_type == "other")
                                                     <article class="full">
                                                         <figure class="list member_item">
                                                             <span class=" item-head"> Name: </span><span><a href="/indivisual/publication/{{encrypt($item->publication_id)}}">{{ $item->name }}</a></span><br>
@@ -136,301 +200,6 @@
                 <div class="group excerpts">
                     <p>No Record Added</p>
                 </div>
-            </div>
-
-
-            <!--- journal------------------>
-
-            <div id="journal-tab" class="tab-pane fade">
-                <div class="section-head"> Journal Paper</div><br>
-                @if(sizeof($journal_years)>0)
-                    <div class="col-md-2">
-                        <ul class="nav nav-pills nav-stacked">
-                            <?php $journal_year = 0; ?>
-                            @foreach($journal_years as $item)
-                                @if($journal_year == 0)
-                                    <li class="active">
-                                        <a href="#jrnl_{{$item}}" data-toggle="tab">{{$item}}</a>
-                                    </li>
-                                @else
-                                    <li><a href="#jrnl_{{$item}}" data-toggle="tab">{{$item}}</a></li>
-                                @endif
-                                <?php $journal_year++; ?>
-                            @endforeach
-                        </ul>
-                    </div>
-                    <div class="col-md-10 tab-content">
-                        <?php
-                        $counter = 0;
-                        ?>
-                        @foreach($journal_years as $year)
-                            @if($counter == 0)
-                                <div class="tab tab-pane fade in active" id="jrnl_{{$year}}">
-                                    <div class="group excerpts">
-                                        @foreach($memberPublication->publication as $item)
-                                            @if($item->publication_type == "journal")
-                                                @if(intval($year) == intval(date('Y',strtotime($item->date))))
-                                                    <article class="full">
-                                                        <figure class="list member_item">
-                                                            <span class=" item-head"> Name: </span><span><a href="/indivisual/publication/{{encrypt($item->publication_id)}}">{{ $item->name }}</a></span><br>
-                                                            <span class=" item-head"><a href="/conferenceWiseItem/{{$item->conference_name}}">{{ $item->conference_name }}</a></span><br>
-                                                            <span class=" item-head"> Date: </span><span> {{ $item->date }}</span><br>
-                                                        </figure>
-                                                    </article>
-                                                @endif
-                                            @endif
-                                        @endforeach
-                                    </div>
-                                </div>
-                            @else
-                                <div class = "tab tab-pane fade" id="jrnl_{{$year}}">
-                                    <div class="group excerpts">
-                                        @foreach($memberPublication->publication as $item)
-                                            @if($item->publication_type == "journal")
-                                                @if(intval($year) == intval(date('Y',strtotime($item->date))))
-                                                    <article class="full">
-                                                        <figure class="list member_item">
-                                                            <span class=" item-head"> Name: </span><span><a href="/indivisual/publication/{{encrypt($item->publication_id)}}">{{ $item->name }}</a></span><br>
-                                                            <span class=" item-head"><a href="/conferenceWiseItem/{{$item->conference_name}}">{{ $item->conference_name }}</a></span><br>
-                                                            <span class=" item-head"> Date: </span><span> {{ $item->date }}</span><br>
-                                                        </figure>
-                                                    </article>
-                                                @endif
-                                            @endif
-                                        @endforeach
-                                    </div>
-                                </div>
-                            @endif
-                            <?php
-                            $counter++;
-                            ?>
-                        @endforeach
-                    </div>
-                @else
-                    <div class="col-md-10">
-                        <p>No record Added </p>
-                    </div>
-                @endif
-            </div>
-
-            <!---conference-->
-
-            <div id="conference-tab" class="tab-pane fade">
-                <div class="section-head"> Conference Paper</div>
-                @if(sizeof($conference_years)>0)
-                    <div class="col-md-2">
-                        <ul class="nav nav-pills nav-stacked">
-                            <?php $conference_year = 0; ?>
-                            @foreach($conference_years as $item)
-                                @if($conference_year == 0)
-                                    <li class="active">
-                                        <a href="#conf_{{$item}}" data-toggle="tab">{{$item}}</a>
-                                    </li>
-                                @else
-                                    <li><a href="#conf_{{$item}}" data-toggle="tab">{{$item}}</a></li>
-                                @endif
-                                <?php $conference_year++; ?>
-                            @endforeach
-                        </ul>
-                    </div>
-                    <div class="col-md-10 tab-content">
-                        <?php
-                        $counter = 0;
-                        ?>
-                        @foreach($conference_years as $year)
-                            @if($counter == 0)
-                                <div class="tab tab-pane fade in active" id="conf_{{$year}}">
-                                    <div class="group excerpts">
-                                        @foreach($memberPublication->publication as $item)
-                                            @if($item->publication_type == "conference")
-                                                @if(intval($year) == intval(date('Y',strtotime($item->date))))
-                                                    <article class="full">
-                                                        <figure class="list member_item">
-                                                            <span class=" item-head"> Name: </span><span><a href="/indivisual/publication/{{encrypt($item->publication_id)}}">{{ $item->name }}</a></span><br>
-                                                            <span class=" item-head"><a href="/conferenceWiseItem/{{$item->conference_name}}">{{ $item->conference_name }}</a></span><br>
-                                                            <span class=" item-head"> Date: </span><span> {{ $item->date }}</span><br>
-                                                        </figure>
-                                                    </article>
-                                                @endif
-                                            @endif
-                                        @endforeach
-                                    </div>
-                                </div>
-                            @else
-                                <div class = "tab tab-pane fade" id="conf_{{$year}}">
-                                    <div class="group excerpts">
-                                        @foreach($memberPublication->publication as $item)
-                                            @if($item->publication_type == "conference")
-                                                @if(intval($year) == intval(date('Y',strtotime($item->date))))
-                                                    <article class="full">
-                                                        <figure class="list member_item">
-                                                            <span class=" item-head"> Name: </span><span><a href="/indivisual/publication/{{encrypt($item->publication_id)}}">{{ $item->name }}</a></span><br>
-                                                            <span class=" item-head"><a href="/conferenceWiseItem/{{$item->conference_name}}">{{ $item->conference_name }}</a></span><br>
-                                                            <span class=" item-head"> Date: </span><span> {{ $item->date }}</span><br>
-                                                        </figure>
-                                                    </article>
-                                                @endif
-                                            @endif
-                                        @endforeach
-                                    </div>
-                                </div>
-                            @endif
-                            <?php
-                            $counter++;
-                            ?>
-                        @endforeach
-                    </div>
-                @else
-                    <div class="col-md-10">
-                        <p>No Record Added </p>
-                    </div>
-                @endif
-            </div>
-
-            <div id="thesis-tab" class="tab-pane fade">
-                <div class="section-head"> Thesis</div><br>
-                @if(sizeof($thesis_years)>0)
-                    <div class="col-md-2">
-                        <ul class="nav nav-pills nav-stacked">
-                            <?php $thesis_year = 0; ?>
-                            @foreach($thesis_years as $item)
-                                @if($thesis_year == 0)
-                                    <li class="active">
-                                        <a href="#thesis_{{$item}}" data-toggle="tab">{{$item}}</a>
-                                    </li>
-                                @else
-                                    <li><a href="#thesis_{{$item}}" data-toggle="tab">{{$item}}</a></li>
-                                @endif
-                                <?php $thesis_year++; ?>
-                            @endforeach
-                        </ul>
-                    </div>
-                    <div class="col-md-10">
-                        <?php
-                        $counter = 0;
-                        ?>
-                        @foreach($thesis_years as $year)
-                            @if($counter == 0)
-                                <div class="tab tab-pane fade in active" id="thesis_{{$year}}">
-                                    <div class="group excerpts">
-                                        @foreach($memberPublication->publication as $item)
-                                            @if($item->publication_type == "thesis")
-                                                @if(intval($year) == intval(date('Y',strtotime($item->date))))
-                                                    <article class="full">
-                                                        <figure class="list member_item">
-                                                            <span class=" item-head"> Name: </span><span><a href="/indivisual/publication/{{encrypt($item->publication_id)}}">{{ $item->name }}</a></span><br>
-                                                            <span class=" item-head"><a href="/conferenceWiseItem/{{$item->conference_name}}">{{ $item->conference_name }}</a></span><br>
-                                                            <span class=" item-head"> Date: </span><span> {{ $item->date }}</span><br>
-                                                        </figure>
-                                                    </article>
-                                                @endif
-                                            @endif
-                                        @endforeach
-                                    </div>
-                                </div>
-                            @else
-                                <div class = "tab tab-pane fade" id="thesis_{{$year}}">
-                                    <div class="group excerpts">
-                                        @foreach($memberPublication->publication as $item)
-                                            @if($item->publication_type == "thesis")
-                                                @if(intval($year) == intval(date('Y',strtotime($item->date))))
-                                                    <article class="full">
-                                                        <figure class="list member_item">
-                                                            <span class=" item-head"> Name: </span><span><a href="/indivisual/publication/{{encrypt($item->publication_id)}}">{{ $item->name }}</a></span><br>
-                                                            <span class=" item-head"><a href="/conferenceWiseItem/{{$item->conference_name}}">{{ $item->conference_name }}</a></span><br>
-                                                            <span class=" item-head"> Date: </span><span> {{ $item->date }}</span><br>
-                                                        </figure>
-                                                    </article>
-                                                    <?php $has_thesis = 'true'; ?>
-                                                @endif
-                                            @endif
-                                        @endforeach
-                                    </div>
-                                </div>
-                            @endif
-                            <?php
-                            $counter++;
-                            ?>
-                        @endforeach
-                    </div>
-                @else
-                    <div class="col-md-10">
-                        <p>No Record Added </p>
-                    </div>
-                @endif
-            </div>
-
-            <div id="other-tab" class="tab-pane fade">
-                <div class="section-head"> Other</div><br>
-                @if(sizeof($other_years)>0)
-                    <div class="col-md-2">
-                        <ul class="nav nav-pills nav-stacked">
-                            <?php $other_year = 0; ?>
-                            @foreach($other_years as $item)
-                                @if($other_year == 0)
-                                    <li class="active">
-                                        <a href="#other_{{$item}}" data-toggle="tab">{{$item}}</a>
-                                    </li>
-                                @else
-                                    <li><a href="#other_{{$item}}" data-toggle="tab">{{$item}}</a></li>
-                                @endif
-                                <?php $other_year++; ?>
-                            @endforeach
-                        </ul>
-                    </div>
-                    <div class="col-md-10">
-                        <?php
-                        $counter = 0;
-                        ?>
-                        @foreach($other_years as $year)
-                            @if($counter == 0)
-                                <div class="tab tab-pane fade in active" id="other_{{$year}}">
-                                    <div class="group excerpts">
-                                        @foreach($memberPublication->publication as $item)
-                                            @if($item->publication_type == "other")
-                                                @if(intval($year) == intval(date('Y',strtotime($item->date))))
-                                                    <article class="full">
-                                                        <figure class="list member_item">
-                                                            <span class=" item-head"> Name: </span><span><a href="/indivisual/publication/{{encrypt($item->publication_id)}}">{{ $item->name }}</a></span><br>
-                                                            <span class=" item-head"><a href="/conferenceWiseItem/{{$item->conference_name}}">{{ $item->conference_name }}</a></span><br>
-                                                            <span class=" item-head"> Date: </span><span> {{ $item->date }}</span><br>
-                                                        </figure>
-                                                    </article>
-                                                @endif
-                                            @endif
-                                        @endforeach
-                                    </div>
-                                </div>
-                            @else
-                                <div class = "tab tab-pane fade" id="other_{{$year}}">
-                                    <div class="group excerpts">
-                                        @foreach($memberPublication->publication as $item)
-                                            @if($item->publication_type == "other")
-                                                @if(intval($year) == intval(date('Y',strtotime($item->date))))
-                                                    <article class="full">
-                                                        <figure class="list member_item">
-                                                            <span class=" item-head"> Name: </span><span><a href="/indivisual/publication/{{encrypt($item->publication_id)}}">{{ $item->name }}</a></span><br>
-                                                            <span class=" item-head"><a href="/conferenceWiseItem/{{$item->conference_name}}">{{ $item->conference_name }}</a></span><br>
-                                                            <span class=" item-head"> Date: </span><span> {{ $item->date }}</span><br>
-                                                        </figure>
-                                                    </article>
-                                                    <?php $has_other = 'true'; ?>
-                                                @endif
-                                            @endif
-                                        @endforeach
-                                    </div>
-                                </div>
-                            @endif
-                            <?php
-                            $counter++;
-                            ?>
-                        @endforeach
-                    </div>
-                @else
-                    <div class="col-md-10">
-                        <p>No Record Added </p>
-                    </div>
-                @endif
             </div>
 
             <div id="education-tab" class="tab-pane fade">
