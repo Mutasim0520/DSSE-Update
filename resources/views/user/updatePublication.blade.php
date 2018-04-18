@@ -36,21 +36,19 @@
                 <div class="group excerpts">
                     <article class="full">
                         <figure class="list new-group">
-                            <center id="loading" style="display: none">
+                            <center id="loading" style="display: none;">
                                 <H1 style="letter-spacing: 3px">Please Wait</H1>
                                 <div class="loader"></div>
                             </center>
-                            <form id="test-form" action="/pub_update/{{encrypt($publication->publication_id)}}" method="post" enctype="multipart/form-data" >
+                            <form id="test-form" action="/storepublication" method="post" enctype="multipart/form-data" >
                                 {!! csrf_field() !!}
                                 <div class="col-md-12 form-group">
                                     <label class="item-head log">Title</label>
-                                    <input value="{{$publication->name}}" class="form-control" type="text" required="" id = "publication_name" name="name">
+                                    <input class="form-control" type="text" required="" id = "publication_name" name="name" autofocus="">
                                 </div>
                                 <div class="col-md-12 form-group">
                                     <label class="item-head log">Abstract</label>
-                                    <textarea  placeholder="Abstract" required="" id ="description" name="description" class="form-control ckeditor">
-                                    <?php echo $publication->abstract?>
-                                </textarea>
+                                    <textarea  placeholder="Abstract" required="" id ="description" name="description" class="form-control ckeditor"></textarea>
                                 </div>
                                 <div class="col-md-9 form-group">
                                     <label class="item-head log">Authors</label>
@@ -94,75 +92,67 @@
                                 </div>
                                 <div id = "book_container" style="display: none;">
                                     <div class="col-md-6 form-group">
-                                        <input type="text" class="form-control"placeholder="Chapter Name" name="book_chapter_name">
+                                        <input type="text" class="form-control" required="" placeholder="Chapter Name" name="book_chapter_name" required>
                                     </div>
                                     <div class="col-md-6 form-group">
-                                        <input type="text" class="form-control" placeholder="Chapter" name="book_chapter">
+                                        <input type="text" class="form-control" required="" placeholder="Chapter" name="book_chapter" required>
                                     </div>
                                     <div class="col-md-6 form-group">
-                                        <input type="text" class="form-control" placeholder="Edition" name="book_adition">
+                                        <input type="text" class="form-control" required="" placeholder="Edition" name="book_adition" required>
                                     </div>
                                     <div class="col-md-6 form-group">
-                                        <input type="text" class="form-control" placeholder="Section" name="book_section">
+                                        <input type="text" class="form-control" required="" placeholder="Section" name="book_section" required>
                                     </div>
                                     <div class="col-md-6 form-group">
-                                        <input type="text" class="form-control" placeholder="Page" name="book_page">
+                                        <input type="text" class="form-control" required="" placeholder="Page" name="book_page" required>
                                     </div>
                                     <div class="col-md-6 form-group">
-                                        <input type="text" class="datepicker date form-control" placeholder="Published Date" name="book_date">
-                                    </div>
-                                    <div class="col-md-12 form-group">
-                                        <input type="text" class="form-control" placeholder="Publisher" name="book_publisher">
+                                        <input type="text" class="form-control" required="" placeholder="Publisher" name="book_publisher" required>
                                     </div>
                                 </div>
                                 <div id = "conference_container" style="display: none;">
                                     <div class="col-md-6 form-group">
-                                        <input type="text" class="form-control" placeholder="Page" name="conf_page">
+                                        <input type="text" class="form-control" required="" placeholder="Page" name="conf_page">
                                     </div>
                                     <div class="col-md-6 form-group">
-                                        <input type="text" class="datepicker date form-control" placeholder="Published Date" name="conf_date">
-                                    </div>
-                                    <div class="col-md-12 form-group">
-                                        <input type="text" class="form-control"  placeholder="Conference Name" name="conf_publisher">
+                                        <input type="text" class="form-control" required="" placeholder="Conference Name" name="conf_publisher">
                                     </div>
                                 </div>
                                 <div id = "journal_container" style="display: none;">
-                                    <div class="col-md-4 form-group">
-                                        <input type="text" class="form-control" placeholder="Page" name="journal_page">
-                                    </div>
-                                    <div class="col-md-4 form-group">
-                                        <input type="text" class="form-control" placeholder="Volume" name="journal_volume">
-                                    </div>
-                                    <div class="col-md-4 form-group">
-                                        <input type="text" class="datepicker date form-control" placeholder="Published Date" name="journal_date">
+                                    <div class="col-md-6 form-group">
+                                        <input type="text" required="" class="form-control" placeholder="Page" name="journal_page">
                                     </div>
                                     <div class="col-md-6 form-group">
-                                        <input type="text" class="form-control" placeholder="Publisher" name="journal_publisher">
+                                        <input type="text" required="" class="form-control" placeholder="Volume" name="journal_volume">
+                                    </div>
+                                    <div class="col-md-6 form-group">
+                                        <input type="text" required="" class="form-control" placeholder="Publisher" name="journal_publisher">
                                     </div>
 
                                     <div class="col-md-6 form-group">
-                                        <input type="text" class="form-control" placeholder="Journal Name" name="journal_name">
+                                        <input type="text" required="" class="form-control" placeholder="Journal Name" name="journal_name">
                                     </div>
                                 </div>
                                 <div id = "thesis_container" style="display: none;">
                                     <div class="col-md-6 form-group">
-                                        <input type="text" class="form-control" placeholder="Pages" name="thesis_page">
+                                        <input type="text" class="form-control" required="" placeholder="Pages" name="thesis_page">
                                     </div>
                                     <div class="col-md-6 form-group">
-                                        <select type="text" class="form-control" placeholder="Select Supervisor" id="thesis_supervisor">
+                                        <select type="text" required="" class="form-control" placeholder="Select Supervisor" id="thesis_supervisor">
                                             <option value="">Select Supervisor</option>
                                             @foreach($member as $item)
                                                 <option value="{{$item->member_id}}">{{$item->firstName}} {{$item->lastName}}</option>
                                             @endforeach
                                         </select>
                                     </div>
-                                    <div class="col-md-6 form-group">
+                                    <div class="col-md-12 form-group">
                                         <input type="text" class="form-control" placeholder="University" name="thesis_university">
                                     </div>
-                                    <div class="col-md-6 form-group">
-                                        <input type="text" class="form-control"placeholder="Date" name="thesis_date" class="datepicker">
-                                    </div>
 
+                                </div>
+                                <div class="col-md-12 form-group">
+                                    <label class="item-head log">Select Date</label>
+                                    <input type="date" required name="date" class="datepicker date form-control">
                                 </div>
                                 <div class="col-md-9 form-group">
                                     <label class="item-head log">Select Keywords</label>
@@ -200,6 +190,9 @@
                                                     <option value="{{$item->project_id}}">{{$item->name}}</option>
                                                 @endforeach
                                             </select>
+                                        </div>
+                                        <div class="col-md-6" style="text-align: right">
+                                            <a href="javascript:saveInSession();" class="btn btn-default btn-sm">Add New Project</a>
                                         </div>
                                     </div>
 
@@ -239,7 +232,7 @@
                                     </div>
                                     <div class="col-md-9 form-group" id="source_code_container" style="display:none;">
                                         <div class="col-md-5">
-                                            <label class="item-head log"><i id="src_file_exist" style="display: none;" class="fa fa-check-circle"></i>Upload file</label>
+                                            <label class="item-head log">Upload file</label>
                                             <input type="file" name="file" id="paper">
                                         </div>
                                         <div class="col-md-7">
@@ -256,8 +249,7 @@
                                     </div>
                                     <div class="col-md-9 form-group" id="dataset_container" style="display:none;">
                                         <div class="col-md-5">
-                                            <label class="item-head log">
-                                                <i id="dataset_file_exist" style="display: none;" class="fa fa-check-circle"></i>Upload file</label>
+                                            <label class="item-head log">Upload file</label>
                                             <input type="file" name="file" id="dataset">
                                         </div>
                                         <div class="col-md-7">
@@ -267,8 +259,7 @@
                                     </div>
                                 </div>
                                 <div class="col-md-6 form-group">
-                                    <label>
-                                        <i id="paper_file_exist" style="display: none;" class="fa fa-check-circle"></i>Upload Paper</label>
+                                    <label>Upload Paper</label>
                                     <input type="file" id="publication_paper">
                                 </div>
                                 <div class="col-md-12 form-group">
@@ -283,7 +274,7 @@
                                     </div>
                                 </div>
                                 <div class="col-md-12 form-group button" style="text-align: center">
-                                    <button class="btn" id="submit" name="submit" type = "submit">Update Publication</button>
+                                    <button class="btn" id="submit" name="submit" type = "submit">Add Publication</button>
                                 </div>
                                 <div class="clearfix"> </div>
                             </form>
@@ -882,7 +873,7 @@
                                 processData: false,
                                 contentType: false,
                                 success: function (path) {
-                                    dataset_path = path;
+                                    paper_path = path;
                                     addPublication(src_code_path,dataset_path, paper_path);
                                 }
                             });
@@ -916,8 +907,8 @@
             var aff_ins_name = $('input[name=ins_name]').val();
             var src_code = $('input[name=src_code]').val();
             var dataset = $('input[name=dataset]').val();
+            var date = $('input[name=date]').val();
 
-            var book_date = $('input[name=book_date]').val();
             var book_adition = $('input[name=book_adition]').val();
             var book_publisher = $('input[name=book_publisher]').val();
             var book_chapter_name = $('input[name=book_chapter_name]').val();
@@ -925,17 +916,14 @@
             var book_section = $('input[name=book_section]').val();
             var book_page = $('input[name=book_page]').val();
 
-            var conf_date = $('input[name=conf_date]').val();
             var conf_publisher  = $('input[name=conf_publisher]').val();
             var conf_page = $('input[name=conf_page]').val();
 
-            var journal_date = $('input[name=journal_date]').val();
             var journal_publisher  = $('input[name=journal_publisher]').val();
             var journal_name  = $('input[name=journal_name]').val();
             var journal_volume = $('input[name=journal_volume]').val();
             var journal_page = $('input[name=journal_page]').val();
 
-            var thesis_date = $('input[name=thesis_date]').val();
             var thesis_university = $('input[name=thesis_university]').val();
             var thesis_page = $('input[name=thesis_page]').val();
             var thesis_supervisor = $('#thesis_supervisor:selected').val();
@@ -952,9 +940,10 @@
             var project_name = $('#project_name').val();
             var document_link = $('input[name=publication_link]').val();
             $.ajax({
-                url:'/pub_update/"{{encrypt($publication->publication_id)}}"',
+                url:"/user/storepublication",
                 type:"post",
                 data:{ _token: "{{ csrf_token() }}",
+                    date:date,
                     publication_name:publication_name,
                     publication_type:publication_type,
                     project_name:project_name,
@@ -971,22 +960,18 @@
                     src_code_link:src_link,
                     dataset_path:dataset_path,
                     dataset_link:data_link,
-                    book_date:book_date,
                     book_adition:book_adition,
                     book_publisher:book_publisher,
                     book_chapter_name:book_chapter_name,
                     book_chapter:book_chapter,
                     book_page:book_page,
                     book_section:book_section,
-                    conf_date:conf_date,
                     conf_page:conf_page,
                     conf_publisher:conf_publisher,
-                    journal_date:journal_date,
                     journal_volume:journal_volume,
                     journal_page:journal_page,
                     journal_publisher:journal_publisher,
                     journal_name:journal_name,
-                    thesis_date:thesis_date,
                     thesis_supervisor:thesis_supervisor,
                     thesis_university:thesis_university,
                     thesis_page:thesis_page,
@@ -997,8 +982,10 @@
                 },
                 success: function(msg){
                     localStorage.removeItem('session_data');
-                    window.location.replace('/indivisual/publication/{{encrypt($publication->publication_id)}}')
+                    window.location.replace('/indivisual/profile/{{encrypt(Auth::user()->id)}}')
+                    console.log(msg);
                 }
+
             });
         }
 

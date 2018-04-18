@@ -106,9 +106,6 @@
                                     <input type="text" class="form-control" required="" placeholder="Page" name="book_page" required>
                                 </div>
                                 <div class="col-md-6 form-group">
-                                    <input type="text" class="datepicker date form-control" required="" placeholder="Published Date" name="book_date" required>
-                                </div>
-                                <div class="col-md-12 form-group">
                                     <input type="text" class="form-control" required="" placeholder="Publisher" name="book_publisher" required>
                                 </div>
                             </div>
@@ -117,21 +114,15 @@
                                     <input type="text" class="form-control" required="" placeholder="Page" name="conf_page">
                                 </div>
                                 <div class="col-md-6 form-group">
-                                    <input type="text" class="datepicker date form-control" required="" placeholder="Published Date" name="conf_date">
-                                </div>
-                                <div class="col-md-12 form-group">
                                     <input type="text" class="form-control" required="" placeholder="Conference Name" name="conf_publisher">
                                 </div>
                             </div>
                             <div id = "journal_container" style="display: none;">
-                                <div class="col-md-4 form-group">
+                                <div class="col-md-6 form-group">
                                     <input type="text" required="" class="form-control" placeholder="Page" name="journal_page">
                                 </div>
-                                <div class="col-md-4 form-group">
+                                <div class="col-md-6 form-group">
                                     <input type="text" required="" class="form-control" placeholder="Volume" name="journal_volume">
-                                </div>
-                                <div class="col-md-4 form-group">
-                                    <input type="text" class="datepicker date form-control" required="" placeholder="Published Date" name="journal_date">
                                 </div>
                                 <div class="col-md-6 form-group">
                                     <input type="text" required="" class="form-control" placeholder="Publisher" name="journal_publisher">
@@ -153,13 +144,14 @@
                                         @endforeach
                                     </select>
                                 </div>
-                                <div class="col-md-6 form-group">
+                                <div class="col-md-12 form-group">
                                     <input type="text" class="form-control" placeholder="University" name="thesis_university">
                                 </div>
-                                <div class="col-md-6 form-group">
-                                    <input type="text" class="datepicker date form-control" required="" placeholder="Date" name="thesis_date">
-                                </div>
 
+                            </div>
+                            <div class="col-md-12 form-group">
+                                <label class="item-head log">Select Date</label>
+                                <input type="date" required name="date" class="datepicker date form-control">
                             </div>
                             <div class="col-md-9 form-group">
                                 <label class="item-head log">Select Keywords</label>
@@ -552,7 +544,6 @@
                                 console.log(msg);
                             }
                         });
-                        console.log('has new ');
                     }
 
                     if(has_new_ex_author == '1'){
@@ -785,7 +776,7 @@
                                 processData: false,
                                 contentType: false,
                                 success: function (path) {
-                                    dataset_path = path;
+                                    paper_path = path;
                                     addPublication(src_code_path,dataset_path, paper_path);
                                 }
                             });
@@ -819,8 +810,8 @@
             var aff_ins_name = $('input[name=ins_name]').val();
             var src_code = $('input[name=src_code]').val();
             var dataset = $('input[name=dataset]').val();
+            var date = $('input[name=date]').val();
 
-            var book_date = $('input[name=book_date]').val();
             var book_adition = $('input[name=book_adition]').val();
             var book_publisher = $('input[name=book_publisher]').val();
             var book_chapter_name = $('input[name=book_chapter_name]').val();
@@ -828,17 +819,14 @@
             var book_section = $('input[name=book_section]').val();
             var book_page = $('input[name=book_page]').val();
 
-            var conf_date = $('input[name=conf_date]').val();
             var conf_publisher  = $('input[name=conf_publisher]').val();
             var conf_page = $('input[name=conf_page]').val();
 
-            var journal_date = $('input[name=journal_date]').val();
             var journal_publisher  = $('input[name=journal_publisher]').val();
             var journal_name  = $('input[name=journal_name]').val();
             var journal_volume = $('input[name=journal_volume]').val();
             var journal_page = $('input[name=journal_page]').val();
 
-            var thesis_date = $('input[name=thesis_date]').val();
             var thesis_university = $('input[name=thesis_university]').val();
             var thesis_page = $('input[name=thesis_page]').val();
             var thesis_supervisor = $('#thesis_supervisor:selected').val();
@@ -858,6 +846,7 @@
                 url:"/user/storepublication",
                 type:"post",
                 data:{ _token: "{{ csrf_token() }}",
+                    date:date,
                     publication_name:publication_name,
                     publication_type:publication_type,
                     project_name:project_name,
@@ -874,22 +863,18 @@
                     src_code_link:src_link,
                     dataset_path:dataset_path,
                     dataset_link:data_link,
-                    book_date:book_date,
                     book_adition:book_adition,
                     book_publisher:book_publisher,
                     book_chapter_name:book_chapter_name,
                     book_chapter:book_chapter,
                     book_page:book_page,
                     book_section:book_section,
-                    conf_date:conf_date,
                     conf_page:conf_page,
                     conf_publisher:conf_publisher,
-                    journal_date:journal_date,
                     journal_volume:journal_volume,
                     journal_page:journal_page,
                     journal_publisher:journal_publisher,
                     journal_name:journal_name,
-                    thesis_date:thesis_date,
                     thesis_supervisor:thesis_supervisor,
                     thesis_university:thesis_university,
                     thesis_page:thesis_page,

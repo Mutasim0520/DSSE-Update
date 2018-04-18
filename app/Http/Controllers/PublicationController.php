@@ -64,9 +64,9 @@ class PublicationController extends Controller
             $Publication-> name = trim($request->publication_name);
             $Publication-> publication_type = $request->publication_type;
             $Publication->abstract = $request->abstract;
+            $Publication->date = $request->date;
             if($request->publication_type == 'book'){
                 $Publication->book_addition = trim($request->book_adition);
-                $Publication->date = $request->book_date;
                 $Publication->publisher = trim($request->book_publisher);
                 $Publication->page = trim($request->book_page);
                 $Publication->book_section = trim($request->book_section);
@@ -76,20 +76,17 @@ class PublicationController extends Controller
             elseif($request->publication_type == 'journal'){
                 $Publication->volume = $request->journal_volume;
                 $Publication->page = $request->journal_page;
-                $Publication->date = $request->journal_date;
                 $Publication->publisher = trim($request->journal_publisher);
                 $Publication->journal_name = trim($request->journal_name);
 
             }
             elseif($request->publication_type == 'conference'){
                 $Publication->page = $request->conf_page;
-                $Publication->date = $request->conf_date;
                 $Publication->conference_name = trim($request->conf_publisher);
             }
             elseif($request->publication_type == 'thesis'){
                 $Publication->supervisor = $request->thesis_supervisor;
                 $Publication->page = $request->thesis_page;
-                $Publication->date = $request->thesis_date;
                 $Publication->university = trim($request->thesis_university);
 
             }
@@ -227,9 +224,9 @@ class PublicationController extends Controller
             $Publication-> name = trim($request->publication_name);
             $Publication-> publication_type = $request->publication_type;
             $Publication->abstract = $request->abstract;
+            $Publication->date = $request->date;
             if($request->publication_type == 'book'){
                 $Publication->book_addition = trim($request->book_adition);
-                $Publication->date = $request->book_date;
                 $Publication->publisher = trim($request->book_publisher);
                 $Publication->page = trim($request->book_page);
                 $Publication->book_section = trim($request->book_section);
@@ -239,20 +236,17 @@ class PublicationController extends Controller
             elseif($request->publication_type == 'journal'){
                 $Publication->volume = $request->journal_volume;
                 $Publication->page = $request->journal_page;
-                $Publication->date = $request->journal_date;
                 $Publication->publisher = trim($request->journal_publisher);
                 $Publication->journal_name = trim($request->journal_name);
 
             }
             elseif($request->publication_type == 'conference'){
                 $Publication->page = $request->conf_page;
-                $Publication->date = $request->conf_date;
                 $Publication->conference_name = trim($request->conf_publisher);
             }
             elseif($request->publication_type == 'thesis'){
                 $Publication->supervisor = $request->thesis_supervisor;
                 $Publication->page = $request->thesis_page;
-                $Publication->date = $request->thesis_date;
                 $Publication->university = trim($request->thesis_university);
 
             }
