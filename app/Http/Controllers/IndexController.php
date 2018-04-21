@@ -57,23 +57,23 @@ class IndexController extends Controller
     public function showProjects(Request $request){
         $id = $request->id;
         if($id=="1"){
-            $project = Project::where('fundStatus',1)->orderBy('project_id','DESC')->paginate(10);
+            $project = Project::where('fundStatus',1)->orderBy('finish_date','DESC')->paginate(10);
             return view('user.projects',['Project' =>$project , 'id'=>$id]);
         }
         elseif ($id=="2"){
-            $project = Project::where('fundStatus',0)->orderBy('project_id','DESC')->paginate(10);
+            $project = Project::where('fundStatus',0)->orderBy('finish_date','DESC')->paginate(10);
             return view('user.projects',['Project' =>$project, 'id'=>$id]);
         }
         elseif ($id=="3"){
-            $project = Project::where('status',1)->orderBy('project_id','DESC')->paginate(10);
+            $project = Project::where('status',1)->orderBy('finish_date','DESC')->paginate(10);
             return view('user.projects',['Project' =>$project, 'id'=>$id]);
         }
         elseif ($id=="4"){
-            $project = Project::where('status',0)->orderBy('project_id','DESC')->paginate(10);
+            $project = Project::where('status',0)->orderBy('finish_date','DESC')->paginate(10);
             return view('user.projects',['Project' =>$project, 'id'=>$id]);
         }
         elseif($id=="5"){
-            $project = Project::orderBy('project_id','DESC')->paginate(10);
+            $project = Project::orderBy('finish_date','DESC')->paginate(10);
             return view('user.projects',['Project' =>$project, 'id'=>$id]);
         }
     }
@@ -120,7 +120,7 @@ class IndexController extends Controller
     public function showPublications(Request $request){
         $Publications = Publications::with('member')
             ->where(['publication_type' => $request->type])
-            ->orderBy('publication_id','DESC')
+            ->orderBy('date','DESC')
             ->paginate(10);
         return view('user.publications',['Publications' =>$Publications,'type'=>$request->type]);
     }

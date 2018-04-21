@@ -81,7 +81,7 @@
                         ?>
                         @foreach($paper_years as $year)
                             @if($counter == 0)
-                                <div class="tab tab-pane fade in active" id="book_{{$year}}">
+                                <div class="tab tab-pane fade in active" id="paper_{{$year}}">
                                     <div class="group excerpts">
                                         @foreach($memberPublication->publication as $item)
                                                 @if(intval($year) == intval(date('Y',strtotime($item->date))))

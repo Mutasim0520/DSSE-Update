@@ -197,7 +197,7 @@ class PublicationController extends Controller
                     'file'=> 'required|mimes:docx,doc,pdf|max:80000',
                 ]);
 
-                $fileName = time().'.'.$request->file('file')->getClientOriginalName();
+                $fileName = time().'_'.$request->file('file')->getClientOriginalName();
                 $path = $request->file('file')->storeAs('uploaded_documents',$fileName,'public');
                 echo $fileName;
             }

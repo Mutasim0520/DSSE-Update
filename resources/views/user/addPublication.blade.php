@@ -91,16 +91,16 @@
                             </div>
                             <div id = "book_container" style="display: none;">
                                 <div class="col-md-6 form-group">
-                                    <input type="text" class="form-control" required="" placeholder="Chapter Name" name="book_chapter_name" required>
+                                    <input type="text" class="form-control" placeholder="Chapter Name" name="book_chapter_name" required>
                                 </div>
                                 <div class="col-md-6 form-group">
-                                    <input type="text" class="form-control" required="" placeholder="Chapter" name="book_chapter" required>
+                                    <input type="text" class="form-control" placeholder="Chapter" name="book_chapter" required>
                                 </div>
                                 <div class="col-md-6 form-group">
-                                    <input type="text" class="form-control" required="" placeholder="Edition" name="book_adition" required>
+                                    <input type="text" class="form-control" placeholder="Edition" name="book_adition" required>
                                 </div>
                                 <div class="col-md-6 form-group">
-                                    <input type="text" class="form-control" required="" placeholder="Section" name="book_section" required>
+                                    <input type="text" class="form-control" placeholder="Section" name="book_section" required>
                                 </div>
                                 <div class="col-md-6 form-group">
                                     <input type="text" class="form-control" required="" placeholder="Page" name="book_page" required>
@@ -111,21 +111,21 @@
                             </div>
                             <div id = "conference_container" style="display: none;">
                                 <div class="col-md-6 form-group">
-                                    <input type="text" class="form-control" required="" placeholder="Page" name="conf_page">
+                                    <input type="text" class="form-control" placeholder="Page" name="conf_page">
                                 </div>
                                 <div class="col-md-6 form-group">
-                                    <input type="text" class="form-control" required="" placeholder="Conference Name" name="conf_publisher">
+                                    <input type="text" class="form-control" placeholder="Conference Name" name="conf_publisher">
                                 </div>
                             </div>
                             <div id = "journal_container" style="display: none;">
                                 <div class="col-md-6 form-group">
-                                    <input type="text" required="" class="form-control" placeholder="Page" name="journal_page">
+                                    <input type="text" class="form-control" placeholder="Page" name="journal_page">
                                 </div>
                                 <div class="col-md-6 form-group">
-                                    <input type="text" required="" class="form-control" placeholder="Volume" name="journal_volume">
+                                    <input type="text" class="form-control" placeholder="Volume" name="journal_volume">
                                 </div>
                                 <div class="col-md-6 form-group">
-                                    <input type="text" required="" class="form-control" placeholder="Publisher" name="journal_publisher">
+                                    <input type="text" class="form-control" placeholder="Publisher" name="journal_publisher">
                                 </div>
 
                                 <div class="col-md-6 form-group">
@@ -134,10 +134,10 @@
                             </div>
                             <div id = "thesis_container" style="display: none;">
                                 <div class="col-md-6 form-group">
-                                    <input type="text" class="form-control" required="" placeholder="Pages" name="thesis_page">
+                                    <input type="text" class="form-control" placeholder="Pages" name="thesis_page">
                                 </div>
                                 <div class="col-md-6 form-group">
-                                    <select type="text" required="" class="form-control" placeholder="Select Supervisor" id="thesis_supervisor">
+                                    <select type="text" class="form-control" placeholder="Select Supervisor" id="thesis_supervisor">
                                         <option value="">Select Supervisor</option>
                                         @foreach($member as $item)
                                             <option value="{{$item->member_id}}">{{$item->firstName}} {{$item->lastName}}</option>
