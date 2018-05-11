@@ -563,13 +563,13 @@
                         $counter++;
                         ?>
                     @endforeach
+                </div>
                     @if($counter ==0)
-                        <div class="group excerpts">
+                        <div class="col-md-10">
                             <p>No Record Added</p>
                         </div>
                     @endif
                 </div>
-            </div>
         </main>
     </div>
     <div id="add_social_account_modal" class="modal fade" role="dialog">
