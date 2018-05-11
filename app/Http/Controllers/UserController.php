@@ -21,14 +21,14 @@ class UserController extends Controller
     public function deleteProject(Request $request){
         $project = Project::where('project_id',$request->id)->first();
         $project->delete();
-        Session::flash('PublicationDelete','Project successfully deleted');
+        Session::flash('ProjectDelete','Project successfully deleted');
         return redirect()->back();
     }
 
     public function deletePublication(Request $request){
         $publication = Publications::where('publication_id',$request->id)->first();
         $publication->delete();
-        Session::flash('ProjectDelete','Item successfully deleted');
+        Session::flash('PublicationDelete','Item successfully deleted');
         return redirect()->back();
     }
 
@@ -83,32 +83,49 @@ class UserController extends Controller
         }
     }
 
-    public function showMemberProfile(Request $request){
+    public function showProfile(Request $request){
         $id = decrypt($request->id);
-        $user = User::find($id);
-        $MemberProject = Member::find($id);
+        $user = User::with('member')->find($id);
+
+        $MemberProject = Member::find($user->member->member_id);
         $MemberProject->Project->all();
         //echo json_encode($MemberProject);
         //return json_decode($MemberProject,true);
-        $MemberPublication = Member::find($id);
-        $MemberPublication->Publication->all();
+        $MemberPublication = Member::with('Publication')->find($user->member->member_id);
 
-        $MemberEducation = Member::find($id);
-        $MemberEducation->Education->all();
-        //echo json_encode($MemberEducation);
-        $MemberExperience = Member::find($id);
-        $MemberExperience->Experience->all();
+        $member = Member::with('social_account','education','experience')->where(['email'=>$user->email])->get();
 
-        $member = Member::find($id);
-        return view('user.memberProfile',['memberProject' => $MemberProject , 'memberPublication' => $MemberPublication , 'MemberExperience'=>$MemberExperience, 'MemberEducation' =>$MemberEducation , 'member' => $member]);
+        $paper_years = [];
+        $project_years = [];
+
+        foreach ($MemberPublication['publication'] as $item){
+            $a = array_search(date('Y',strtotime($item['date'])),$paper_years);
+            if($a == 'true' || $a){
+
+            }else{
+                array_push($paper_years,intval(date('Y',strtotime($item->date))));
+            }
+        }
+        rsort($paper_years);
+
+        foreach ($MemberProject['project'] as $item){
+            $a = array_search(date('Y',strtotime($item['start_date'])),$project_years);
+            if($a == 'true' || $a){
+
+            }else{
+                array_push($project_years,intval(date('Y',strtotime($item->start_date))));
+            }
+        }
+
+        return view('user.personalProfile',['paper_years'=>$paper_years,'project_years'=>$project_years,'memberProject' => $MemberProject , 'memberPublication' => $MemberPublication ,'member' => $member]);
     }
 
-    public function showProfile(Request $request){
-        $user = User::find(decrypt($request->id));
-        $Member = Member::with('social_account','publication','project','education','experience')->where(['email'=>$user->email])->get();
-        //return $Member;
-        return view('user.personalProfile',['member' => $Member]);
-    }
+//    public function showProfile(Request $request){
+//        $user = User::find(decrypt($request->id));
+//        $Member = Member::with('social_account','publication','project','education','experience')->where(['email'=>$user->email])->get();
+//        //return $Member;
+//        return view('user.personalProfile',['member' => $Member]);
+//    }
 
     public function addEducation(Request $request){
         $user = User::find(Auth::user()->id);

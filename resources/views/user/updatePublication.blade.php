@@ -44,7 +44,7 @@
                                 {!! csrf_field() !!}
                                 <div class="col-md-12 form-group">
                                     <label class="item-head log">Title</label>
-                                    <input class="form-control" type="text" required="" id = "publication_name" name="name" autofocus="">
+                                    <input class="form-control" type="text" required="" id = "publication_name" name="name" autofocus="" value="{{}}">
                                 </div>
                                 <div class="col-md-12 form-group">
                                     <label class="item-head log">Abstract</label>
@@ -92,30 +92,30 @@
                                 </div>
                                 <div id = "book_container" style="display: none;">
                                     <div class="col-md-6 form-group">
-                                        <input type="text" class="form-control" required="" placeholder="Chapter Name" name="book_chapter_name" required>
+                                        <input type="text" class="form-control" placeholder="Chapter Name" name="book_chapter_name" required>
                                     </div>
                                     <div class="col-md-6 form-group">
-                                        <input type="text" class="form-control" required="" placeholder="Chapter" name="book_chapter" required>
+                                        <input type="text" class="form-control" placeholder="Chapter" name="book_chapter" required>
                                     </div>
                                     <div class="col-md-6 form-group">
-                                        <input type="text" class="form-control" required="" placeholder="Edition" name="book_adition" required>
+                                        <input type="text" class="form-control" placeholder="Edition" name="book_adition" required>
                                     </div>
                                     <div class="col-md-6 form-group">
-                                        <input type="text" class="form-control" required="" placeholder="Section" name="book_section" required>
+                                        <input type="text" class="form-control" placeholder="Section" name="book_section" required>
                                     </div>
                                     <div class="col-md-6 form-group">
-                                        <input type="text" class="form-control" required="" placeholder="Page" name="book_page" required>
+                                        <input type="text" class="form-control"  placeholder="Page" name="book_page" required>
                                     </div>
                                     <div class="col-md-6 form-group">
-                                        <input type="text" class="form-control" required="" placeholder="Publisher" name="book_publisher" required>
+                                        <input type="text" class="form-control"  placeholder="Publisher" name="book_publisher" required>
                                     </div>
                                 </div>
                                 <div id = "conference_container" style="display: none;">
                                     <div class="col-md-6 form-group">
-                                        <input type="text" class="form-control" required="" placeholder="Page" name="conf_page">
+                                        <input type="text" class="form-control" placeholder="Page" name="conf_page">
                                     </div>
                                     <div class="col-md-6 form-group">
-                                        <input type="text" class="form-control" required="" placeholder="Conference Name" name="conf_publisher">
+                                        <input type="text" class="form-control" placeholder="Conference Name" name="conf_publisher">
                                     </div>
                                 </div>
                                 <div id = "journal_container" style="display: none;">
@@ -274,7 +274,7 @@
                                     </div>
                                 </div>
                                 <div class="col-md-12 form-group button" style="text-align: center">
-                                    <button class="btn" id="submit" name="submit" type = "submit">Add Publication</button>
+                                    <button class="btn" id="submit" name="submit" type = "submit">Update Publication</button>
                                 </div>
                                 <div class="clearfix"> </div>
                             </form>

@@ -194,63 +194,6 @@
 
             </div>
 
-            <div id="contact-tab" class="tab-pane fade">
-                <div class="section-head">Contact
-                </div><br>
-                <div class="group excerpts">
-                    <p>No Record Added</p>
-                </div>
-            </div>
-
-            <div id="education-tab" class="tab-pane fade">
-                <div class="section-head">Education</div><br>
-                <div class="group excerpts">
-                    @foreach($MemberEducation->education as $item)
-                        <article class="full">
-                            <div class="hgroup" style="padding-bottom: 10px;">
-                                <h6 class="heading">{{ $item->degree_name }}</h6>
-                                <small class="item-head">{{$item->passing_year }}</small>
-                            </div>
-                            <hr>
-                            <figure class="edu">
-                                <div>
-                                    <p class="item-head">
-                                        {{ $item->institute }}
-                                    </p>
-                                    <p> <span class="item-head">Subject: </span> {{ $item->degree_subject }}</p>
-                                    @if($item->thesis)
-                                        <p><span class="item-head">Thesis: </span>{{$item->thesis}}</p>
-                                        <p><span class="item-head">Supervisor: </span>{{ $item->supervisor}}</p>
-                                    @endif
-
-                                </div>
-                            </figure>
-                        </article>
-                    @endforeach
-                    @if(sizeof($MemberEducation->education)==0)
-                        <p>No Record Added</p>
-                        @endif
-                </div>
-            </div>
-
-            <div id="career-tab" class="tab-pane fade">
-                <div class="section-head">Career</div><br>
-                <div class="group excerpts">
-                    @foreach($MemberExperience->experience as $item)
-                        <article class="full">
-                            <figure class="edu">
-                                <span class="item-head">Organization: </span> <span>{{ $item->organization_name }}</span><br>
-                                <span class="item-head">Designation: </span><span>{{ $item->designation }}</span><br>
-                                <span class="item-head">{{ $item->duration }}</span><br>
-                            </figure>
-                        </article>
-                    @endforeach
-                    @if(sizeof($MemberExperience->experience)== 0)
-                            <p>No Record Added</p>
-                        @endif
-                </div>
-            </div>
-
             <div id="project-tab" class="tab-pane fade">
                 <div class="section-head">Projects</div>
                 <div class="col-md-2">
@@ -320,12 +263,70 @@
                         ?>
                     @endforeach
                     @if($counter ==0)
-                            <div class="group excerpts">
-                                    <p>No Record Added</p>
+                        <div class="group excerpts">
+                            <p>No Record Added</p>
+                        </div>
+                    @endif
+                </div>
+            </div>
+
+            <div id="contact-tab" class="tab-pane fade">
+                <div class="section-head">Contact
+                </div><br>
+                <div class="group excerpts">
+                    <p>No Record Added</p>
+                </div>
+            </div>
+
+            <div id="education-tab" class="tab-pane fade">
+                <div class="section-head">Education</div><br>
+                <div class="group excerpts">
+                    @foreach($MemberEducation->education as $item)
+                        <article class="full">
+                            <div class="hgroup" style="padding-bottom: 10px;">
+                                <h6 class="heading">{{ $item->degree_name }}</h6>
+                                <small class="item-head">{{$item->passing_year }}</small>
                             </div>
+                            <hr>
+                            <figure class="edu">
+                                <div>
+                                    <p class="item-head">
+                                        {{ $item->institute }}
+                                    </p>
+                                    <p> <span class="item-head">Subject: </span> {{ $item->degree_subject }}</p>
+                                    @if($item->thesis)
+                                        <p><span class="item-head">Thesis: </span>{{$item->thesis}}</p>
+                                        <p><span class="item-head">Supervisor: </span>{{ $item->supervisor}}</p>
+                                    @endif
+
+                                </div>
+                            </figure>
+                        </article>
+                    @endforeach
+                    @if(sizeof($MemberEducation->education)==0)
+                        <p>No Record Added</p>
                         @endif
                 </div>
             </div>
+
+            <div id="career-tab" class="tab-pane fade">
+                <div class="section-head">Career</div><br>
+                <div class="group excerpts">
+                    @foreach($MemberExperience->experience as $item)
+                        <article class="full">
+                            <figure class="edu">
+                                <span class="item-head">Organization: </span> <span>{{ $item->organization_name }}</span><br>
+                                <span class="item-head">Designation: </span><span>{{ $item->designation }}</span><br>
+                                <span class="item-head">{{ $item->duration }}</span><br>
+                            </figure>
+                        </article>
+                    @endforeach
+                    @if(sizeof($MemberExperience->experience)== 0)
+                            <p>No Record Added</p>
+                        @endif
+                </div>
+            </div>
+
 
         </main>
     </div>

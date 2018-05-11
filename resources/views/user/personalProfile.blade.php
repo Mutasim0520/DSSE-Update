@@ -1,39 +1,39 @@
 @extends('layouts.user')
 @section('style')
     <link href="/css/user/light-bootstrap-dashboard.css" rel="stylesheet" type="text/css" media="all">
-    @endsection
+@endsection
 @section('title')
     DSSE | Profile & Info | {{$member[0]->firstName.' '.$member[0]->lastName}}
-    @endsection
+@endsection
 @section('content')
     <div class="wrapper row3">
         <main class="hoc container clear tab-content" style="margin-top: 50px;">
             <div class="upper" style="border:1px solid #9f0769; padding-top: 15px;">
                 <div class="content">
                     <div class="author">
-                       <div class="col-md-4">
-                           @if($member[0]->photo)
-                               <a href="javascript:void(0);" data-toggle="modal" data-target="#update_profile_image"><i class="fa fa-cogs">Update Profile Picture</i></a>
-                               <img src="/images/{{$member[0]->photo}}" alt="image not found">
-                               @else
-                               <div>
-                                   <h4>Upload Profile Image</h4>
-                                   <form action="/upload/pp" method="post" enctype="multipart/form-data">
-                                       {{csrf_field()}}
-                                       <div class="form-group">
-                                           <input type="file" name="file" required >
-                                       </div>
-                                       <div class="form-group">
-                                           <button type="submit" class="btn">Upload</button>
-                                       </div>
-                                   </form>
-                               </div>
-                           @endif
-                       </div>
-                       <div class="col-md-8">
-                           <a href="javascript:void(0);" data-toggle="modal" data-target="#update_profile_info"><i class="fa fa-cogs">Update Profile Info</i></a>
-                           <table class="table table-responsive table-striped" style="border: none;">
-                               <tbody>
+                        <div class="col-md-4">
+                            @if($member[0]->photo)
+                                <a href="javascript:void(0);" data-toggle="modal" data-target="#update_profile_image"><i class="fa fa-cogs">Update Profile Picture</i></a>
+                                <img src="/images/{{$member[0]->photo}}" alt="image not found">
+                            @else
+                                <div>
+                                    <h4>Upload Profile Image</h4>
+                                    <form action="/upload/pp" method="post" enctype="multipart/form-data">
+                                        {{csrf_field()}}
+                                        <div class="form-group">
+                                            <input type="file" name="file" required >
+                                        </div>
+                                        <div class="form-group">
+                                            <button type="submit" class="btn">Upload</button>
+                                        </div>
+                                    </form>
+                                </div>
+                            @endif
+                        </div>
+                        <div class="col-md-8">
+                            <a href="javascript:void(0);" data-toggle="modal" data-target="#update_profile_info"><i class="fa fa-cogs">Update Profile Info</i></a>
+                            <table class="table table-responsive table-striped" style="border: none;">
+                                <tbody>
                                 <tr>
                                     <td>
                                         Full Name
@@ -49,7 +49,7 @@
                                     <td>
                                         @if($member[0]->publication_name)
                                             <p class="title">{{$member[0]->publication_name}}</p>
-                                            @else
+                                        @else
                                             <p>Not Set Yet. <a style="float: right;color: #9f0769;" href="javascript:void(0);" data-toggle="modal" data-target ='#add_publication_name'>Add Publication Name</a></p>
                                         @endif
                                     </td>
@@ -69,13 +69,13 @@
                                     </td>
                                     <?php $google = 0;?>
                                     @if(sizeof($member[0]->social_account)>0)
-                                    @foreach($member[0]->social_account as $item)
-                                        @if($item->name == 'google')
-                                            <td><a href="{{$item->url}}">Google Scholar Profile</a></td>
+                                        @foreach($member[0]->social_account as $item)
+                                            @if($item->name == 'google')
+                                                <td><a href="{{$item->url}}">Google Scholar Profile</a></td>
                                                 <?php $google = 1;?>
                                             @endif
 
-                                    @endforeach
+                                        @endforeach
                                     @endif
                                     @if($google == 0)
                                         <td><a style="color: #9f0769;" href="javascript:showAddSocilaProfileModal('google');">Add Google Scholar Profile</a></td>
@@ -138,9 +138,9 @@
                                         <td><a style="color: #9f0769;" href="javascript:showAddSocilaProfileModal('dblp');">Add DBLP Profile</a></td>
                                     @endif
                                 </tr>
-                               </tbody>
-                           </table>
-                       </div>
+                                </tbody>
+                            </table>
+                        </div>
                     </div>
                 </div>
                 <footer>
@@ -158,29 +158,29 @@
                 </div><br>
                 <div class="group excerpts">
                     @if(sizeof($member[0]['education'])>0)
-                       @foreach($member[0]['education'] as $item)
-                        <article class="full">
-                            <div class="hgroup" style="padding-bottom: 10px;">
-                            <h6 class="heading">{{ $item->degree_name }}</h6>
-                            <small>{{ $item->institute }}</small><hr></div>
-                            <figure class="edu">
-                                <div style="display: inline-block; border-right: 5px;">
-                                    <i class="fa fa-university fa-5x" style="color: darkolivegreen;"></i>
-                                </div>
-                                <div style="display: inline-block">
-                                    <span>{{ $item->degree_subject }}</span><br>
-                                    @if($item->thesis)
-                                        <span class="item-head">Thesis: </span><span>{{ $item->thesis }}</span><br>
-                                        <span class="item-head">Supervisor: </span><span>{{ $item->supervisor }}</span><br>
-                                    @endif
-                                    <span class="item-head">Session: </span><span>{{ $item->passing_year }}</span><br>
-                                </div>
-                            </figure>
-                        </article>
+                        @foreach($member[0]['education'] as $item)
+                            <article class="full">
+                                <div class="hgroup" style="padding-bottom: 10px;">
+                                    <h6 class="heading">{{ $item->degree_name }}</h6>
+                                    <small>{{ $item->institute }}</small><hr></div>
+                                <figure class="edu">
+                                    <div style="display: inline-block; border-right: 5px;">
+                                        <i class="fa fa-university fa-5x" style="color: darkolivegreen;"></i>
+                                    </div>
+                                    <div style="display: inline-block">
+                                        <span>{{ $item->degree_subject }}</span><br>
+                                        @if($item->thesis)
+                                            <span class="item-head">Thesis: </span><span>{{ $item->thesis }}</span><br>
+                                            <span class="item-head">Supervisor: </span><span>{{ $item->supervisor }}</span><br>
+                                        @endif
+                                        <span class="item-head">Session: </span><span>{{ $item->passing_year }}</span><br>
+                                    </div>
+                                </figure>
+                            </article>
                         @endforeach
-                        @else
+                    @else
                         <p class="item-head" style="text-align: center;">No record added yet</p>
-                        @endif
+                    @endif
                 </div>
                 <div id="addGraduationInfo" class="modal fade" role="dialog">
                     <div class="modal-dialog">
@@ -210,7 +210,7 @@
                                     </div>
                                     <div class="col-md-12 form-group">
                                         <label class="item-head log">
-                                        <input type ="checkbox" id="degree_name" name="thesis" autofocus="" style="display: inline-block;">
+                                            <input type ="checkbox" id="degree_name" name="thesis" autofocus="" style="display: inline-block;">
                                             Thesis</label>
                                     </div>
                                     <div class="col-md-12 form-group" id="thesis_container" style="display: none;">
@@ -332,177 +332,241 @@
 
             <!--- Project------------------>
 
+            <div id="publication-tab" class="tab-pane fade in active ">
+                <div class="section-head"> Publication<span style="float: right; font-size: small;"><i class="fa fa-briefcase"></i><a href="/add/publication" style="text-align: center;">Add Publications</a></span></div><br>
+                @if(sizeof($paper_years)>0)
+                    <div class="col-md-2">
+                        <ul class="nav nav-pills nav-stacked">
+                            <?php $paper_year = 0; ?>
+                            @foreach($paper_years as $item)
+                                @if($paper_year == 0)
+                                    <li class="active">
+                                        <a href="#paper_{{$item}}" data-toggle="tab">{{$item}}</a>
+                                    </li>
+                                @else
+                                    <li><a href="#paper_{{$item}}" data-toggle="tab">{{$item}}</a></li>
+                                @endif
+                                <?php $paper_year++; ?>
+                            @endforeach
+                        </ul>
+                    </div>
+                    <div class="col-md-10 tab-content">
+                        <?php
+                        $counter = 0;
+                        ?>
+                        @foreach($paper_years as $year)
+                            @if($counter == 0)
+                                <div class="tab tab-pane fade in active" id="paper_{{$year}}">
+                                    <div class="group excerpts">
+                                        @foreach($memberPublication->publication as $item)
+                                            @if(intval($year) == intval(date('Y',strtotime($item->date))))
+                                                @if($item->publication_type == "book")
+                                                    <article class="full">
+                                                        <figure class="list member_item">
+                                                            <span class=" item-head"> Name: </span><span><a href="/indivisual/publication/{{encrypt($item->publication_id)}}">{{ $item->name }}</a></span><br>
+                                                            <span style="float: right; margin-left: 5px;"><a class="btn" href="/delete/publication/{{$item->publication_id}}"><i class="fa fa-trash"></i></a></span>
+                                                            <span style="float: right"><a class="btn" href="/update/publication/{{$item->publication_id}}"><i class="fa fa-pencil"></i></a></span>
+                                                            <span class=" item-head"><a href="/conferenceWiseItem/{{$item->conference_name}}">{{ $item->conference_name }}</a></span><br>
+                                                            <span class=" item-head"> Date: </span><span> {{ $item->date }}</span><br>
+                                                        </figure>
+                                                    </article>
+                                                @elseif($item->publication_type == "journal")
+                                                    <article class="full">
+                                                        <figure class="list member_item">
+                                                            <span class=" item-head"> Name: </span><span><a href="/indivisual/publication/{{encrypt($item->publication_id)}}">{{ $item->name }}</a></span><br>
+                                                            <span style="float: right; margin-left: 5px;"><a class="btn" href="/delete/publication/{{$item->publication_id}}"><i class="fa fa-trash"></i></a></span>
+                                                            <span style="float: right"><a class="btn" href="/update/publication/{{$item->publication_id}}"><i class="fa fa-pencil"></i></a></span>
+                                                            <span class=" item-head"><a href="/conferenceWiseItem/{{$item->conference_name}}">{{ $item->conference_name }}</a></span><br>
+                                                            <span class=" item-head"> Date: </span><span> {{ $item->date }}</span><br>
+                                                        </figure>
+                                                    </article>
+                                                @elseif($item->publication_type == "conference")
+                                                    <article class="full">
+                                                        <figure class="list member_item">
+                                                            <span class=" item-head"> Name: </span><span><a href="/indivisual/publication/{{encrypt($item->publication_id)}}">{{ $item->name }}</a></span><br>
+                                                            <span style="float: right; margin-left: 5px;"><a class="btn" href="/delete/publication/{{$item->publication_id}}"><i class="fa fa-trash"></i></a></span>
+                                                            <span style="float: right"><a class="btn" href="/update/publication/{{$item->publication_id}}"><i class="fa fa-pencil"></i></a></span>
+                                                            <span class=" item-head"><a href="/conferenceWiseItem/{{$item->conference_name}}">{{ $item->conference_name }}</a></span><br>
+                                                            <span class=" item-head"> Date: </span><span> {{ $item->date }}</span><br>
+                                                        </figure>
+                                                    </article>
+                                                @elseif($item->publication_type == "thesis")
+                                                    <article class="full">
+                                                        <figure class="list member_item">
+                                                            <span class=" item-head"> Name: </span><span><a href="/indivisual/publication/{{encrypt($item->publication_id)}}">{{ $item->name }}</a></span><br>
+                                                            <span style="float: right; margin-left: 5px;"><a class="btn" href="/delete/publication/{{$item->publication_id}}"><i class="fa fa-trash"></i></a></span>
+                                                            <span style="float: right"><a class="btn" href="/update/publication/{{$item->publication_id}}"><i class="fa fa-pencil"></i></a></span>
+                                                            <span class=" item-head"><a href="/conferenceWiseItem/{{$item->conference_name}}">{{ $item->conference_name }}</a></span><br>
+                                                            <span class=" item-head"> Date: </span><span> {{ $item->date }}</span><br>
+                                                        </figure>
+                                                    </article>
+                                                @elseif($item->publication_type == "other")
+                                                    <article class="full">
+                                                        <figure class="list member_item">
+                                                            <span class=" item-head"> Name: </span><span><a href="/indivisual/publication/{{encrypt($item->publication_id)}}">{{ $item->name }}</a></span><br>
+                                                            <span style="float: right; margin-left: 5px;"><a class="btn" href="/delete/publication/{{$item->publication_id}}"><i class="fa fa-trash"></i></a></span>
+                                                            <span style="float: right"><a class="btn" href="/update/publication/{{$item->publication_id}}"><i class="fa fa-pencil"></i></a></span>
+                                                            <span class=" item-head"><a href="/conferenceWiseItem/{{$item->conference_name}}">{{ $item->conference_name }}</a></span><br>
+                                                            <span class=" item-head"> Date: </span><span> {{ $item->date }}</span><br>
+                                                        </figure>
+                                                    </article>
+                                                @endif
+                                            @endif
+                                        @endforeach
+                                    </div>
+                                </div>
+                            @else
+                                <div class = "tab tab-pane fade" id="paper_{{$year}}">
+                                    <div class="group excerpts">
+                                        @foreach($memberPublication->publication as $item)
+                                            @if(intval($year) == intval(date('Y',strtotime($item->date))))
+                                                @if($item->publication_type == "book")
+                                                    <article class="full">
+                                                        <figure class="list member_item">
+                                                            <span class=" item-head"> Name: </span><span><a href="/indivisual/publication/{{encrypt($item->publication_id)}}">{{ $item->name }}</a></span><br>
+                                                            <span style="float: right; margin-left: 5px;"><a class="btn" href="/delete/publication/{{$item->publication_id}}"><i class="fa fa-trash"></i></a></span>
+                                                            <span style="float: right"><a class="btn" href="/update/publication/{{$item->publication_id}}"><i class="fa fa-pencil"></i></a></span>
+                                                            <span class=" item-head"><a href="/conferenceWiseItem/{{$item->conference_name}}">{{ $item->conference_name }}</a></span><br>
+                                                            <span class=" item-head"> Date: </span><span> {{ $item->date }}</span><br>
+                                                        </figure>
+                                                    </article>
+                                                @elseif($item->publication_type == "journal")
+                                                    <article class="full">
+                                                        <figure class="list member_item">
+                                                            <span class=" item-head"> Name: </span><span><a href="/indivisual/publication/{{encrypt($item->publication_id)}}">{{ $item->name }}</a></span><br>
+                                                            <span style="float: right; margin-left: 5px;"><a class="btn" href="/delete/publication/{{$item->publication_id}}"><i class="fa fa-trash"></i></a></span>
+                                                            <span style="float: right"><a class="btn" href="/update/publication/{{$item->publication_id}}"><i class="fa fa-pencil"></i></a></span>
+                                                            <span class=" item-head"><a href="/conferenceWiseItem/{{$item->conference_name}}">{{ $item->conference_name }}</a></span><br>
+                                                            <span class=" item-head"> Date: </span><span> {{ $item->date }}</span><br>
+                                                        </figure>
+                                                    </article>
+                                                @elseif($item->publication_type == "conference")
+                                                    <article class="full">
+                                                        <figure class="list member_item">
+                                                            <span class=" item-head"> Name: </span><span><a href="/indivisual/publication/{{encrypt($item->publication_id)}}">{{ $item->name }}</a></span><br>
+                                                            <span style="float: right; margin-left: 5px;"><a class="btn" href="/delete/publication/{{$item->publication_id}}"><i class="fa fa-trash"></i></a></span>
+                                                            <span style="float: right"><a class="btn" href="/update/publication/{{$item->publication_id}}"><i class="fa fa-pencil"></i></a></span>
+                                                            <span class=" item-head"><a href="/conferenceWiseItem/{{$item->conference_name}}">{{ $item->conference_name }}</a></span><br>
+                                                            <span class=" item-head"> Date: </span><span> {{ $item->date }}</span><br>
+                                                        </figure>
+                                                    </article>
+                                                @elseif($item->publication_type == "thesis")
+                                                    <article class="full">
+                                                        <figure class="list member_item">
+                                                            <span class=" item-head"> Name: </span><span><a href="/indivisual/publication/{{encrypt($item->publication_id)}}">{{ $item->name }}</a></span><br>
+                                                            <span style="float: right; margin-left: 5px;"><a class="btn" href="/delete/publication/{{$item->publication_id}}"><i class="fa fa-trash"></i></a></span>
+                                                            <span style="float: right"><a class="btn" href="/update/publication/{{$item->publication_id}}"><i class="fa fa-pencil"></i></a></span>
+                                                            <span class=" item-head"><a href="/conferenceWiseItem/{{$item->conference_name}}">{{ $item->conference_name }}</a></span><br>
+                                                            <span class=" item-head"> Date: </span><span> {{ $item->date }}</span><br>
+                                                        </figure>
+                                                    </article>
+                                                @elseif($item->publication_type == "other")
+                                                    <article class="full">
+                                                        <figure class="list member_item">
+                                                            <span class=" item-head"> Name: </span><span><a href="/indivisual/publication/{{encrypt($item->publication_id)}}">{{ $item->name }}</a></span><br>
+                                                            <span style="float: right; margin-left: 5px;"><a class="btn" href="/delete/publication/{{$item->publication_id}}"><i class="fa fa-trash"></i></a></span>
+                                                            <span style="float: right"><a class="btn" href="/update/publication/{{$item->publication_id}}"><i class="fa fa-pencil"></i></a></span>
+                                                            <span class=" item-head"><a href="/conferenceWiseItem/{{$item->conference_name}}">{{ $item->conference_name }}</a></span><br>
+                                                            <span class=" item-head"> Date: </span><span> {{ $item->date }}</span><br>
+                                                        </figure>
+                                                    </article>
+                                                @endif
+                                            @endif
+                                        @endforeach
+                                    </div>
+                                </div>
+                            @endif
+                            <?php
+                            $counter++;
+                            ?>
+                        @endforeach
+                    </div>
+                @else
+                    <div class="col-md-10">
+                        <p>No Record Added </p>
+                    </div>
+                @endif
+
+            </div>
+
             <div id="project-tab" class="tab-pane fade">
                 <div class="section-head">Projects<span style="float: right; font-size: small;"><i class="fa fa-plus"></i><a href="/add/project" style="text-align: center;">Add Project</a></span></div><br>
-                <div class="group excerpts">
-                    @if(sizeof($member[0]->project)>0)
-                    @foreach($member[0]->project as $item)
-                        <article class="full">
-                            <figure class="list">
-                                <span class=" item-head"></span><span><a href="/indivisual/project/{{encrypt($item->project_id)}}">{{ $item->name }}</a></span>
-                                <span style="float: right;margin-left: 5px;"><a class="btn" href="/delete/project/{{$item->project_id}}"><i class="fa fa-trash"></i></a></span>
-                                <span style="float: right;margin-left: 5px;"><a class="btn" href="/update/project/{{$item->project_id}}"><i class="fa fa-pencil"></i></a></span><br>
-                                <span class=" item-head"> Status: </span>
-                                <span>
-                                @if($item->status == "1") Complete
-                                    @else Ongoing
-                                    @endif
-                            </span>
-                            </figure>
-                        </article>
-                    @endforeach
-                        @else
-                        <p class="item-head" style="text-align: center;">No record added yet.</p>
-                    @endif
-                </div>
-            </div>
-
-            <div id="conference-tab" class="tab-pane fade">
-                <div class="section-head"> Conference Paper</div><br>
-                <div class="group excerpts">
-                    <?php $flag=0;?>
-                    @if(sizeof($member[0]->publication)>0)
-                        <article>
-                            <ol>
-                                @foreach($member[0]->publication as $item)
-                                    @if($item->publication_type == 'conference')
-                                        <li>
-                                            <a href="/indivisual/publication/{{encrypt($item->publication_id)}}">
-                                                {{$item->name}}
-                                            </a>
-                                            <span style="float: right; margin-left: 5px;"><a class="btn" href="/delete/publication/{{$item->publication_id}}"><i class="fa fa-trash"></i></a></span>
-                                            <span style="float: right"><a class="btn" href="/update/publication/{{$item->publication_id}}"><i class="fa fa-pencil"></i></a></span>
-
-                                        </li>
-                                        <?php $flag=1;?>
-                                    @endif
-
-                                @endforeach
-                            </ol>
-                            @if($flag==0)
-                                <center>No record added yet.</center>
+                <div class="col-md-2">
+                    <ul class="nav nav-pills nav-stacked">
+                        <?php $project_year = 0; ?>
+                        @foreach($project_years as $item)
+                            @if($project_year == 0)
+                                <li class="active">
+                                    <a href="#proj_{{$item}}" data-toggle="tab">{{$item}}</a>
+                                </li>
+                            @else
+                                <li><a href="#proj_{{$item}}" data-toggle="tab">{{$item}}</a></li>
                             @endif
-                        </article>
-                    @endif
+                            <?php $project_year++; ?>
+                        @endforeach
+                    </ul>
                 </div>
-            </div>
 
-            <div id="book-tab" class="tab-pane fade in active">
-                <div class="section-head"> Books<span style="float: right; font-size: small;"><i class="fa fa-briefcase"></i><a href="/add/publication" style="text-align: center;">Add Publications</a></span></div><br>
-                <div class="group excerpts">
-                    <?php $flag=0;?>
-                    @if(sizeof($member[0]->publication)>0)
-                            <article>
-                                <ol>
-                                    @foreach($member[0]->publication as $item)
-                                        @if($item->publication_type == 'book')
-                                            <li>
-                                                <a href="/indivisual/publication/{{encrypt($item->publication_id)}}">
-                                                    {{$item->name}}
-                                                </a>
-                                                <span style="float: right; margin-left: 5px;"><a class="btn" href="/delete/publication/{{$item->publication_id}}"><i class="fa fa-trash"></i></a></span>
-                                                <span style="float: right"><a class="btn" href="/update/publication/{{$item->publication_id}}"><i class="fa fa-pencil"></i></a></span>
+                <div class="col-md-10 tab-content">
+                    <?php
+                    $counter = 0;
+                    ?>
+                    @foreach($project_years as $year)
+                        @if($counter == 0)
+                            <div class="tab tab-pane fade in active" id="proj_{{$year}}">
+                                <div class="group excerpts">
+                                    <?php $has_project = 'false'; ?>
+                                    @foreach($memberProject->project as $item)
+                                        @if(intval($year) == intval(date('Y',strtotime($item->start_date))))
+                                            <article class="full">
+                                                <figure class="list member_item">
+                                                    <span class=" item-head"> Name: </span><span><a href="/indivisual/project/{{encrypt($item->project_id)}}">{{ $item->name }}</a></span><br>
+                                                    <span style="float: right;margin-left: 5px;"><a class="btn" href="/delete/project/{{$item->project_id}}"><i class="fa fa-trash"></i></a></span>
+                                                    <span style="float: right;margin-left: 5px;"><a class="btn" href="/update/project/{{$item->project_id}}"><i class="fa fa-pencil"></i></a></span><br>
 
-                                            </li>
-                                            <?php $flag=1;?>
+                                                    <?php
+                                                    echo $item->description;
+                                                    ?><br>
+                                                </figure>
+                                            </article>
                                         @endif
-
                                     @endforeach
-                                </ol>
-                                @if($flag==0)
-                                    <center>No record added yet.</center>
-                                @endif
-                            </article>
-                    @else
-                        <p class="item-head" style="text-align: center;">No record added yet.</p>
-                    @endif
-                </div>
-            </div>
+                                </div>
+                            </div>
+                        @else
+                            <div class = "tab tab-pane fade" id="proj_{{$year}}">
+                                <div class="group excerpts">
+                                    <?php $has_project = 'false'; ?>
+                                    @foreach($memberProject->project as $item)
+                                        @if(intval($year) == intval(date('Y',strtotime($item->start_date))))
+                                            <article class="full">
+                                                <figure class="list member_item">
+                                                    <span class=" item-head"> Name: </span><span><a href="/indivisual/project/{{encrypt($item->project_id)}}">{{ $item->name }}</a></span><br>
+                                                    <span style="float: right;margin-left: 5px;"><a class="btn" href="/delete/project/{{$item->project_id}}"><i class="fa fa-trash"></i></a></span>
+                                                    <span style="float: right;margin-left: 5px;"><a class="btn" href="/update/project/{{$item->project_id}}"><i class="fa fa-pencil"></i></a></span><br>
 
-            <div id="journal-tab" class="tab-pane fade">
-                <div class="section-head"> Journal Paper<span style="float: right; font-size: small;"><i class="fa fa-briefcase"></i><a href="/add/publication" style="text-align: center;">Add Publications</a></span></div><br>
-                <div class="group excerpts">
-                    <?php $flag=0;?>
-                    @if(sizeof($member[0]->publication)>0)
-                            <article>
-                                <ol>
-                                    @foreach($member[0]->publication as $item)
-                                        @if($item->publication_type == 'journal')
-                                            <li>
-                                                <a href="/indivisual/publication/{{encrypt($item->publication_id)}}">
-                                                    {{$item->name}}
-                                                </a>
-                                                <span style="float: right; margin-left: 5px;"><a class="btn" href="/delete/publication/{{$item->publication_id}}"><i class="fa fa-trash"></i></a></span>
-                                                <span style="float: right"><a class="btn" href="/update/publication/{{$item->publication_id}}"><i class="fa fa-pencil"></i></a></span>
-
-                                            </li>
-                                            <?php $flag=1;?>
+                                                    <?php
+                                                    echo $item->description;
+                                                    ?><br>
+                                                </figure>
+                                            </article>
+                                            <?php $has_project = 'true'; ?>
                                         @endif
-
                                     @endforeach
-                                </ol>
-                                @if($flag==0)
-                                    <center>No record added yet.</center>
-                                @endif
-                            </article>
-                    @endif
-                </div>
-            </div>
-
-            <div id="thesis-tab" class="tab-pane fade">
-                <div class="section-head"> Thesis<span style="float: right; font-size: small;"><i class="fa fa-briefcase"></i><a href="/add/publication" style="text-align: center;">Add Publications</a></span></div><br>
-                <div class="group excerpts">
-                    <?php $flag=0;?>
-                    @if(sizeof($member[0]->publication)>0)
-                            <article>
-                                <ol>
-                                    @foreach($member[0]->publication as $item)
-                                        @if($item->publication_type == 'thesis')
-                                            <li>
-                                                <a href="/indivisual/publication/{{encrypt($item->publication_id)}}">
-                                                    {{$item->name}}
-                                                </a>
-                                                <span style="float: right; margin-left: 5px;"><a class="btn" href="/delete/publication/{{$item->publication_id}}"><i class="fa fa-trash"></i></a></span>
-                                                <span style="float: right"><a class="btn" href="/update/publication/{{$item->publication_id}}"><i class="fa fa-pencil"></i></a></span>
-                                            </li>
-                                            <?php $flag=1;?>
-                                        @endif
-
-                                    @endforeach
-                                </ol>
-                                @if($flag==0)
-                                    <center>No record added yet.</center>
-                                @endif
-                            </article>
-                    @endif
-                </div>
-            </div>
-
-            <div id="other-tab" class="tab-pane fade">
-                <div class="section-head"> Others<span style="float: right; font-size: small;"><i class="fa fa-briefcase"></i><a href="/add/publication" style="text-align: center;">Add Publications</a></span></div><br>
-                <div class="group excerpts">
-                    <?php $flag=0;?>
-                    @if(sizeof($member[0]->publication)>0)
-                            <article>
-                                <ol>
-                                    @foreach($member[0]->publication as $item)
-                                        @if($item->publication_type == 'other')
-                                            <li>
-                                                <a href="/indivisual/publication/{{encrypt($item->publication_id)}}">
-                                                    {{$item->name}}
-                                                </a>
-                                                <span style="float: right; margin-left: 5px;"><a class="btn" href="/delete/publication/{{$item->publication_id}}"><i class="fa fa-trash"></i></a></span>
-                                                <span style="float: right"><a class="btn" href="/update/publication/{{$item->publication_id}}"><i class="fa fa-pencil"></i></a></span>
-                                            </li>
-                                            <?php $flag=1;?>
-                                        @endif
-
-                                    @endforeach
-                                </ol>
-                                @if($flag==0)
-                                    <center>No record added yet.</center>
-                                @endif
-                            </article>
+                                    @if($has_project== 'false')
+                                        <p>No Record Added</p>
+                                    @endif
+                                </div>
+                            </div>
+                        @endif
+                        <?php
+                        $counter++;
+                        ?>
+                    @endforeach
+                    @if($counter ==0)
+                        <div class="group excerpts">
+                            <p>No Record Added</p>
+                        </div>
                     @endif
                 </div>
             </div>
@@ -632,6 +696,13 @@
 @section('scripts')
     <script>
         $(document).ready(function () {
+            @if(Session::has('ProjectDelete'))
+
+            @endif
+            @if(Session::has('ProjectUpdate'))
+                $( ".nav-tabs" ).tabs({ active: 1 });
+            @endif
+
 
         });
         function showAddSocilaProfileModal(account) {

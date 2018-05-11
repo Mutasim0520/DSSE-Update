@@ -104,11 +104,11 @@ class IndexController extends Controller
         rsort($paper_years);
 
         foreach ($MemberProject['project'] as $item){
-            $a = array_search(date('Y',strtotime($item['finish_date'])),$project_years);
+            $a = array_search(date('Y',strtotime($item['start_date'])),$project_years);
             if($a == 'true' || $a){
 
             }else{
-                array_push($project_years,intval(date('Y',strtotime($item->finish_date))));
+                array_push($project_years,intval(date('Y',strtotime($item->start_date))));
             }
         }
         rsort($project_years);
