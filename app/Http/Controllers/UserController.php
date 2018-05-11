@@ -38,6 +38,7 @@ class UserController extends Controller
         $projects = Project::all();
         $external_authors = ex_auth::all();
         $publication = Publications::with('external_author','member','project','keyword')->find($request->id);
+        //return $publication;
         return view('user.updatePublication' , ['publication' => $publication,'external_authors' => $external_authors,'keywords'=>$keywords,'member' => $array ,'Project' =>$projects]);
     }
 

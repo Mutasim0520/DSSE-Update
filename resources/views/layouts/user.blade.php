@@ -56,7 +56,19 @@
 <script>
     $(document).ready(function () {
         @if(Session::has('registration_request_send'))
-                   $('#registration_request_send').modal('show');
+            $('#registration_request_send').modal('show');
+        @elseif(Session::has('ProjectAdd'))
+            $('#ProjectAdd').modal('show');
+        @elseif(Session::has('ProjectUpdate'))
+            $('#ProjectUpdate').modal('show');
+        @elseif(Session::has('ProjectDelete'))
+            $('#ProjectDelete').modal('show');
+        @elseif(Session::has('PublicationDelete'))
+            $('#PublicationDelete').modal('show');
+        @elseif(Session::has('PublicationAdd'))
+            $('#PublicationAdd').modal('show');
+        @elseif(Session::has('PublicationUpdate'))
+            $('#PublicationUpdate').modal('show');
         @endif
     });
 </script>

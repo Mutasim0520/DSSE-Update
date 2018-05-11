@@ -40,15 +40,17 @@
                                 <H1 style="letter-spacing: 3px">Please Wait</H1>
                                 <div class="loader"></div>
                             </center>
-                            <form id="test-form" action="/storepublication" method="post" enctype="multipart/form-data" >
+                            <form  novalidate id="test-form" action="/pub_update/{{encrypt($publication->publication_id)}}" method="post" enctype="multipart/form-data" >
                                 {!! csrf_field() !!}
                                 <div class="col-md-12 form-group">
                                     <label class="item-head log">Title</label>
-                                    <input class="form-control" type="text" required="" id = "publication_name" name="name" autofocus="" value="{{}}">
+                                    <input value="{{$publication->name}}" class="form-control" type="text" required="" id = "publication_name" name="name" autofocus="">
                                 </div>
                                 <div class="col-md-12 form-group">
                                     <label class="item-head log">Abstract</label>
-                                    <textarea  placeholder="Abstract" required="" id ="description" name="description" class="form-control ckeditor"></textarea>
+                                    <textarea  placeholder="Abstract" required="" id ="description" name="description" class="form-control ckeditor">
+                                    <?php echo $publication->abstract?>
+                                </textarea>
                                 </div>
                                 <div class="col-md-9 form-group">
                                     <label class="item-head log">Authors</label>
@@ -104,10 +106,10 @@
                                         <input type="text" class="form-control" placeholder="Section" name="book_section" required>
                                     </div>
                                     <div class="col-md-6 form-group">
-                                        <input type="text" class="form-control"  placeholder="Page" name="book_page" required>
+                                        <input type="text" class="form-control" placeholder="Page" name="book_page" required>
                                     </div>
                                     <div class="col-md-6 form-group">
-                                        <input type="text" class="form-control"  placeholder="Publisher" name="book_publisher" required>
+                                        <input type="text" class="form-control" placeholder="Publisher" name="book_publisher" required>
                                     </div>
                                 </div>
                                 <div id = "conference_container" style="display: none;">
@@ -120,25 +122,25 @@
                                 </div>
                                 <div id = "journal_container" style="display: none;">
                                     <div class="col-md-6 form-group">
-                                        <input type="text" required="" class="form-control" placeholder="Page" name="journal_page">
+                                        <input type="text" class="form-control" placeholder="Page" name="journal_page">
                                     </div>
                                     <div class="col-md-6 form-group">
-                                        <input type="text" required="" class="form-control" placeholder="Volume" name="journal_volume">
+                                        <input type="text" class="form-control" placeholder="Volume" name="journal_volume">
                                     </div>
                                     <div class="col-md-6 form-group">
-                                        <input type="text" required="" class="form-control" placeholder="Publisher" name="journal_publisher">
+                                        <input type="text" class="form-control" placeholder="Publisher" name="journal_publisher">
                                     </div>
 
                                     <div class="col-md-6 form-group">
-                                        <input type="text" required="" class="form-control" placeholder="Journal Name" name="journal_name">
+                                        <input type="text" class="form-control" placeholder="Journal Name" name="journal_name">
                                     </div>
                                 </div>
                                 <div id = "thesis_container" style="display: none;">
                                     <div class="col-md-6 form-group">
-                                        <input type="text" class="form-control" required="" placeholder="Pages" name="thesis_page">
+                                        <input type="text" class="form-control" placeholder="Pages" name="thesis_page">
                                     </div>
                                     <div class="col-md-6 form-group">
-                                        <select type="text" required="" class="form-control" placeholder="Select Supervisor" id="thesis_supervisor">
+                                        <select type="text" class="form-control" placeholder="Select Supervisor" id="thesis_supervisor">
                                             <option value="">Select Supervisor</option>
                                             @foreach($member as $item)
                                                 <option value="{{$item->member_id}}">{{$item->firstName}} {{$item->lastName}}</option>
@@ -148,11 +150,10 @@
                                     <div class="col-md-12 form-group">
                                         <input type="text" class="form-control" placeholder="University" name="thesis_university">
                                     </div>
-
                                 </div>
                                 <div class="col-md-12 form-group">
                                     <label class="item-head log">Select Date</label>
-                                    <input type="date" required name="date" class="datepicker date form-control">
+                                    <input type="text" required name="date" class="datepicker form-control">
                                 </div>
                                 <div class="col-md-9 form-group">
                                     <label class="item-head log">Select Keywords</label>
@@ -190,9 +191,6 @@
                                                     <option value="{{$item->project_id}}">{{$item->name}}</option>
                                                 @endforeach
                                             </select>
-                                        </div>
-                                        <div class="col-md-6" style="text-align: right">
-                                            <a href="javascript:saveInSession();" class="btn btn-default btn-sm">Add New Project</a>
                                         </div>
                                     </div>
 
@@ -232,7 +230,7 @@
                                     </div>
                                     <div class="col-md-9 form-group" id="source_code_container" style="display:none;">
                                         <div class="col-md-5">
-                                            <label class="item-head log">Upload file</label>
+                                            <label class="item-head log"><i id="src_file_exist" style="display: none;" class="fa fa-check-circle"></i>Upload file</label>
                                             <input type="file" name="file" id="paper">
                                         </div>
                                         <div class="col-md-7">
@@ -249,7 +247,8 @@
                                     </div>
                                     <div class="col-md-9 form-group" id="dataset_container" style="display:none;">
                                         <div class="col-md-5">
-                                            <label class="item-head log">Upload file</label>
+                                            <label class="item-head log">
+                                                <i id="dataset_file_exist" style="display: none;" class="fa fa-check-circle"></i>Upload file</label>
                                             <input type="file" name="file" id="dataset">
                                         </div>
                                         <div class="col-md-7">
@@ -259,7 +258,8 @@
                                     </div>
                                 </div>
                                 <div class="col-md-6 form-group">
-                                    <label>Upload Paper</label>
+                                    <label>
+                                        <i id="paper_file_exist" style="display: none;" class="fa fa-check-circle"></i>Upload Paper</label>
                                     <input type="file" id="publication_paper">
                                 </div>
                                 <div class="col-md-12 form-group">
@@ -278,6 +278,7 @@
                                 </div>
                                 <div class="clearfix"> </div>
                             </form>
+
                         </figure>
                     </article>
                 </div>
@@ -413,16 +414,19 @@
             if(default_ex_auth.length>0){
                 var ex_authors = [];
                 for(var i=0;i<default_ex_auth.length;i++){
-                    ex_authors.push(default_ex_auth[i].member_id);
+                    ex_authors.push(default_ex_auth[i].id);
                 }
                 $("#external_authors").val(ex_authors).trigger('change');
             }
+
             $('#publication_type').val('{{$publication->publication_type}}');
+
+            $('input[name=date]').datepicker({ dateFormat: 'mm/dd/yy'}).datepicker("setDate", new Date('{{$publication->date}}'));
+
 
             if('{{$publication->publication_type}}' == 'conference'){
                 $('#conference_container').show();
                 $('input[name=conf_page]').val('{{$publication->page}}');
-                $('input[name=conf_date]').datepicker({ dateFormat: 'mm/dd/yy'}).datepicker("setDate", new Date('{{$publication->date}}'));
                 $('input[name=conf_publisher]').val('{{$publication->conference_name}}');
             }
 
@@ -432,14 +436,12 @@
                 $('input[name=book_chapter]').val('{{$publication->book_chapter}}');
                 $('input[name=book_adition]').val('{{$publication->book_addition}}');
                 $('input[name=book_page]').val('{{$publication->page}}');
-                $('input[name=book_date]').datepicker({ dateFormat: 'mm/dd/yy'}).datepicker("setDate", new Date('{{$publication->date}}'));
                 $('input[name=book_publisher]').val('{{$publication->publisher}}');
             }
 
             else if('{{$publication->publication_type}}' == 'journal'){
                 $('#journal_container').show();
                 $('input[name=journal_page]').val('{{$publication->page}}');
-                $('input[name=journal_date]').datepicker({ dateFormat: 'mm/dd/yy'}).datepicker("setDate", new Date('{{$publication->date}}'));
                 $('input[name=journal_publisher]').val('{{$publication->publisher}}');
                 $('input[name=journal_name]').val('{{$publication->journal_name}}');
                 $('input[name=journal_volume]').val('{{$publication->volume}}');
@@ -449,7 +451,6 @@
             else if('{{$publication->publication_type}}' == 'thesis'){
                 $('#thesis_container').show();
                 $('input[name=thesis_page]').val('{{$publication->page}}');
-                $('input[name=thesis_date]').datepicker({ dateFormat: 'mm/dd/yy'}).datepicker("setDate", new Date('{{$publication->date}}'));
                 $('input[name=thesis_university]').val('{{$publication->university}}');
                 $('input[name=thesis_supervisor]').val('{{$publication->supervisor}}');
             }
@@ -457,7 +458,6 @@
             var keywords_all = JSON.parse('{!! $publication->keyword !!}');
             var keywords = [];
             for(var i=0;i<keywords_all.length;i++){
-                console.log(keywords_all[i].name);
                 keywords.push(keywords_all[i].name);
             }
             $("#keywords").val(keywords).trigger('change');
@@ -516,21 +516,18 @@
                     $('input[name=book_chapter_name]').val(book_data.chapter_name);
                     $('input[name=book_chapter]').val(book_data.chapter);
                     $('input[name=book_section]').val(book_data.section);
-                    $('input[name=book_date]').val(book_data.date);
                     $('input[name=book_publisher]').val(book_data.publisher);
                     $('input[name=book_page]').val(book_data.page);
                 }
 
                 else if(data[0].publication_type == 'conference'){
                     var conference_data = data[0].conference[0];
-                    $('input[name=conf_date]').val(conference_data.date);
                     $('input[name=conf_publisher]').val(conference_data.publisher);
                     $('input[name=conf_page]').val(conference_data.page);
                 }
 
                 else if(data[0].publication_type == 'journal'){
                     var journal_data = data[0].journal[0];
-                    $('input[name=journal_date]').val(journal_data.date);
                     $('input[name=journal_publisher]').val(journal_data.publisher);
                     $('input[name=journal_name]').val(journal_data.journal_name);
                     $('input[name=journal_volume]').val(journal_data.volume);
@@ -539,7 +536,6 @@
 
                 else if(data[0].publication_type == 'thesis'){
                     var thesis_data = data[0].thesis[0];
-                    $('input[name=thesis_date]').val(thesis_data.date);
                     $('input[name=thesis_university]').val(thesis_data.university);
                     $('input[name=thesis_page]').val(thesis_data.page);
                     $('#thesis_supervisor:selected').val(thesis_data.supervisor);
@@ -554,7 +550,6 @@
 
                 var keywords = data[0].keywords;
                 var external_author = data[0].external_authors;
-                console.log(external_author);
 
                 $('#external_authors').val(external_author).trigger('change');
                 $("#keywords").val(keywords).trigger('change');
@@ -582,7 +577,6 @@
 
             $("#publication_type").on('change' ,function () {
                 var publication_type = $("#publication_type").val();
-                console.log(publication_type);
                 if(publication_type == "book"){
                     $('#book_container').show();
                     $('#journal_container').css('display','none');
@@ -618,12 +612,10 @@
 
             $("#test-form").submit(function (event) {
                 if($(this).valid()){
-                    event.preventDefault();
                     event.stopPropagation();
-
+                    event.preventDefault();
                     $('#test-form').hide();
                     $('#loading').show();
-
                     var has_new_keyword = $('#has_new_keyword').val();
                     var has_new_ex_author = $('#new_ex_auth_status').val();
                     var src_code_path = "null";
@@ -637,10 +629,8 @@
                             type:"post",
                             data:{ _token: "{{ csrf_token() }}",keywords:new_keywords},
                             success: function(msg){
-                                console.log(msg);
                             }
                         });
-                        console.log('has new ');
                     }
 
                     if(has_new_ex_author == '1'){
@@ -650,10 +640,8 @@
                             type:"post",
                             data:{ _token: "{{ csrf_token() }}",external_authors:new_external_authors},
                             success: function(msg){
-                                console.log(msg);
                             }
                         });
-                        console.log('has new ');
                     }
 
                     if(file_counter == 2){
@@ -759,12 +747,10 @@
                                 }
                             });
                         }
-                        console.log("totalfile" + file_counter);
 
                     }
 
                     else if(file_counter == 3){
-                        console.log("totalfile" + file_counter);
 
                         var file_data = $('#paper').prop('files')[0];
                         var form_data = new FormData();
@@ -783,8 +769,6 @@
                                 var form_data_2 = new FormData();
                                 form_data_2.append('file', file_data_2);
                                 form_data_2.append('_token', $("input[name ='_token']").val());
-                                console.log(path);
-
                                 $.ajax({
                                     url: "/user/storefile",
                                     type: "post",
@@ -798,7 +782,6 @@
                                         var form_data_3 = new FormData();
                                         form_data_3.append('file', file_data_3);
                                         form_data_3.append('_token', $("input[name ='_token']").val());
-                                        console.log(path);
 
                                         $.ajax({
                                             url: "/user/storefile",
@@ -810,7 +793,6 @@
                                             success: function (path) {
                                                 paper_path = path;
                                                 addPublication(src_code_path, dataset_path, paper_path);
-                                                console.log(path);
                                             }
                                         });
                                     }
@@ -890,11 +872,6 @@
         });
 
         function addPublication(src_code_path, dataset_path, paper_path) {
-            console.log(src_code_path);
-            console.log(dataset_path);
-            console.log(paper_path);
-            console.log(file_counter);
-
             var publication_name = $("#publication_name").val();
             var abstract =  CKEDITOR.instances.description.getData();
             var author = $('#author').val();
@@ -940,7 +917,7 @@
             var project_name = $('#project_name').val();
             var document_link = $('input[name=publication_link]').val();
             $.ajax({
-                url:"/user/storepublication",
+                url:"/pub_update/{{encrypt($publication->publication_id)}}",
                 type:"post",
                 data:{ _token: "{{ csrf_token() }}",
                     date:date,
@@ -983,7 +960,6 @@
                 success: function(msg){
                     localStorage.removeItem('session_data');
                     window.location.replace('/indivisual/profile/{{encrypt(Auth::user()->id)}}')
-                    console.log(msg);
                 }
 
             });

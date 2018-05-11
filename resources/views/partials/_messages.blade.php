@@ -1,49 +1,97 @@
 @if(Session::has('ProjectAdd'))
-    <div class="alert alert-success">
-        <strong> Success: </strong> {{ Session('ProjectAdd') }}
+    <div class="modal fade success-popup" id="ProjectAdd" role="dialog" aria-labelledby="myModalLabel">
+        <div class="modal-dialog modal-sm" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
+                </div>
+                <div class="modal-body text-center">
+                    <img src="/images/icons/check.png">
+                    <p class="lead">{{Session::get('ProjectAdd')}}</p>
+                </div>
+            </div>
+        </div>
     </div>
 @endif
 @if(Session::has('ProjectUpdate'))
-    <div class="alert alert-success">
-        <strong> Success: </strong> {{ Session('ProjectUpdate') }}
+    <div class="modal fade success-popup" id="ProjectUpdate" role="dialog" aria-labelledby="myModalLabel">
+        <div class="modal-dialog modal-sm" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
+                </div>
+                <div class="modal-body text-center">
+                    <img src="/images/icons/check.png">
+                    <p class="lead">{{Session::get('ProjectUpdate')}}</p>
+                </div>
+            </div>
+        </div>
     </div>
 @endif
 
 @if(Session::has('ProjectDelete'))
-    <div class="alert alert-success">
-        <strong> Success: </strong> {{ Session('ProjectDelete') }}
+    <div class="modal fade success-popup" id="ProjectDelete" role="dialog" aria-labelledby="myModalLabel">
+        <div class="modal-dialog modal-sm" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
+                    <h4 class="modal-title" id="myModalLabel" style="text-align: center">Thank You !</h4>
+                </div>
+                <div class="modal-body text-center">
+                    <img src="/images/icons/check.png">
+                    <p class="lead">{{Session::get('ProjectDelete')}}</p>
+                </div>
+            </div>
+        </div>
     </div>
 @endif
 
 @if(Session::has('PublicationDelete'))
-    <div class="alert alert-success">
-        <strong> Success: </strong> {{ Session('PublicationDelete') }}
-    </div>
-@endif
-@if(Session::has('ResearchAdd'))
-    <div class="alert alert-success">
-        <strong> Success: </strong> {{ Session('ResearchAdd') }}
-    </div>
-@endif
-@if(Session::has('ResearchUpdate'))
-    <div class="alert alert-success">
-        <strong> Success: </strong> {{ Session('ResearchUpdate') }}
-    </div>
-@endif
-
-@if(Session::has('ResearchDelete'))
-    <div class="alert alert-success">
-        <strong> Success: </strong> {{ Session('ResearchDelete') }}
+    <div class="modal fade success-popup" id="PublicationDelete" role="dialog" aria-labelledby="myModalLabel">
+        <div class="modal-dialog modal-sm" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
+                    <h4 class="modal-title" id="myModalLabel" style="text-align: center">Thank You !</h4>
+                </div>
+                <div class="modal-body text-center">
+                    <img src="/images/icons/check.png">
+                    <p class="lead">{{Session::get('PublicationDelete')}}</p>
+                </div>
+            </div>
+        </div>
     </div>
 @endif
 @if(Session::has('PublicationAdd'))
-    <div class="alert alert-success">
-        <strong> Success: </strong> {{ Session('PublicationAdd') }}
+    <div class="modal fade success-popup" id="PublicationAdd" role="dialog" aria-labelledby="myModalLabel">
+        <div class="modal-dialog modal-sm" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
+                    <h4 class="modal-title" id="myModalLabel" style="text-align: center">Thank You !</h4>
+                </div>
+                <div class="modal-body text-center">
+                    <img src="/images/icons/check.png">
+                    <p class="lead">{{Session::get('PublicationAdd')}}</p>
+                </div>
+            </div>
+        </div>
     </div>
 @endif
 @if(Session::has('PublicationUpdate'))
-    <div class="alert alert-success">
-        <strong> Success: </strong> {{ Session('PublicationUpdate') }}
+    <div class="modal fade success-popup" id="PublicationUpdate" role="dialog" aria-labelledby="myModalLabel">
+        <div class="modal-dialog modal-sm" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
+                    <h4 class="modal-title" id="myModalLabel" style="text-align: center">Thank You !</h4>
+                </div>
+                <div class="modal-body text-center">
+                    <img src="/images/icons/check.png">
+                    <p class="lead">{{Session::get('PublicationUpdate')}}</p>
+                </div>
+            </div>
+        </div>
     </div>
 @endif
 @if(Session::has('EventAdd'))
@@ -61,7 +109,7 @@
                     <h4 class="modal-title" id="myModalLabel" style="text-align: center">Thank You !</h4>
                 </div>
                 <div class="modal-body text-center">
-                    <img src="http://osmhotels.com//assets/check-true.jpg">
+                    <img src="/images/icons/check.png">
                     <p class="lead">{{Session::get('registration_request_send')}}</p>
                 </div>
             </div>

@@ -103,7 +103,7 @@
                                     <input type="text" class="form-control" placeholder="Section" name="book_section" required>
                                 </div>
                                 <div class="col-md-6 form-group">
-                                    <input type="text" class="form-control" required="" placeholder="Page" name="book_page" required>
+                                    <input type="text" class="form-control" placeholder="Page" name="book_page" required>
                                 </div>
                                 <div class="col-md-6 form-group">
                                     <input type="text" class="form-control" required="" placeholder="Publisher" name="book_publisher" required>
