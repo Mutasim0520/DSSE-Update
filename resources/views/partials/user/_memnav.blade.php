@@ -1,4 +1,4 @@
-<ul class="nav nav-tabs">
+<ul id="memnav" class="nav nav-tabs">
     <li class="active">
     <a class="dropdown-toggle" data-toggle="tab" href="#publication-tab">
         Publications

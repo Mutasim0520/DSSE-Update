@@ -697,11 +697,15 @@
     <script>
         $(document).ready(function () {
             var active_tab = sessionStorage.getItem('active_tab');
-            console.log(active_tab);
-//            if(active_tab){
-//                $( "#memnav" ).tabs({ active: '#project-tab'});
-//            }
-                $("#memnav").tabs().tabs( "option", "active", 1);
+            if(active_tab){
+                $('#memnav .active').removeClass('active');
+                $("#memnav li").eq(active_tab).addClass('active');
+                $("#publication-tab").removeClass('in active');
+                $("#project-tab").addClass('in active');
+                sessionStorage.removeItem('active_tab');
+
+            }
+                //$("#memnav").tabs().tabs( "option", "active", 1);
 
         });
         function showAddSocilaProfileModal(account) {

@@ -486,7 +486,7 @@
                     srs_url:srs_url
                 },
                 success: function( msg ) {
-                    sessionStorage.setItem('active_tab','project-tab');
+                    sessionStorage.setItem('active_tab','1');
                     window.location.replace('/indivisual/profile/{{encrypt(Auth::user()->id)}}')
                 }
             });
