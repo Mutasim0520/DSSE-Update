@@ -286,19 +286,19 @@
                 $('#fund_ins').attr('value','{{$project->fundingOrganization}}');
             }
 
-            if('{{$project->src_code_path}}' || '{{$project->src_code_url}}'){
+            if('{{$project->src_code_path}}' != "null" || '{{$project->src_code_url}}'){
                 $('input[name=src_code]').attr('checked', 'checked');
                 $('input[name=src_code]').val(1);
                 $('#source_code_container').show();
-                if('{{$project->src_code_path}}') $('#src_file_exist').show();
+                if('{{$project->src_code_path}}' != "null") $('#src_file_exist').show();
                 if('{{$project->src_code_url}}') $('input[name=src_link]').attr('value','{{$project->src_code_url}}');
             }
 
-            if('{{$project->srs_path}}' || '{{$project->srs_url}}'){
+            if('{{$project->srs_path}}' != "null" || '{{$project->srs_url}}'){
                 $('input[name=srs]').attr('checked', 'checked');
                 $('input[name=srs]').val(1);
                 $('#srs_container').show();
-                if('{{$project->srs_path}}') $('#srs_file_exist').show();
+                if('{{$project->srs_path}}' != "null") $('#srs_file_exist').show();
                 if('{{$project->srs_url}}') $('input[name=srs_link]').attr('value','{{$project->srs_url}}');
             }
 
@@ -486,8 +486,8 @@
                     srs_url:srs_url
                 },
                 success: function( msg ) {
-                    console.log(msg);
-                    window.location.replace('/indivisual/project/{{encrypt($project->project_id)}}');
+                    sessionStorage.setItem('active_tab','project-tab');
+                    window.location.replace('/indivisual/profile/{{encrypt(Auth::user()->id)}}')
                 }
             });
         }

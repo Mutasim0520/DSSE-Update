@@ -384,4 +384,5 @@ class PublicationController extends Controller
         $pub->delete();
         return redirect()->back();
     }
+
 }

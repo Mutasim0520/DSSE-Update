@@ -423,8 +423,8 @@
                     srs_url:srs_url
                 },
                 success: function( msg ) {
-                    console.log(msg);
-                        window.location.replace('/indivisual/profile/{{encrypt(auth::user()->id)}}');
+                    sessionStorage.setItem('active_tab','project-tab');
+                    window.location.replace('/indivisual/profile/{{encrypt(auth::user()->id)}}');
                 }
             });
         }

@@ -478,25 +478,25 @@
                 $('input[name=ins_name]').val('{{$publication->affiliated_institute}}');
             }
 
-            if('{{$publication->src_code_file}}' || '{{$publication->src_code_url}}'){
+            if('{{$publication->src_code_file}}' != "null" || '{{$publication->src_code_url}}'){
                 $('input[name=src_code]').attr('checked', 'checked');
                 $('input[name=src_code]').val(1);
                 $('#source_code_container').show();
-                if('{{$publication->src_code_file}}') $('#src_file_exist').show();
+                if('{{$publication->src_code_file}}' != "null") $('#src_file_exist').show();
                 if('{{$publication->src_code_url}}') $('input[name=src_link]').attr('value','{{$publication->src_code_url}}');
             }
 
-            if('{{$publication->dataset_file}}' || '{{$publication->dataset_url}}'){
+            if('{{$publication->dataset_file}}' != "null" || '{{$publication->dataset_url}}'){
                 $('input[name=dataset]').attr('checked', 'checked');
                 $('input[name=dataset]').val(1);
                 $('#dataset_container').show();
-                if('{{$publication->dataset_file}}') $('#dataset_file_exist').show();
+                if('{{$publication->dataset_file}}' != "null") $('#dataset_file_exist').show();
                 if('{{$publication->dataset_url}}') $('input[name=dataset_link]').attr('value','{{$publication->dataset_url}}');
             }
-            if('{{$publication->paper_path}}'){
+            if('{{$publication->paper_path}}' != "null"){
                 $('#paper_file_exist').show();
             }
-            if('{{$publication->paper_url}}'){
+            if('{{$publication->paper_url}}' != "null"){
                 $('input[name=document_link]').attr('checked','checked');
                 $('#publication_link_container').show();
                 $('input[name=publication_link]').val('{{$publication->paper_url}}');
@@ -959,7 +959,7 @@
                 },
                 success: function(msg){
                     localStorage.removeItem('session_data');
-                    window.location.replace('/indivisual/profile/{{encrypt(Auth::user()->id)}}')
+                    window.location.replace('/indivisual/profile/{{encrypt(Auth::user()->id)}}');
                 }
 
             });

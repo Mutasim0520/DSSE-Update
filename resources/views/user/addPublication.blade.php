@@ -885,8 +885,7 @@
                 },
                 success: function(msg){
                     localStorage.removeItem('session_data');
-                    window.location.replace('/indivisual/profile/{{encrypt(Auth::user()->id)}}')
-                    console.log(msg);
+                    window.location.replace('/indivisual/profile/{{encrypt(Auth::user()->id)}}');
                 }
 
             });

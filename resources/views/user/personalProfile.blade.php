@@ -696,13 +696,12 @@
 @section('scripts')
     <script>
         $(document).ready(function () {
-            @if(Session::has('ProjectDelete'))
-
-            @endif
-            @if(Session::has('ProjectUpdate'))
-                $( ".nav-tabs" ).tabs({ active: 1 });
-            @endif
-
+            var active_tab = sessionStorage.getItem('active_tab');
+            console.log(active_tab);
+//            if(active_tab){
+//                $( "#memnav" ).tabs({ active: '#project-tab'});
+//            }
+                $("#memnav").tabs().tabs( "option", "active", 1);
 
         });
         function showAddSocilaProfileModal(account) {
