@@ -703,9 +703,15 @@
                 $("#publication-tab").removeClass('in active');
                 $("#project-tab").addClass('in active');
                 sessionStorage.removeItem('active_tab');
-
             }
-                //$("#memnav").tabs().tabs( "option", "active", 1);
+
+            @if(Session::has('ProjectDelete'))
+                $('#memnav .active').removeClass('active');
+                $("#memnav li").eq(1).addClass('active');
+                $("#publication-tab").removeClass('in active');
+                $("#project-tab").addClass('in active');
+
+            @endif
 
         });
         function showAddSocilaProfileModal(account) {

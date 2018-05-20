@@ -179,4 +179,8 @@ class IndexController extends Controller
         else $check = "true";
         return $check;
     }
+
+    public function showEventDetail(Request $request){
+        return view('user.eventDetail');
+    }
 }

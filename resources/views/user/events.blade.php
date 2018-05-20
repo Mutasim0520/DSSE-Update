@@ -16,7 +16,7 @@
                     <article class="{{$class}}">
                         <div class="col-md-12">
                         <div class="col-md-4">
-                            <figure><img src="/images/events/{{$item->url}}" style=" height:100%; width:100%;max-height: 191.117px;max-width: 286.15px;" alt="">
+                            <a href="/events/{{$item->id}}"><figure><img src="/images/events/{{$item->url}}" style=" height:100%; width:100%;max-height: 191.117px;max-width: 286.15px;" alt="">
                                 <figcaption>
                                     <time datetime="2045-04-06T08:15+00:00">
                                         <strong>
@@ -39,7 +39,7 @@
                                 @if($today < $date)
                                 <span class="upcomming">UPCOMMING</span>
                                 @endif
-                            </figure>
+                                </figure></a>
                             
                         </div>
                         <div class="col-md-8">

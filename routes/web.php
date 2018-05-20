@@ -29,6 +29,7 @@ Route::get('/test', function () {
     Route::get('/PUBLICATIONS/{type}','IndexController@showPublications');
     Route::get('/sd/{name}','IndexController@showSupportingDocs');
     Route::get('/events','IndexController@showEvents');
+    Route::get('/events/{id}','IndexController@showEventDetail');
     Route::get('/indivisual/publication/{id}','IndexController@showIndivisualPublication');
     Route::get('/tagWiseItem/{id}','IndexController@showTagWiseResult');
     Route::get('/indivisual/project/{id}','IndexController@showIndivisualProject');
