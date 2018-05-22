@@ -15,7 +15,7 @@
                         @endif
                     <div class="col-md-6">
                         <a href="/events/{{$item->id}}">
-                        <article class="{{$class}}">
+                        <article class="{{$class}} max-h-css">
                         <div class="col-md-4">
                                 <figure>
                                     @if(sizeof($item->events_photo)>0)
@@ -27,7 +27,7 @@
                                         $path = "/images/events/event.png";
                                         ?>
                                     @endif
-                                    <img src="{{$path}}" style=" height:100%; width:100%;max-height: 191.117px;max-width: 286.15px;" alt="">
+                                    <img src="{{$path}}" style=" height: 160px; width: auto;" alt="">
                                 <figcaption>
                                     <time datetime="2045-04-06T08:15+00:00">
                                         <strong>

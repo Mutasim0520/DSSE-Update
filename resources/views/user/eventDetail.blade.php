@@ -28,11 +28,11 @@
                         @foreach($event->events_photo as $item)
                             @if($i == 0)
                                     <div class="item active">
-                                        <img src="/images/events/{{$item->path}}" alt="slide {{$i}}" style="width:100%; max-height: 318px;">
+                                        <img src="/images/events/{{$item->path}}" alt="slide {{$i}}" style="width:100%; max-height: 400px;">
                                     </div>
                             @else
                                     <div class="item">
-                                        <img src="/images/events/{{$item->path}}" alt="slide {{$i}}o" style="width:100%; max-height: 318px;">
+                                        <img src="/images/events/{{$item->path}}" alt="slide {{$i}}o" style="width:100%; max-height: 400px;">
                                     </div>
                             @endif
                             <?php
@@ -42,11 +42,11 @@
                         @endforeach
                         </div>
                         <a class="left carousel-control" href="#myCarousel" data-slide="prev">
-                            <span class="glyphicon glyphicon-chevron-left"></span>
+                        <i class="fa fa-angle-left fa-design"></i>
                             <span class="sr-only">Previous</span>
                         </a>
                         <a class="right carousel-control" href="#myCarousel" data-slide="next">
-                            <span class="glyphicon glyphicon-chevron-right"></span>
+                            <i class="fa fa-angle-right fa-design"></i>
                             <span class="sr-only">Next</span>
                         </a>
 

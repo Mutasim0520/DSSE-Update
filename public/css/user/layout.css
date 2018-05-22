@@ -749,3 +749,13 @@ a{
     width: 100% !important;
 }
 
+.fa-design {
+	position: relative;
+    top: calc(50% - 10px);
+    font-size: 3em;
+    color: #2b2841;
+}
+
+.max-h-css {
+	min-height: 200px;
+}
