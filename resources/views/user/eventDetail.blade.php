@@ -6,7 +6,7 @@
     <div class="wrapper row3">
         <section class="hoc container clear" style="margin-top: 50px;">
             <div class="group excerpts">
-                <h3>Take a look at our photo gallery for better Understanding</h3>
+                <h3>Take a look at our Event photo gallery for better Understanding</h3>
                 <div class="slider">
                 <ul>
                     <li id="no-js-slider-1" class="slide imgstyle">
