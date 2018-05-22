@@ -309,7 +309,14 @@
         $('#publication_paper').change(function () {
             file_counter = file_counter+1;
         });
+        $("select").on("select2:select", function (evt) {
+            var element = evt.params.data.element;
+            var $element = $(element);
 
+            $element.detach();
+            $(this).append($element);
+            $(this).trigger("change");
+        });
         $('input[name=project_status]').change(function () {
             if($('input[name=project_status]').is(":checked")){
                 $('input[name=project_status]').val(1);
@@ -357,7 +364,6 @@
             else{
                 $('#source_code_container').css('display','none');
                 $('input[name=src_code]').val(0);
-                console.log("hikikjkj");
             }
         });
 
@@ -369,7 +375,6 @@
             else{
                 $('#publication_link_container').css('display','none');
                 $('input[name=document_link]').val(0);
-                console.log("hikikjkj");
             }
         });
 

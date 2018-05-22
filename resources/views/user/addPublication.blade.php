@@ -396,6 +396,15 @@
             $('#has_new_keyword').val(1);
         });
 
+        $("select").on("select2:select", function (evt) {
+            var element = evt.params.data.element;
+            var $element = $(element);
+
+            $element.detach();
+            $(this).append($element);
+            $(this).trigger("change");
+        });
+
         $(document).ready(function() {
             CKEDITOR.replace( 'description',
                 {

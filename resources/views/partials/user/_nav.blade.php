@@ -50,7 +50,6 @@
                                             <li><a href="/sd/dataset">Dataset</a></li>
                                             <li><a href="/sd/src">Source Code</a></li>
                                             <li><a href="/sd/srs">SRS</a></li>
-                                            <li><a href="/sd/other">Other</a></li>
                                         </ul>
                                     </li>
                                     <li><a href="/events" style="color: white;">Events</a></li>
@@ -61,7 +60,6 @@
                                             <li><a href="/indivisual/profile/{{encrypt(Auth::user()->id)}}">Profile</a></li>
                                                 <li><a href="/add/project">Add Project</a></li>
                                                 <li><a href="/add/publication">Add Publication</a></li>
-                                                <li><a href="/add/supporting/doc">Add Supporting Doc</a></li>
                                                 <li>
                                                     <a href="{{ url('/logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
                                                         Logout

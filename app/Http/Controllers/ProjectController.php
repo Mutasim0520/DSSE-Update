@@ -242,7 +242,7 @@ class ProjectController extends Controller
                 $member =Members::where(['email' => $user->email])->first();
                 $Document = new Documents();
                 $Document->member_id =$member->member_id ;
-                $Document->project_id = $project_id->project_id;
+                $Document->project_id = $Project->project_id;
                 $Document->belongs_to = 'project';
                 $Document->type = 'src';
                 $Document->save();
@@ -253,7 +253,7 @@ class ProjectController extends Controller
                 $member =Members::where(['email' => $user->email])->first();
                 $Document = new Documents();
                 $Document->member_id =$member->member_id ;
-                $Document->project_id = $project_id->project_id;
+                $Document->project_id = $Project>project_id;
                 $Document->belongs_to = 'project';
                 $Document->type = 'srs';
                 $Document->save();
@@ -273,7 +273,7 @@ class ProjectController extends Controller
                 foreach ($newKeywords as $item){
                     $id = Keyword::where(['name' =>strtoupper($item)])->first();
                     $keyword = Keyword::find($id->id);
-                    $keyword->Project()->save($project_id);
+                    $keyword->Project()->save($Project>project_id);
                 }
             }
             Session::flash('ProjectUpdate','Project has been updated successully!');

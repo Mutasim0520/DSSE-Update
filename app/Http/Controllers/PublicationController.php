@@ -270,7 +270,6 @@ class PublicationController extends Controller
                 foreach ($author as $item){
                     array_push($mem_id,$item);
                 }
-                print_r($mem_id);
                 $Publication->Member()->sync($mem_id);
             }
             if($request->src_code_path != 'null'){

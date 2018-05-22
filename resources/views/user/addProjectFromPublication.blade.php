@@ -173,6 +173,14 @@
     <script src="/js/validation/publicationValidation.js"></script>
     <script src="https://cdn.jsdelivr.net/jquery.validation/1.15.0/additional-methods.min.js"></script>
     <script type="text/javascript">
+        $("select").on("select2:select", function (evt) {
+            var element = evt.params.data.element;
+            var $element = $(element);
+
+            $element.detach();
+            $(this).append($element);
+            $(this).trigger("change");
+        });
         var file_counter = 0;
         CKEDITOR.replace( 'description',
             {
