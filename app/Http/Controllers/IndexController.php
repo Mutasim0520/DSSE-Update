@@ -164,7 +164,8 @@ class IndexController extends Controller
     }
 
     public function showEvents(){
-        $Events = Events::orderBy('id','desc')->get();
+        $Events = Events::with('events_photo')->orderBy('date','desc')->paginate('6');
+
         return view('user.events' ,['events' => $Events]);
     }
 
@@ -181,6 +182,7 @@ class IndexController extends Controller
     }
 
     public function showEventDetail(Request $request){
-        return view('user.eventDetail');
+        $Event = Events::with('events_photo')->find($request->id);
+        return view('user.eventDetail',['event' =>$Event]);
     }
 }

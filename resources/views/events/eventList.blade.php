@@ -30,7 +30,10 @@
                     <td>{{$item->date}}</td>
                     <td>{{$item->time}}</td>
                     <td>{{$item->place}}</td>
-                    <td><a class="btn btn-danger" data-toggle="confirmation" data-title="Sure you want to delete?" href="javascript:deleteEvent({{$item->id}})" target="_blank">Delete</a></td>
+                    <td>
+                        <a class="btn btn-danger" data-toggle="confirmation" data-title="Sure you want to delete?" href="javascript:deleteEvent({{$item->id}})" target="_blank">Delete</a>
+                        <a class="btn btn-primary" href="/admin/update/event/{{$item->id}}">Update</a>
+                    </td>
                 </tr>
                 <?php $k++;?>
             @endforeach
@@ -48,7 +51,16 @@
                         <h4 class="modal-title">{{$item->name}}</h4>
                     </div>
                     <div class="modal-body">
-                        <div style="display:inline-block; text-align: center; margin-bottom: 10px;"><img src="/images/events/{{$item->url}}" style="max-width:50%;max-height: 40%" alt="No Image Available"></div>
+                        <div style="display:inline-block; text-align: center; margin-bottom: 10px;">
+                            @if(sizeof($item->events_photo)>0)
+                                @foreach($item->events_photo as $image)
+                                    <img src="/images/events/{{$image->path}}" style="height: 100px; width: 100px;border: 1px solid black; margin-right:5px; ">
+                                @endforeach
+                                @else
+                                No image added to this event
+                                @endif
+
+                        </div>
                         <div style="display:inline-block;">
                             <span><i class="fa fa-calendar" style="margin-right: 3px;"></i>{{$item->date}}</span>
                             <span><i class="fa fa-clock-o" style="margin-right: 3px;"></i>{{$item->time}}</span>
@@ -81,7 +93,7 @@
                 console.log("found");
             });
         });
-        function deleteEvent (id) {
+        function deleteEvent(id) {
             $.ajax({
                 type:'POST',
                 url:'/admin/deleteEvent',

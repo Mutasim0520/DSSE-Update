@@ -13,10 +13,21 @@
                         @else
                             <?php $class = "one_third";?>
                         @endif
-                    <article class="{{$class}}">
-                        <div class="col-md-12">
+                    <div class="col-md-6">
+                        <a href="/events/{{$item->id}}">
+                        <article class="{{$class}}">
                         <div class="col-md-4">
-                            <a href="/events/{{$item->id}}"><figure><img src="/images/events/{{$item->url}}" style=" height:100%; width:100%;max-height: 191.117px;max-width: 286.15px;" alt="">
+                                <figure>
+                                    @if(sizeof($item->events_photo)>0)
+                                        <?php
+                                            $path = "/images/events/".$item->events_photo[0]->path;
+                                        ?>
+                                    @else
+                                        <?php
+                                        $path = "/images/events/event.png";
+                                        ?>
+                                    @endif
+                                    <img src="{{$path}}" style=" height:100%; width:100%;max-height: 191.117px;max-width: 286.15px;" alt="">
                                 <figcaption>
                                     <time datetime="2045-04-06T08:15+00:00">
                                         <strong>
@@ -36,10 +47,7 @@
                                 $today = strtotime(date("m/d/Y"));
                                 $date = strtotime($item->date);
                                 ?>
-                                @if($today < $date)
-                                <span class="upcomming">UPCOMMING</span>
-                                @endif
-                                </figure></a>
+                                </figure>
                             
                         </div>
                         <div class="col-md-8">
@@ -50,19 +58,18 @@
                                     <li><i class="fa fa-clock-o"></i> <spanp>{{$item->time}}</spanp></li>
                                 </ul>
                             </div>
-                            <div class="txtwrap">
-                                <p><?php echo $item->description;?></p>
-                            </div>
-                        </div>
                         </div>
                         <div class="clearfix"></div>
-                    
+
                     
                     {{--<footer><a class="btn" href="#">Read More &raquo;</a></footer>--}}
                 </article>
+                        </a>
+                    </div>
                     <?php $i++; ?>
                 @endforeach
             </div>
+        {{ $events->links() }}
             <!-- ################################################################################################ -->
             <div class="clear"></div>
         </section>

@@ -134,7 +134,8 @@ Route::group(['middleware' => 'auth:admin'], function (){
     Route::get('/admin/addevent','EventController@addEvent');
     Route::post('/admin/storeEvent','EventController@store');
     Route::post('/admin/deleteEvent','EventController@delete');
-
+    Route::get('/admin/update/event/{id}','EventController@showUpdateEventForm');
+    Route::post('/admin/update/event/{id}','EventController@update');
     Route::post('/admin/logout','Auth\AdminLoginController@logout');
 
 });
