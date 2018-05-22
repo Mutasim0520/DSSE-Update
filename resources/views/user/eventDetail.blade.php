@@ -1,6 +1,6 @@
 @extends('layouts.user')
 @section('title')
-   DSSE | Events Detail
+   DSSE | {{$event->name}}
 @endsection
 @section('content')
     <div class="wrapper row3">
