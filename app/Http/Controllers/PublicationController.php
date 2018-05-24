@@ -258,11 +258,17 @@ class PublicationController extends Controller
             $Publication->fund_amount = $request->fund_amount;
             $Publication->fund_organization = $request->fund_ins;
             $Publication->affiliated_institute = trim($request->aff_ins_name);
-            $Publication->dataset_file = $request->dataset_path;
+            if($request->dataset_path != "null"){
+                $Publication->dataset_file = $request->dataset_path;
+            }
             $Publication->dataset_url = $request->dataset_link;
-            $Publication->src_code_file = $request->src_code_path;
+            if($request->src_code_file != "null"){
+                $Publication->src_code_file = $request->src_code_path;
+            }
             $Publication->src_code_url = $request-> src_code_link;
-            $Publication->paper_path = $request->paper_path;
+            if($request->paper_path != "null"){
+                $Publication->paper_path = $request->paper_path;
+            }
             $Publication->paper_url = $request->document_link;
             $Publication->save();
             if($author){

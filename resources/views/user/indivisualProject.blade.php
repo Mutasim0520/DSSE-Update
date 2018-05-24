@@ -50,18 +50,16 @@
                                 <h5 class="item-head" style="padding-top: 5px; padding-bottom: 5px; border-bottom: 2px solid darkolivegreen;">Overview</h5>
                                 <?php echo $Project->description;?>
                             </div>
-                            <div>
-                                <h5 class="item-head" style="padding-top: 5px; padding-bottom: 5px; border-bottom: 2px solid darkolivegreen;">Tags</h5>
-                                @if(sizeof($Project['keyword']))
-                                    @foreach($Project['keyword'] as $item)
-                                        <span class="item-head"><i class="fa fa-tag" style="margin-right: 3px;"></i><a href="/tagWiseItem/{{encrypt($item->id)}}">{{$item->name}}</a></span>
-                                    @endforeach
-                                @else No tags added
-                                @endif
-
-                            </div>
-
-                            <div>
+                            @if(sizeof($Project['keyword']))
+                                <div>
+                                    <h5 class="item-head" style="padding-top: 5px; padding-bottom: 5px; border-bottom: 2px solid darkolivegreen;">Tags</h5>
+                                        @foreach($Project['keyword'] as $item)
+                                            <span class="item-head"><i class="fa fa-tag" style="margin-right: 3px;"></i><a href="/tagWiseItem/{{encrypt($item->id)}}">{{$item->name}}</a></span>
+                                        @endforeach
+                                </div>
+                            @endif
+                            @if($Project->src_code_file != "null" || $Project->src_code_url || $Project->srs_path != "null" || $Project->srs_url)
+                                <div>
                                 <h5 class="item-head" style="padding-top: 5px; padding-bottom: 5px; border-bottom: 2px solid darkolivegreen;">Attachments</h5>
                                 @if($Project->src_code_path != "null")
                                     <span class="item-head">
@@ -92,6 +90,7 @@
                                     <br>
                                 @endif
                             </div>
+                            @endif
                         </figure>
                     </article>
                 </div>

@@ -90,8 +90,6 @@ class UserController extends Controller
 
         $MemberProject = Member::find($user->member->member_id);
         $MemberProject->Project->all();
-        //echo json_encode($MemberProject);
-        //return json_decode($MemberProject,true);
         $MemberPublication = Member::with('Publication')->find($user->member->member_id);
 
         $member = Member::with('social_account','education','experience')->where(['email'=>$user->email])->get();
@@ -117,16 +115,10 @@ class UserController extends Controller
                 array_push($project_years,intval(date('Y',strtotime($item->start_date))));
             }
         }
+        rsort($project_years);
 
         return view('user.personalProfile',['paper_years'=>$paper_years,'project_years'=>$project_years,'memberProject' => $MemberProject , 'memberPublication' => $MemberPublication ,'member' => $member]);
     }
-
-//    public function showProfile(Request $request){
-//        $user = User::find(decrypt($request->id));
-//        $Member = Member::with('social_account','publication','project','education','experience')->where(['email'=>$user->email])->get();
-//        //return $Member;
-//        return view('user.personalProfile',['member' => $Member]);
-//    }
 
     public function addEducation(Request $request){
         $user = User::find(Auth::user()->id);

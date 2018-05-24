@@ -498,9 +498,11 @@
                 if('{{$publication->dataset_file}}' != "null") $('#dataset_file_exist').show();
                 if('{{$publication->dataset_url}}') $('input[name=dataset_link]').attr('value','{{$publication->dataset_url}}');
             }
+
             if('{{$publication->paper_path}}' != "null"){
                 $('#paper_file_exist').show();
             }
+
             if('{{$publication->paper_url}}' != "null"){
                 $('input[name=document_link]').attr('checked','checked');
                 $('#publication_link_container').show();

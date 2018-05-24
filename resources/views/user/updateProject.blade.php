@@ -252,7 +252,6 @@
 
             var keywords_all = JSON.parse('{!! $project->keyword !!}');
             var keywords = [];
-            console.log(keywords_all.length);
             for(var i=0;i<keywords_all.length;i++){
                 console.log(keywords_all[i].name);
                 keywords.push(keywords_all[i].name);
@@ -262,6 +261,7 @@
             var all_members = JSON.parse('{!! $project->member !!}');
             var project_pm = [];
             var project_member = [];
+
             for(var i=0;i<all_members.length;i++){
                 if(all_members[i].pivot['role'] == 'Project Manager') {
                     project_pm.push(all_members[i].member_id);

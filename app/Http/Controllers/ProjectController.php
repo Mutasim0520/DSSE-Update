@@ -217,9 +217,13 @@ class ProjectController extends Controller
             $Project->fundAmount = $request->fundAmount;
             $Project->start_date = $request->startDate;
             $Project->finish_date = $request->finishDate;
-            $Project->src_code_path = $request->src_code_path;
             $Project->src_code_url = $request->src_code_url;
-            $Project->srs_path = $request->srs_path;
+            if($request->src_code_path != "null"){
+                $Project->src_code_path = $request->src_code_path;
+            }
+            if($request->srs_path != "null"){
+                $Project->srs_path = $request->srs_path;
+            }
             $Project->srs_url = $request->srs_url;
             $Project->save();
 

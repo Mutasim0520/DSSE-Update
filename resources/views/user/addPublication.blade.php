@@ -151,7 +151,7 @@
                             </div>
                             <div class="col-md-12 form-group">
                                 <label class="item-head log">Select Date</label>
-                                <input type="date" required name="date" class="datepicker date form-control">
+                                <input type="text" required name="date" class="datepicker date form-control">
                             </div>
                             <div class="col-md-9 form-group">
                                 <label class="item-head log">Select Keywords</label>
@@ -802,11 +802,6 @@
         });
 
         function addPublication(src_code_path, dataset_path, paper_path) {
-            console.log(src_code_path);
-            console.log(dataset_path);
-            console.log(paper_path);
-            console.log(file_counter);
-
             var publication_name = $("#publication_name").val();
             var abstract =  CKEDITOR.instances.description.getData();
             var author = $('#author').val();

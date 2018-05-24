@@ -30,9 +30,20 @@
                             @if($Publications->affiliated_institute)
                                 <span><span class="item-head">Affiliated Institute: </span>{{$Publications->affiliated_institute}}</span><br>
                             @endif
+                                <?php
+                                $ends = array('th','st','nd','rd','th','th','th','th','th','th');
+                                $number = 1;
+                                ?>
                             @foreach($Publications['member'] as $item)
-                                <span class="item-head"><i class="fa fa-user-circle" style="margin-right: 3px;"></i><a href="/MEMBERPROFILE/{{encrypt($item->member_id)}}">{{$item->firstName}} {{$item->lastName}}</a></span>, <span>{{$item->organization}}</span><br>
-                            @endforeach
+                                <?php
+                                    if (($number %100) >= 11 && ($number%100) <= 13)
+                                        $abbreviation = $number. 'th';
+                                    else
+                                        $abbreviation = $number. $ends[$number % 10];
+                                    ?>
+                                <span class="item-head"><i class="fa fa-user-circle" style="margin-right: 3px;"></i>{{$abbreviation}} Author:<a href="/MEMBERPROFILE/{{encrypt($item->member_id)}}"> {{$item->firstName}} {{$item->lastName}}</a></span>, <span>{{$item->organization}}</span><br>
+                                <?php $number++;?>
+                                @endforeach
                             @if($Publications->external_author)
                                     @foreach ($Publications->external_author as $mem)
                                         <span class="item-head disabled"><i class="fa fa-user-circle" style="margin-right: 3px;"></i>{{$mem->name}}</span>
@@ -52,14 +63,16 @@
                             <h5 class="item-head" style="padding-top: 5px; padding-bottom: 5px; border-bottom: 2px solid darkolivegreen;">Abstract</h5>
                             <?php echo $Publications->abstract;?>
                         </div>
-                        <div>
-                            <h5 class="item-head" style="padding-top: 5px; padding-bottom: 5px; border-bottom: 2px solid darkolivegreen;">Tags</h5>
-                            @foreach($Publications['keyword'] as $item)
-                                <span class="item-head"><i class="fa fa-tag" style="margin-right: 3px;"></i><a href="/tagWiseItem/{{encrypt($item->id)}}">{{$item->name}}</a></span>
-                            @endforeach
-                        </div>
-
-                        <div>
+                        @if(sizeof($Publications['keyword'])>0)
+                            <div>
+                                <h5 class="item-head" style="padding-top: 5px; padding-bottom: 5px; border-bottom: 2px solid darkolivegreen;">Tags</h5>
+                                @foreach($Publications['keyword'] as $item)
+                                    <span class="item-head"><i class="fa fa-tag" style="margin-right: 3px;"></i><a href="/tagWiseItem/{{encrypt($item->id)}}">{{$item->name}}</a></span>
+                                @endforeach
+                            </div>
+                        @endif
+                        @if($Publications->src_code_file != "null" || $Publications->src_code_url || $Publications->dataset_file !="null" || $Publications->dataset_url || $Publications->paper_path!= "null" ||$Publications->paper_url )
+                            <div>
                             <h5 class="item-head" style="padding-top: 5px; padding-bottom: 5px; border-bottom: 2px solid darkolivegreen;">Attachments</h5>
                             @if($Publications->src_code_file != "null")
                                 <a href="/user/download/{{$Publications->src_code_file}}"><span class="item-head">Get Source Code
@@ -89,6 +102,7 @@
                                 <i class="fa fa-link"></i></a><br>
                             @endif
                         </div>
+                        @endif
                     </figure>
                 </article>
             </div>
