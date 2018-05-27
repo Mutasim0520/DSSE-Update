@@ -46,7 +46,7 @@
                                     @endforeach
                                 @endif
                             </div>
-                            <div>
+                            <div style="text-align: justify;">
                                 <h5 class="item-head" style="padding-top: 5px; padding-bottom: 5px; border-bottom: 2px solid darkolivegreen;">Overview</h5>
                                 <?php echo $Project->description;?>
                             </div>
