@@ -52,12 +52,9 @@
 
                             <div class="form-group">
                                 <button type="submit" class="btn btn-primary butt">Login</button>
-                                    {{--<a class="btn btn-link" href="{{ url('/password/reset') }}">--}}
-                                        {{--Forgot Your Password?--}}
-                                    {{--</a>--}}
                             </div>
                         </form>
-                        <center><a href="javascript:void(0);" data-toggle="modal" data-target="#forgotPassword">Forgot Password</a></center>
+                        <center><a href="/password/reset">Forgot Password?</a></center>
                     </figure>
                 </article>
             	</div>
@@ -188,46 +185,6 @@
                                </div>
                            </div>
                        </form>
-                </div>
-            </div>
-
-        </div>
-    </div>
-    <div id="forgotPassword" class="modal fade" role="dialog">
-        <div class="modal-dialog">
-
-            <!-- Modal content-->
-            <div class="modal-content">
-                <div class="modal-header">
-                    <button type="button" class="close" data-dismiss="modal">&times;</button>
-                    <h4 class="modal-title">Password Recovery</h4>
-                    <center><small>Please enter your email. A password recovery mail will be sent</small></center>
-
-                </div>
-                <div class="modal-body">
-                    <form autocomplete="off" id="passwordRecoveryForm" class="form-horizontal" role="form" method="POST" action="{{ url('/send/password/recovery/mail') }}">
-                        {{ csrf_field() }}
-                        <div class="form-group">
-                            <label for="p_c_email" class="col-md-4 control-label">E-Mail Address</label>
-
-                            <div class="col-md-6">
-                                <input id="p_c_email" type="email" class="form-control" name="p_c_email" required>
-
-                                @if ($errors->has('email'))
-                                    <span class="help-block">
-                                        <strong>{{ $errors->first('email') }}</strong>
-                                    </span>
-                                @endif
-                            </div><br>
-                            <div class="form-group">
-                                <div class="col-md-6 col-md-offset-4">
-                                    <button type="submit" class="btn btn-primary">
-                                        Send Password Recovery Mail
-                                    </button>
-                                </div>
-                            </div>
-                        </div>
-                    </form>
                 </div>
             </div>
 
