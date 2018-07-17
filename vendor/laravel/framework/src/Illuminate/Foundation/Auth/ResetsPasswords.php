@@ -11,6 +11,7 @@ trait ResetsPasswords
 {
     use RedirectsUsers;
 
+
     /**
      * Display the password reset view for the given token.
      *
