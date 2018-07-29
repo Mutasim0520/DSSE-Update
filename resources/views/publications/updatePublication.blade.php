@@ -10,127 +10,126 @@
 
 @section('content')
     <div class="col-md-12 col-sm-12 col-xsm-12">
-        <form  novalidate id="test-form" action="/pub_update/{{encrypt($publication->publication_id)}}" method="post" enctype="multipart/form-data" >
-                            {!! csrf_field() !!}
-                            <div class="col-md-12 form-group">
-                                <label class="item-head log">Title</label>
-                                <input value="{{$publication->name}}" class="form-control" type="text" required="" id = "publication_name" name="name" autofocus="">
-                            </div>
-                            <div class="col-md-12 form-group">
-                                <label class="item-head log">Abstract</label>
-                                <textarea  placeholder="Abstract" required="" id ="description" name="description" class="form-control ckeditor">
-                                    <?php echo $publication->abstract?>
-                                </textarea>
-                            </div>
-                            <div class="col-md-9 form-group">
-                                <label class="item-head log">Authors</label>
-                                <select id="author" class="form-control select2" multiple="multiple" data-placeholder="Select authors" required name="authors[]" style="width: 100%;">
-                                    @foreach($member as $item)
-                                        <option value="{{$item->member_id}}">{{$item->firstName}} {{$item->lastName}}</option>
-                                    @endforeach
-                                </select>
-                            </div>
-                            <div class="col-md-9 form-group">
-                                <label class="item-head log">Select External Authors</label>
-                                <select class="form-control select2" multiple="multiple" data-placeholder="Select External Author" name="external_authors[]" id="external_authors" style="width:100%;">
-                                    @if(sizeof($keywords)>0)
-                                        <option value="">Select External </option>
-                                        @foreach($external_authors as $item)
-                                            <option value="{{$item->id}}">{{$item->name}}</option>
-                                        @endforeach
-                                    @else
-                                        <option value="">No External Author Available</option>
-                                    @endif
-                                </select>
-                            </div>
-                            <div class="col-md-3 form-group">
-                                <button class="btn btn-default btn-sm" id="add_new_author" style="margin-top: 22%;">Add New External Author</button>
-                            </div>
-                            <input type="hidden" id="new_ex_auth_status" value="0">
-                            <div class="col-md-12 form-group" id="new_author_container" style="display: none;">
-                                <label class="item-head log">New Externl Authors</label>
-                                <input type="text" data-role="tagsinput" name="additional_author" id="additional_author">
-                            </div>
-                            <div class="col-md-12 form-group">
-                                <label class="item-head log">Select Publication Type</label>
-                                <select class="selectpicker form-control" id="publication_type" name="publication_type" required>
-                                    <option value=""> Select Publication Type</option>
-                                    <option value="book"> Book</option>
-                                    <option value="journal"> Journal Paper</option>
-                                    <option value="conference"> Conference Paper</option>
-                                    <option value="thesis"> Thesis</option>
-                                    <option value="other"> Other</option>
-                                </select>
-                            </div>
-                            <div id = "book_container" style="display: none;">
-                                <div class="col-md-6 form-group">
-                                    <input type="text" class="form-control" required="" placeholder="Chapter Name" name="book_chapter_name" required>
-                                </div>
-                                <div class="col-md-6 form-group">
-                                    <input type="text" class="form-control" required="" placeholder="Chapter" name="book_chapter" required>
-                                </div>
-                                <div class="col-md-6 form-group">
-                                    <input type="text" class="form-control" required="" placeholder="Edition" name="book_adition" required>
-                                </div>
-                                <div class="col-md-6 form-group">
-                                    <input type="text" class="form-control" required="" placeholder="Section" name="book_section" required>
-                                </div>
-                                <div class="col-md-6 form-group">
-                                    <input type="text" class="form-control" required="" placeholder="Page" name="book_page" required>
-                                </div>
-                                <div class="col-md-6 form-group">
-                                    <input type="text" class="datepicker date form-control" required="" placeholder="Published Date" name="book_date" required>
-                                </div>
-                                <div class="col-md-12 form-group">
-                                    <input type="text" class="form-control" required="" placeholder="Publisher" name="book_publisher" required>
-                                </div>
-                            </div>
-                            <div id = "conference_container" style="display: none;">
-                                <div class="col-md-6 form-group">
-                                    <input type="text" class="form-control" required="" placeholder="Page" name="conf_page">
-                                </div>
-                                <div class="col-md-6 form-group">
-                                    <input type="text" class="datepicker date form-control" required="" placeholder="Published Date" name="conf_date">
-                                </div>
-                                <div class="col-md-12 form-group">
-                                    <input type="text" class="form-control" required="" placeholder="Conference Name" name="conf_publisher">
-                                </div>
-                            </div>
-                            <div id = "journal_container" style="display: none;">
-                                <div class="col-md-4 form-group">
-                                    <input type="text" required="" class="form-control" placeholder="Page" name="journal_page">
-                                </div>
-                                <div class="col-md-4 form-group">
-                                    <input type="text" required="" class="form-control" placeholder="Volume" name="journal_volume">
-                                </div>
-                                <div class="col-md-4 form-group">
-                                    <input type="text" class="datepicker date form-control" required="" placeholder="Published Date" name="journal_date">
-                                </div>
-                                <div class="col-md-6 form-group">
-                                    <input type="text" required="" class="form-control" placeholder="Publisher" name="journal_publisher">
-                                </div>
-
-                                <div class="col-md-6 form-group">
-                                    <input type="text" required="" class="form-control" placeholder="Journal Name" name="journal_name">
-                                </div>
-                            </div>
-                            <div id = "thesis_container" style="display: none;">
-                                <div class="col-md-6 form-group">
-                                    <input type="text" class="form-control" required="" placeholder="Pages" name="thesis_page">
-                                </div>
-                                <div class="col-md-6 form-group">
-                                    <select type="text" required="" class="form-control" placeholder="Select Supervisor" id="thesis_supervisor">
-                                        <option value="">Select Supervisor</option>
-                                        @foreach($member as $item)
-                                            <option value="{{$item->member_id}}">{{$item->firstName}} {{$item->lastName}}</option>
-                                        @endforeach
-                                    </select>
-                                </div>
-                                <div class="col-md-6 form-group">
-                                    <input type="text" class="form-control" placeholder="University" name="thesis_university">
-                                </div>
-                                <div class="col-md-6 form-group">
-                                    <input type="text" class="datepicker date form-control" required="" placeholder="Date" name="thesis_date">
+        <form id="test-form" novalidate id="test-form" action="/pub_update/{{encrypt($publication->publication_id)}}" method="post" enctype="multipart/form-data" >
+            {!! csrf_field() !!}
+            <div class="col-md-12 form-group">
+                <label class="item-head log">Title</label>
+                <input value="{{$publication->name}}" class="form-control" type="text" required="" id = "publication_name" name="name" autofocus="">
+            </div>
+            <div class="col-md-12 form-group">
+                <label class="item-head log">Abstract</label>
+                <textarea  placeholder="Abstract" required="" id ="description" name="description" class="form-control ckeditor">
+                    <?php echo $publication->abstract?>
+                </textarea>
+            </div>
+            <div class="col-md-9 form-group">
+                <label class="item-head log">Authors</label>
+                <select id="author" class="form-control select2" multiple="multiple" data-placeholder="Select authors" required name="authors[]" style="width: 100%;">
+                    @foreach($member as $item)
+                        <option value="{{$item->member_id}}">{{$item->firstName}} {{$item->lastName}}</option>
+                    @endforeach
+                </select>
+            </div>
+            <div class="col-md-9 form-group">
+                <label class="item-head log">Select External Authors</label>
+                <select class="form-control select2" multiple="multiple" data-placeholder="Select External Author" name="external_authors[]" id="external_authors" style="width:100%;">
+                    @if(sizeof($keywords)>0)
+                        <option value="">Select External </option>
+                        @foreach($external_authors as $item)
+                            <option value="{{$item->id}}">{{$item->name}}</option>
+                        @endforeach
+                    @else
+                        <option value="">No External Author Available</option>
+                    @endif
+                </select>
+            </div>
+            <div class="col-md-3 form-group">
+                <button class="btn btn-default btn-sm" id="add_new_author" style="margin-top: 22%;">Add New External Author</button>
+            </div>
+            <input type="hidden" id="new_ex_auth_status" value="0">
+            <div class="col-md-12 form-group" id="new_author_container" style="display: none;">
+                <label class="item-head log">New Externl Authors</label>
+                <input type="text" data-role="tagsinput" name="additional_author" id="additional_author">
+            </div>
+            <div class="col-md-12 form-group">
+                <label class="item-head log">Select Publication Type</label>
+                <select class="selectpicker form-control" id="publication_type" name="publication_type" required>
+                    <option value=""> Select Publication Type</option>
+                    <option value="book"> Book</option>
+                    <option value="journal"> Journal Paper</option>
+                    <option value="conference"> Conference Paper</option>
+                    <option value="thesis"> Thesis</option>
+                    <option value="other"> Other</option>
+                </select>
+            </div>
+            <div id = "book_container" style="display: none;">
+                <div class="col-md-6 form-group">
+                    <input type="text" class="form-control" required="" placeholder="Chapter Name" name="book_chapter_name" required>
+                </div>
+                <div class="col-md-6 form-group">
+                    <input type="text" class="form-control" required="" placeholder="Chapter" name="book_chapter" required>
+                </div>
+                <div class="col-md-6 form-group">
+                    <input type="text" class="form-control" required="" placeholder="Edition" name="book_adition" required>
+                </div>
+                <div class="col-md-6 form-group">
+                    <input type="text" class="form-control" required="" placeholder="Section" name="book_section" required>
+                </div>
+                <div class="col-md-6 form-group">
+                    <input type="text" class="form-control" required="" placeholder="Page" name="book_page" required>
+                </div>
+                <div class="col-md-6 form-group">
+                    <input type="text" class="datepicker date form-control" required="" placeholder="Published Date" name="book_date" required>
+                </div>
+                <div class="col-md-12 form-group">
+                    <input type="text" class="form-control" required="" placeholder="Publisher" name="book_publisher" required>
+                </div>
+            </div>
+            <div id = "conference_container" style="display: none;">
+                <div class="col-md-6 form-group">
+                    <input type="text" class="form-control" placeholder="Page" name="conf_page">
+                </div>
+                <div class="col-md-6 form-group">
+                    <input type="text" class="datepicker date form-control" placeholder="Published Date" name="conf_date">
+                </div>
+                <div class="col-md-12 form-group">
+                    <input type="text" class="form-control" placeholder="Conference Name" name="conf_publisher">
+                </div>
+            </div>
+            <div id = "journal_container" style="display: none;">
+                <div class="col-md-4 form-group">
+                    <input type="text" class="form-control" placeholder="Page" name="journal_page">
+                </div>
+                <div class="col-md-4 form-group">
+                    <input type="text" class="form-control" placeholder="Volume" name="journal_volume">
+                </div>
+                <div class="col-md-4 form-group">
+                    <input type="text" class="datepicker date form-control" placeholder="Published Date" name="journal_date">
+                </div>
+                <div class="col-md-6 form-group">
+                    <input type="text" class="form-control" placeholder="Publisher" name="journal_publisher">
+                </div>
+                <div class="col-md-6 form-group">
+                    <input type="text" class="form-control" placeholder="Journal Name" name="journal_name">
+                </div>
+            </div>
+            <div id = "thesis_container" style="display: none;">
+                <div class="col-md-6 form-group">
+                    <input type="text" class="form-control" placeholder="Pages" name="thesis_page">
+                </div>
+                <div class="col-md-6 form-group">
+                    <select type="text" class="form-control" placeholder="Select Supervisor" id="thesis_supervisor">
+                        <option value="">Select Supervisor</option>
+                        @foreach($member as $item)
+                            <option value="{{$item->member_id}}">{{$item->firstName}} {{$item->lastName}}</option>
+                        @endforeach
+                    </select>
+                </div>
+                <div class="col-md-6 form-group">
+                    <input type="text" class="form-control" placeholder="University" name="thesis_university">
+                </div>
+                <div class="col-md-6 form-group">
+                    <input type="text" class="datepicker date form-control" required="" placeholder="Date" name="thesis_date">
                                 </div>
 
                             </div>

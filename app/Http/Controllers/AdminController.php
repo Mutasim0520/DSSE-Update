@@ -16,6 +16,7 @@ use App\External_author as ex_auth;
 
 class AdminController extends Controller
 {
+
     public function showIndex(){
         $Members = Member::where(['status' => 'Active'])->get();;
         $external_author = ex_auth::all();

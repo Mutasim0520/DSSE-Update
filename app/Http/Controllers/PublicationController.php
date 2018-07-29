@@ -4,12 +4,9 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Response;
-use Illuminate\Http\File;
-use Illuminate\Support\Facades\Storage;
 use App\Member as Members;
 use App\Publication as Publications;
 use Session;
-use App\Google;
 use App\Keyword as Keyword;
 use App\Project as Projects;
 use Auth;
@@ -18,6 +15,14 @@ use App\External_author as ex_auth;
 
 class PublicationController extends Controller
 {
+
+    public function checkPublication(Request $request){
+        $RequestedItem =htmlspecialchars(preg_replace("/\s+/", " ", ucwords($request->name)));
+        $RegisteredItem = Publications::where('name',$RequestedItem)->first();
+        $flag = "true";
+        if($RegisteredItem) $flag = "false";
+        echo $flag;
+    }
 
     public function show(){
         $Publications = Publications::all();
@@ -61,7 +66,7 @@ class PublicationController extends Controller
         if($request->ajax())
         {
             $Publication  = new Publications();
-            $Publication-> name = trim($request->publication_name);
+            $Publication-> name = htmlspecialchars(preg_replace("/\s+/", " ", ucwords($request->name)));
             $Publication-> publication_type = $request->publication_type;
             $Publication->abstract = $request->abstract;
             $Publication->date = $request->date;
@@ -221,7 +226,7 @@ class PublicationController extends Controller
         if($request->ajax()){
             $author = $request->author;
             $Publication  = Publications::find(decrypt($request->id));
-            $Publication-> name = trim($request->publication_name);
+            $Publication-> name = htmlspecialchars(preg_replace("/\s+/", " ", ucwords($request->name)));
             $Publication-> publication_type = $request->publication_type;
             $Publication->abstract = $request->abstract;
             $Publication->date = $request->date;

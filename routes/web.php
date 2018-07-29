@@ -77,6 +77,7 @@ Route::post('/admin/login','Auth\AdminLoginController@login')->name('admin.login
 
 
 Route::get('/checkProject','ProjectController@checkProject');
+Route::get('/checkPublication','PublicationController@checkPublication');
 Route::post('/storekeyword','PublicationController@storeKeyword');
 Route::post('/storefile','PublicationController@storeFile');
 
@@ -141,5 +142,7 @@ Route::group(['middleware' => 'auth:admin'], function (){
 });
 
 Auth::routes();
+
+Route::get('/up','AdminController@up');
 
 //Route::get('/home', 'HomeController@index');

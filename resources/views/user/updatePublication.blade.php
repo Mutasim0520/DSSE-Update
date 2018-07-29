@@ -198,7 +198,7 @@
                                 <div class="form-group col-md-12">
                                     <div class="col-md-12 form-check">
                                         <label class="form-check-label">
-                                            <input class="form-check-input" type="checkbox" name="fund_status" value="0" style="display: inline-block;">
+                                            <input class="form-check-input" type="checkbox" id="fund_status" name="fund_status" value="0" style="display: inline-block;">
                                             Funded?</label>
                                     </div>
                                     <div class="col-md-6" id="fund_ins_container" style="display:none;">
@@ -213,19 +213,19 @@
                                 <div class="col-md-12 form-group">
                                     <div class="col-md-6 form-check">
                                         <label>
-                                            <input type="checkbox" name="aff_ins" value="0" style="display: inline-block;">
+                                            <input type="checkbox" name="aff_ins" id="aff_ins" value="0" style="display: inline-block;">
                                             Any Affiliated Institute?
                                         </label>
                                     </div>
                                     <div class="col-md-6 form-group" id="inst_container" style="display:none;">
                                         <label class="item-head log">Name Of Institute</label>
-                                        <input type="text" class="form-control" name="ins_name">
+                                        <input type="text" class="form-control" name="ins_name" id="ins_name">
                                     </div>
                                 </div>
                                 <div class="col-md-12 form-group">
                                     <div class="col-md-3 form-check">
                                         <label>
-                                            <input type="checkbox" name="src_code" value="0" style="display: inline-block;">
+                                            <input type="checkbox" name="src_code" id="src_code" value="0" style="display: inline-block;">
                                             Any Source Code?</label>
                                     </div>
                                     <div class="col-md-9 form-group" id="source_code_container" style="display:none;">
@@ -242,7 +242,7 @@
                                 <div class="col-md-12 form-group">
                                     <div class="col-md-3 form-check">
                                         <label>
-                                            <input type="checkbox" name="dataset" value="0" style="display: inline-block;">
+                                            <input type="checkbox" name="dataset" id="dataset_status" value="0" style="display: inline-block;">
                                             Any Dataset?</label>
                                     </div>
                                     <div class="col-md-9 form-group" id="dataset_container" style="display:none;">

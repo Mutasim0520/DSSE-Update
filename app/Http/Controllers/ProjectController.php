@@ -38,15 +38,10 @@ class ProjectController extends Controller
     }
 
     public function checkProject(Request $request){
-        $RequestedProject = $request->projectname;
-        $RegisteredProject = Project::all();
+        $RequestedItem =htmlspecialchars(preg_replace("/\s+/", " ", ucwords($request->projectname)));
+        $RegisteredItem = Project::where('name',$RequestedItem)->first();
         $flag = "true";
-        foreach ($RegisteredProject as $item){
-           if( $item['name'] == $RequestedProject){
-               $flag = "false";
-               break;
-           }
-        }
+        if($RegisteredItem) $flag = "false";
         echo $flag;
     }
 
@@ -110,7 +105,7 @@ class ProjectController extends Controller
     public function store(Request $request){
         if($request->ajax()){
             $Project = new Project();
-            $Project->name = $request->projectName;
+            $Project->name = htmlspecialchars(preg_replace("/\s+/", " ", ucwords($request->projectName)));
             $Project->description =  $request->description;
             $Project->status = $request->complete;
             $Project->fundStatus = $request->fund;
@@ -209,7 +204,7 @@ class ProjectController extends Controller
     public function update(Request $request){
         if($request->ajax()){
             $Project = Project::find(decrypt($request->id));
-            $Project->name = $request->projectName;
+            $Project->name = htmlspecialchars(preg_replace("/\s+/", " ", ucwords($request->projectName)));
             $Project->description =  $request->description;
             $Project->status = $request->complete;
             $Project->fundStatus = $request->fund;
@@ -285,13 +280,10 @@ class ProjectController extends Controller
     }
 
     public function delete(Request $request){
-        echo $request->id;
        $Project = Project::find(decrypt($request->id));
-//        $Project->Member->all();
-//        $Project->Member()->detach($request->id);
-        $Project->delete();
-        Session::flash('ProjectDelete','Project has been deleted successully!');
-        return redirect('/admin/projectlist/5');
+       $Project->delete();
+       Session::flash('ProjectDelete','Project has been deleted successully!');
+       return redirect('/admin/projectlist/5');
     }
 
     public function onGoingProject(){

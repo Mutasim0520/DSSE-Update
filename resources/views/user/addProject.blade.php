@@ -66,7 +66,7 @@
                             </div>
                             <div class="col-md-6 form-group">
                                 <label class="item-head log">Select Project Manager</label>
-                                <select class="form-control select2" multiple="multiple" data-placeholder="Select Project Manager"  id="pm" style="width: 100%;" require>
+                                <select class="form-control select2" name="pm" multiple="multiple" data-placeholder="Select Project Manager"  id="pm" style="width: 100%;">
                                     <option value="">Select Project Manager</option>
                                     @foreach($member as $item)
                                         <option value="{{$item->member_id}}">{{$item->firstName}} {{$item->lastName}}</option>
@@ -75,7 +75,7 @@
                             </div>
                             <div class="col-md-6 form-group">
                                 <label class="item-head log">Select Project Member</label>
-                                <select class="form-control select2" multiple="multiple" required="" data-placeholder="Select Project Member"  id="member" style="width: 100%;" required>
+                                <select class="form-control select2" multiple="multiple" name="member" data-placeholder="Select Project Member"  id="member" style="width: 100%;">
                                     <option value="">Select Project Member</option>
                                     @foreach($member as $item)
                                         <option value="{{$item->member_id}}">{{$item->firstName}} {{$item->lastName}}</option>
@@ -94,22 +94,22 @@
                             </div>
                             <div class="col-md-6 form-group">
                                 <label class="item-head log">Start Date</label>
-                                <input type="text" class="form-control" id="startDate" required="">
+                                <input type="text" class="form-control" id="startDate" name="startDate" required="">
                             </div>
                             <div class="col-md-6 form-group" id="finishContainer" style="display: none;">
                                 <label class="item-head log">Finish Date</label>
-                                <input class="form-control" type="text" id="finishDate" class="datepicker">
+                                <input class="form-control" type="text" name="finishDate" id="finishDate" class="datepicker">
                             </div>
 
                             <div class="form-group col-md-12">
                                 <div class="col-md-12 form-check">
                                     <label class="item-head log form-check-label">
-                                        <input class="form-check-input" type="checkbox" name="fund_status" value="0" style="display: inline-block;">
+                                        <input class="form-check-input" type="checkbox" id="fund_status" name="fund_status" value="0" style="display: inline-block;">
                                         Funded?</label>
                                 </div>
                                 <div class="col-md-6" id="fund_ins_container" style="display:none;">
                                     <label class="item-head log">Funding Organization</label>
-                                    <input type="text" class="form-control" id="fund_ins">
+                                    <input type="text" class="form-control" id="fund_ins" name="fund_ins">
                                 </div>
                                 <div class="col-md-6" id="fund_amount_container" style="display:none;">
                                     <label class="item-head log">Fund Amount</label>
@@ -119,7 +119,7 @@
                             <div class="col-md-12 form-group">
                                 <div class="col-md-3 form-check">
                                     <label>
-                                        <input type="checkbox" name="src_code" value="0" style="display: inline-block;">
+                                        <input type="checkbox" name="src_code" id="src_code" value="0" style="display: inline-block;">
                                         Any Source Code?</label>
                                 </div>
                                 <div class="col-md-9 form-group" id="source_code_container" style="display:none;">
@@ -129,24 +129,24 @@
                                     </div>
                                     <div class="col-md-7">
                                         <label class="item-head log">File URL</label>
-                                        <input type="url"  class="form-control" name="src_link">
+                                        <input type="url"  class="form-control" name="src_link" id="src_link">
                                     </div>
                                 </div>
                             </div>
                             <div class="col-md-12 form-group">
                                 <div class="col-md-3 form-check">
                                     <label>
-                                        <input type="checkbox" name="srs" value="0" style="display: inline-block;">
+                                        <input type="checkbox" name="srs" id="srs" value="0" style="display: inline-block;">
                                         Any SRS?</label>
                                 </div>
                                 <div class="col-md-9 form-group" id="srs_container" style="display:none;">
                                     <div class="col-md-5">
                                         <label class="item-head log">Upload file</label>
-                                        <input type="file" name="file" id="srs_file">
+                                        <input type="file" name="srs_file" id="srs_file">
                                     </div>
                                     <div class="col-md-7">
                                         <label class="item-head log">File URL</label>
-                                        <input type="url"  class="form-control" name="srs_link">
+                                        <input type="url"  class="form-control" name="srs_link" id="srs_link">
                                     </div>
                                 </div>
                             </div>
@@ -170,7 +170,7 @@
     <script src="/js/tapered.bundle.js"></script>
     {{--- validation js --}}
     <script src="http://ajax.aspnetcdn.com/ajax/jquery.validate/1.15.0/jquery.validate.js"></script>
-    <script src="/js/validation/publicationValidation.js"></script>
+    <script src="/js/validation/projectValidation.js"></script>
     <script src="https://cdn.jsdelivr.net/jquery.validation/1.15.0/additional-methods.min.js"></script>
     <script type="text/javascript">
         $("select").on("select2:select", function (evt) {
