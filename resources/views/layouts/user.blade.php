@@ -71,6 +71,22 @@
             $('#PublicationAdd').modal('show');
         @elseif(Session::has('PublicationUpdate'))
             $('#PublicationUpdate').modal('show');
+        @elseif(Session::has('GraduationAdd'))
+            $('#GraduationAdd').modal('show');
+        @elseif(Session::has('GraduationUpdate'))
+            $('#GraduationUpdate').modal('show');
+        @elseif(Session::has('GraduationDelete'))
+            $('#GraduationDelete').modal('show');
+        @elseif(Session::has('CareerAdd'))
+            $('#CareerAdd').modal('show');
+        @elseif(Session::has('CareerUpdate'))
+            $('#CareerUpdate').modal('show');
+        @elseif(Session::has('CareerDelete'))
+            $('#CareerDelete').modal('show');
+        @elseif(Session::has('ContactDelete'))
+            $('#ContactDelete').modal('show');
+        @elseif(Session::has('ContactUpdate'))
+            $('#ContactUpdate').modal('show');
         @endif
     });
 </script>

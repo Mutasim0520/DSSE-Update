@@ -133,3 +133,132 @@
         </div>
     </div>
 </div>
+
+@if(Session::has('GraduationUpdate'))
+    <div class="modal fade success-popup" id="GraduationUpdate" role="dialog" aria-labelledby="myModalLabel">
+        <div class="modal-dialog modal-sm" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
+                    <h4 class="modal-title" id="myModalLabel" style="text-align: center">Thank You !</h4>
+                </div>
+                <div class="modal-body text-center">
+                    <img src="/images/icons/check.png">
+                    <p class="lead">{{Session::get('GraduationUpdate')}}</p>
+                </div>
+            </div>
+        </div>
+    </div>
+@endif
+@if(Session::has('GraduationAdd'))
+    <div class="modal fade success-popup" id="GraduationAdd" role="dialog" aria-labelledby="myModalLabel">
+        <div class="modal-dialog modal-sm" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
+                    <h4 class="modal-title" id="myModalLabel" style="text-align: center">Thank You !</h4>
+                </div>
+                <div class="modal-body text-center">
+                    <img src="/images/icons/check.png">
+                    <p class="lead">{{Session::get('GraduationAdd')}}</p>
+                </div>
+            </div>
+        </div>
+    </div>
+@endif
+@if(Session::has('GraduationDelete'))
+    <div class="modal fade success-popup" id="GraduationDelete" role="dialog" aria-labelledby="myModalLabel">
+        <div class="modal-dialog modal-sm" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
+                    <h4 class="modal-title" id="myModalLabel" style="text-align: center">Thank You !</h4>
+                </div>
+                <div class="modal-body text-center">
+                    <img src="/images/icons/check.png">
+                    <p class="lead">{{Session::get('GraduationDelete')}}</p>
+                </div>
+            </div>
+        </div>
+    </div>
+@endif
+@if(Session::has('CareerAdd'))
+    <div class="modal fade success-popup" id="CareerAdd" role="dialog" aria-labelledby="myModalLabel">
+        <div class="modal-dialog modal-sm" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
+                    <h4 class="modal-title" id="myModalLabel" style="text-align: center">Thank You !</h4>
+                </div>
+                <div class="modal-body text-center">
+                    <img src="/images/icons/check.png">
+                    <p class="lead">{{Session::get('CareerAdd')}}</p>
+                </div>
+            </div>
+        </div>
+    </div>
+@endif
+@if(Session::has('CareerUpdate'))
+    <div class="modal fade success-popup" id="CareerUpdate" role="dialog" aria-labelledby="myModalLabel">
+        <div class="modal-dialog modal-sm" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
+                    <h4 class="modal-title" id="myModalLabel" style="text-align: center">Thank You !</h4>
+                </div>
+                <div class="modal-body text-center">
+                    <img src="/images/icons/check.png">
+                    <p class="lead">{{Session::get('CareerUpdate')}}</p>
+                </div>
+            </div>
+        </div>
+    </div>
+@endif
+@if(Session::has('CareerDelete'))
+    <div class="modal fade success-popup" id="CareerDelete" role="dialog" aria-labelledby="myModalLabel">
+        <div class="modal-dialog modal-sm" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
+                    <h4 class="modal-title" id="myModalLabel" style="text-align: center">Thank You !</h4>
+                </div>
+                <div class="modal-body text-center">
+                    <img src="/images/icons/check.png">
+                    <p class="lead">{{Session::get('CareerDelete')}}</p>
+                </div>
+            </div>
+        </div>
+    </div>
+@endif
+@if(Session::has('ContactUpdate'))
+    <div class="modal fade success-popup" id="ContactUpdate" role="dialog" aria-labelledby="myModalLabel">
+        <div class="modal-dialog modal-sm" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
+                    <h4 class="modal-title" id="myModalLabel" style="text-align: center">Thank You !</h4>
+                </div>
+                <div class="modal-body text-center">
+                    <img src="/images/icons/check.png">
+                    <p class="lead">{{Session::get('ContactUpdate')}}</p>
+                </div>
+            </div>
+        </div>
+    </div>
+@endif
+@if(Session::has('ContactDelete'))
+    <div class="modal fade success-popup" id="ContactDelete" role="dialog" aria-labelledby="myModalLabel">
+        <div class="modal-dialog modal-sm" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
+                    <h4 class="modal-title" id="myModalLabel" style="text-align: center">Thank You !</h4>
+                </div>
+                <div class="modal-body text-center">
+                    <img src="/images/icons/check.png">
+                    <p class="lead">{{Session::get('ContactDelete')}}</p>
+                </div>
+            </div>
+        </div>
+    </div>
+@endif

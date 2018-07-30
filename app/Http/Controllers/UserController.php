@@ -17,6 +17,22 @@ use Session;
 
 class UserController extends Controller
 {
+    public function up(){
+        $ed = Education::all();
+        foreach ($ed as $item){
+            $a = Education::find($item->id);
+            $a->degree_name = htmlspecialchars(preg_replace("/\s+/", " ", ucwords($item->degree_name)));
+            $a->save();
+        }
+    }
+
+    public function checkGraduation(Request $request){
+        $RequestedItem =htmlspecialchars(preg_replace("/\s+/", " ", ucwords($request->degree)));
+        $RegisteredItem = Education::where('degree_name',$RequestedItem)->first();
+        $flag = "true";
+        if($RegisteredItem) $flag = "false";
+        echo $flag;
+    }
 
     public function deleteProject(Request $request){
         $project = Project::where('project_id',$request->id)->first();
@@ -38,7 +54,6 @@ class UserController extends Controller
         $projects = Project::all();
         $external_authors = ex_auth::all();
         $publication = Publications::with('external_author','member','project','keyword')->find($request->id);
-        //return $publication;
         return view('user.updatePublication' , ['publication' => $publication,'external_authors' => $external_authors,'keywords'=>$keywords,'member' => $array ,'Project' =>$projects]);
     }
 
@@ -53,7 +68,6 @@ class UserController extends Controller
     public function showIndex(){
         return view('user.index');
     }
-
 
     public function showMembers(){
         $members = Member::where(['status' =>'Active'])->get();
@@ -116,7 +130,6 @@ class UserController extends Controller
             }
         }
         rsort($project_years);
-
         return view('user.personalProfile',['paper_years'=>$paper_years,'project_years'=>$project_years,'memberProject' => $MemberProject , 'memberPublication' => $MemberPublication ,'member' => $member]);
     }
 
@@ -124,29 +137,112 @@ class UserController extends Controller
         $user = User::find(Auth::user()->id);
         $Member = Member::where(['email'=>$user->email])->get();
         $education = new Education();
-        $education->degree_name = $request->degree;
-        $education->institute = $request->institute;
-        $education->passing_year = $request->sessions;
-        $education->degree_subject = $request->subject;
-        $education->thesis = $request->thesis_title;
-        $education->supervisor = $request->thesis_mentor;
+        $education->degree_name = htmlspecialchars(preg_replace("/\s+/", " ", ucwords($request->degree)));
+        $education->institute = htmlspecialchars(preg_replace("/\s+/", " ", ucwords($request->institute)));
+        $education->passing_year = htmlspecialchars(preg_replace("/\s+/", " ", ucwords($request->sessions)));
+        $education->degree_subject = htmlspecialchars(preg_replace("/\s+/", " ", ucwords($request->subject)));
+        $education->thesis = htmlspecialchars(preg_replace("/\s+/", " ", ucwords($request->thesis_title)));
+        $education->supervisor = htmlspecialchars(preg_replace("/\s+/", " ", ucwords($request->thesis_mentor)));
         $education->member_id = $Member[0]->member_id;
         $education->save();
+        Session::flash('GraduationAdd','Graduation has been added successfully!');
         return redirect()->back();
 
+    }
+
+    public function showUpdateEducationForm(Request $request){
+        $education = Education::where(['degree_name' => $request->degree])->first();
+        return view('user.updateEducationForm',['education'=>$education]);
+    }
+
+    public function updateEducation(Request $request){
+        $user = User::find(Auth::user()->id);
+        $Member = Member::where(['email'=>$user->email])->get();
+        $education = Education::where(['degree_name' => $request->degree])->first();
+        $education->degree_name = htmlspecialchars(preg_replace("/\s+/", " ", ucwords($request->degree)));
+        $education->institute = htmlspecialchars(preg_replace("/\s+/", " ", ucwords($request->institute)));
+        $education->passing_year = htmlspecialchars(preg_replace("/\s+/", " ", ucwords($request->sessions)));
+        $education->degree_subject = htmlspecialchars(preg_replace("/\s+/", " ", ucwords($request->subject)));
+        $education->thesis = htmlspecialchars(preg_replace("/\s+/", " ", ucwords($request->thesis_title)));
+        $education->supervisor = htmlspecialchars(preg_replace("/\s+/", " ", ucwords($request->thesis_mentor)));
+        $education->member_id = $Member[0]->member_id;
+        $education->save();
+        $id = encrypt($user->id);
+        Session::flash('GraduationUpdate','Graduation has been updated successfully!');
+        return redirect("/indivisual/profile/$id");
+
+    }
+
+    public function deleteEducation(Request $request){
+        $education = Education::where(['degree_name' => $request->degree])->first();
+        $education->delete();
+        Session::flash('GraduationDelete','Graduation has been deleted successfully!');
+        return redirect()->back();
     }
 
     public function addExperience(Request $request){
         $user = User::find(Auth::user()->id);
         $Member = Member::where(['email'=>$user->email])->get();
         $experience = new Experience();
-        $experience->organization_name = $request->organization;
-        $experience->designation = $request->designation;
-        $experience->duration = $request->sessions;
+        $experience->organization_name = htmlspecialchars(preg_replace("/\s+/", " ", ucwords($request->organization)));
+        $experience->designation = htmlspecialchars(preg_replace("/\s+/", " ", ucwords($request->designation)));
+        $experience->duration = htmlspecialchars(preg_replace("/\s+/", " ", ucwords($request->sessions)));
         $experience->member_id = $Member[0]->member_id;
         $experience->save();
+        Session::flash('CareerAdd','Career has been added successfully!');
         return redirect()->back();
 
+    }
+
+    public function showUpdateCareerForm(Request $request){
+        $experience = Experience::find($request->id);
+        return view('user.updateCareerForm',['experience'=>$experience]);
+    }
+
+    public function updateCareer(Request $request){
+        $user = User::find(Auth::user()->id);
+        $Member = Member::where(['email'=>$user->email])->get();
+        $experience = Experience::find($request->id);
+        $experience->organization_name = htmlspecialchars(preg_replace("/\s+/", " ", ucwords($request->organization)));
+        $experience->designation = htmlspecialchars(preg_replace("/\s+/", " ", ucwords($request->designation)));
+        $experience->duration = htmlspecialchars(preg_replace("/\s+/", " ", ucwords($request->sessions)));
+        $experience->member_id = $Member[0]->member_id;
+        $experience->save();
+        $id = encrypt($user->id);
+        Session::flash('CareerUpdate','Career has been update successfully!');
+        return redirect("/indivisual/profile/$id");
+
+    }
+
+    public function deleteCareer(Request $request){
+        $experience = Experience::find($request->id);
+        $experience->delete();
+        Session::flash('CareerDelete','Career has been deleted successfully!');
+        return redirect()->back();
+    }
+
+    public function addContact(Request $request){
+        $user = User::find(Auth::user()->id);
+        $Member = Member::where(['email'=>$user->email])->first();
+        $Member->additional_email = htmlspecialchars(preg_replace("/\s+/", " ", ucwords($request->ad_email)));
+        $Member->address = htmlspecialchars(preg_replace("/\s+/", " ", ucwords($request->address)));
+        $Member->contact = htmlspecialchars(preg_replace("/\s+/", " ", ucwords($request->contact)));
+        $Member->save();
+        $id = encrypt($user->id);
+        Session::flash('ContactUpdate','Contact has been update successfully!');
+        return redirect("/indivisual/profile/$id");
+    }
+
+    public function deleteContact(){
+        $user = User::find(Auth::user()->id);
+        $Member = Member::where(['email'=>$user->email])->first();
+        $Member->additional_email = "";
+        $Member->address = "";
+        $Member->contact = "";
+        $Member->save();
+        $id = encrypt($user->id);
+        Session::flash('ContactDelete','Contact has been delete successfully!');
+        return redirect("/indivisual/profile/$id");
     }
 
     public function uploadPP(Request $request){

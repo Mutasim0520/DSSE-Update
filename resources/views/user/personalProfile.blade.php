@@ -152,7 +152,6 @@
             <div class="memberMenu">
                 @include('partials/user._memnav')
             </div><br>
-            <!--- Education------------------>
             <div id="education-tab" class="tab-pane fade item-container">
                 <div class="section-head">Education<span style="float: right; font-size: small;"><i class="fa fa-graduation-cap"></i><a href="javascript:void(0);" data-toggle="modal" data-target="#addGraduationInfo" style="text-align: center;">Add Graduation Info</a></span>
                 </div><br>
@@ -164,9 +163,6 @@
                                     <h6 class="heading">{{ $item->degree_name }}</h6>
                                     <small>{{ $item->institute }}</small><hr></div>
                                 <figure class="edu">
-                                    <div style="display: inline-block; border-right: 5px;">
-                                        <i class="fa fa-university fa-5x" style="color: darkolivegreen;"></i>
-                                    </div>
                                     <div style="display: inline-block">
                                         <span>{{ $item->degree_subject }}</span><br>
                                         @if($item->thesis)
@@ -175,6 +171,8 @@
                                         @endif
                                         <span class="item-head">Session: </span><span>{{ $item->passing_year }}</span><br>
                                     </div>
+                                    <span style="float: right;margin-left: 5px;"><a class="btn" href="/delete/graduation/{{$item->degree_name}}"><i class="fa fa-trash"></i></a></span>
+                                    <span style="float: right;margin-left: 5px;"><a class="btn" href="/update/graduation/{{$item->degree_name}}"><i class="fa fa-pencil"></i></a></span><br>
                                 </figure>
                             </article>
                         @endforeach
@@ -190,7 +188,7 @@
                                 <h4 class="modal-title">Required Information</h4>
                             </div>
                             <div class="modal-body">
-                                <form class="form-horizontal" role="form" method="POST" action="{{ url('/add/education') }}">
+                                <form id="graduation_add_form" class="form-horizontal" role="form" method="POST" action="{{ url('/add/education') }}">
                                     {{ csrf_field() }}
                                     <div class="col-md-12 form-group">
                                         <label class="item-head log">Degree</label>
@@ -210,12 +208,12 @@
                                     </div>
                                     <div class="col-md-12 form-group">
                                         <label class="item-head log">
-                                            <input type ="checkbox" id="degree_name" name="thesis" autofocus="" style="display: inline-block;">
+                                            <input type ="checkbox" id="thesis_status" name="thesis" autofocus="" style="display: inline-block;">
                                             Thesis</label>
                                     </div>
                                     <div class="col-md-12 form-group" id="thesis_container" style="display: none;">
                                         <label class="item-head log">Title of thesis</label>
-                                        <input class="form-control" type="text"   name="thesis_title" autofocus="">
+                                        <input class="form-control" type="text"  id="add_thesis_title"  name="thesis_title" autofocus="">
                                         <label class="item-head log">Supervisor</label>
                                         <input class="form-control" type="text"  name="thesis_mentor" autofocus="">
                                     </div>
@@ -231,7 +229,6 @@
                 </div>
             </div>
 
-
             <div id="career-tab" class="tab-pane fade">
                 <div class="section-head">Career<span style="float: right; font-size: small;"><i class="fa fa-briefcase"></i><a href="javascript:void(0);" data-toggle="modal" data-target="#addCarrerInfo" style="text-align: center;">Add Career Info</a></span>
                 </div><br>
@@ -240,15 +237,14 @@
                         @foreach($member[0]['experience'] as $item)
                             <article class="full">
                                 <figure class="edu">
-                                    <div style="display: inline-block; border-right: 5px;">
-                                        <i class="fa fa-briefcase fa-3x" style="color: darkolivegreen;"></i>
-                                    </div>
                                     <div style="display: inline-block">
                                         <span>{{ $item->organization_name }}</span><br>
                                         <span class="item-head">Designation: </span><span>{{ $item->designation }}</span><br>
                                         <span class="item-head">Working Period: </span><span>{{ $item->duration }}</span>
-
                                     </div>
+                                    <span style="float: right;margin-left: 5px;"><a class="btn" href="/delete/career/{{$item->id}}"><i class="fa fa-trash"></i></a></span>
+                                    <span style="float: right;margin-left: 5px;"><a class="btn" href="/update/career/{{$item->id}}"><i class="fa fa-pencil"></i></a></span>
+
                                 </figure>
                             </article>
                         @endforeach
@@ -291,12 +287,34 @@
             </div>
 
             <div id="contact-tab" class="tab-pane fade">
-                <div class="section-head">Contact<span style="float: right; font-size: small;"><i class="fa fa-briefcase"></i><a href="javascript:void(0);" data-toggle="modal" data-target="#addCarrerInfo" style="text-align: center;"></a></span>
+                <div class="section-head">Contact
+                    <span style="float: right; font-size: small;">
+                        <i class="fa fa-inbox"></i>
+                        <a href="javascript:void(0);" data-toggle="modal" data-target="#addContact" style="text-align: center;">Update Contact Info</a>
+                    </span>
                 </div><br>
                 <div class="group excerpts">
-                    <p>No Info</p>
+                    <article class="full">
+                        <figure class="edu">
+                            <div style="display: inline-block">
+                                @if($member[0]->additional_email || $member[0]->address || $member[0]->contact)
+                                    @if($member[0]->additional_email)
+                                        <span class="item-head">Email: </span><span>{{ $member[0]->additional_email }}</span><br>
+                                    @endif
+                                    @if($member[0]->address)
+                                        <span class="item-head">Address: </span><span>{{ $member[0]->address }}</span><br>
+                                    @endif
+                                    @if($member[0]->contact)
+                                        <span class="item-head">Contact Numbers: </span><span>{{ $member[0]->contact }}</span><br>
+                                    @endif
+                                @else
+                                    No information found
+                                @endif
+                            </div>
+                        </figure>
+                    </article>
                 </div>
-                <div id="addCarrerInfo" class="modal fade" role="dialog">
+                <div id="addContact" class="modal fade" role="dialog">
                     <div class="modal-dialog">
                         <div class="modal-content">
                             <div class="modal-header">
@@ -304,19 +322,19 @@
                                 <h4 class="modal-title">Required Information</h4>
                             </div>
                             <div class="modal-body">
-                                <form class="form-horizontal" role="form" method="POST" action="{{ url('/add/experience') }}">
+                                <form class="form-horizontal" role="form" method="POST" action="{{ url('/add/contact/info') }}">
                                     {{ csrf_field() }}
                                     <div class="col-md-12 form-group">
-                                        <label class="item-head log">Organization</label>
-                                        <input class="form-control" type="text" required="" name="organization" autofocus="">
+                                        <label class="item-head log">Additional Email</label>
+                                        <input class="form-control" type="text" name="ad_email" value="{{$member[0]->additional_email}}" autofocus="">
                                     </div>
                                     <div class="col-md-12 form-group">
-                                        <label class="item-head log">Designation</label>
-                                        <input class="form-control" type="text" required=""  name="designation" autofocus="">
+                                        <label class="item-head log">Addres</label>
+                                        <input class="form-control" type="text" value="{{$member[0]->address}}"  name="address" autofocus="">
                                     </div>
                                     <div class="col-md-12 form-group">
-                                        <label class="item-head log">Work Period</label>
-                                        <input class="form-control" type="text" required=""  name="sessions" autofocus="">
+                                        <label class="item-head log">Contact Numbers (In case of multiple numbers please make them comma seperated)</label>
+                                        <input class="form-control" type="text" value="{{$member[0]->contact}}" name="contact" autofocus="">
                                     </div>
                                     <div>
                                         <input type="submit" class="btn" value="Save">
@@ -329,8 +347,6 @@
                     </div>
                 </div>
             </div>
-
-            <!--- Project------------------>
 
             <div id="publication-tab" class="tab-pane fade in active ">
                 <div class="section-head"> Publication<span style="float: right; font-size: small;"><i class="fa fa-briefcase"></i><a href="/add/publication" style="text-align: center;">Add Publications</a></span></div><br>
@@ -694,8 +710,13 @@
     </div>
 @endsection
 @section('scripts')
+    <script src="http://ajax.aspnetcdn.com/ajax/jquery.validate/1.15.0/jquery.validate.js"></script>
+    <script src="/js/validation/graduationValidation.js"></script>
+    <script src="https://cdn.jsdelivr.net/jquery.validation/1.15.0/additional-methods.min.js"></script>
     <script>
         $(document).ready(function () {
+            console.log($('#memnav').eq(3));
+
             var active_tab = sessionStorage.getItem('active_tab');
             if(active_tab){
                 $('#memnav .active').removeClass('active');
@@ -705,12 +726,26 @@
                 sessionStorage.removeItem('active_tab');
             }
 
-            @if(Session::has('ProjectDelete'))
+            @if(Session::has('ProjectDelete') || Session::has('ProjectAdd') || Session::has('ProjectUpdate'))
                 $('#memnav .active').removeClass('active');
                 $("#memnav li").eq(1).addClass('active');
                 $("#publication-tab").removeClass('in active');
                 $("#project-tab").addClass('in active');
-
+            @elseif(Session::has('CareerDelete') || Session::has('CareerUpdate') || Session::has('CareerAdd'))
+                $('#memnav .active').removeClass('active');
+                $("#memnav li").eq(3).addClass('active');
+                $("#publication-tab").removeClass('in active');
+                $("#career-tab").addClass('in active');
+            @elseif(Session::has('GraduationDelete') || Session::has('GraduationUpdate') || Session::has('GraduationDelete'))
+                $('#memnav .active').removeClass('active');
+                $("#memnav li").eq(2).addClass('active');
+                $("#publication-tab").removeClass('in active');
+                $("#education-tab").addClass('in active');
+            @elseif(Session::has('ContactDelete') || Session::has('ContactUpdate'))
+                $('#memnav .active').removeClass('active');
+                $("#memnav li").eq(4).addClass('active');
+                $("#publication-tab").removeClass('in active');
+                $("#contact-tab").addClass('in active');
             @endif
 
         });
@@ -719,11 +754,15 @@
             $('#add_social_account_modal').modal('show');
         }
         $('input[name=thesis]').change(function(){
-            if($('input[name=thesis]:checked')){
+            if($('input[name=thesis]:checked').length >0){
                 $('#thesis_container').show();
+                $('input[name=thesis_title]').attr('required','required');
             }
             else{
                 $('#thesis_container').css('display','none');
+                $('input[name=thesis_title]').val("");
+                $('input[name=thesis_mentor]').val("");
+                $('input[name=thesis_title]').removeAttr('required');
             }
         });
     </script>

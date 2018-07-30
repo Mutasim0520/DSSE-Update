@@ -63,6 +63,17 @@ Route::get('/test', function () {
         Route::post('/update/profile/image','UserController@updatePP');
         Route::post('/update/profile/info','UserController@updateUserInfo');
 
+        Route::get('/update/graduation/{degree}','UserController@showUpdateEducationForm');
+        Route::post('/update/graduation/{degree}','UserController@updateEducation');
+        Route::get('/delete/graduation/{degree}','UserController@deleteEducation');
+
+        Route::get('/update/career/{id}','UserController@showUpdateCareerForm');
+        Route::post('/update/career/{id}','UserController@updateCareer');
+        Route::get('/delete/career/{id}','UserController@deleteCareer');
+
+        Route::post('/add/contact/info','UserController@addContact');
+        Route::get('/delete/contact','UserController@deleteContact');
+
         Route::get('/add/publication/project','ProjectController@addProjectFromPublication');
     });
 
@@ -78,6 +89,7 @@ Route::post('/admin/login','Auth\AdminLoginController@login')->name('admin.login
 
 Route::get('/checkProject','ProjectController@checkProject');
 Route::get('/checkPublication','PublicationController@checkPublication');
+Route::get('/checkGraduation','UserController@checkGraduation');
 Route::post('/storekeyword','PublicationController@storeKeyword');
 Route::post('/storefile','PublicationController@storeFile');
 
@@ -143,6 +155,6 @@ Route::group(['middleware' => 'auth:admin'], function (){
 
 Auth::routes();
 
-Route::get('/up','AdminController@up');
+Route::get('/up','UserController@up');
 
 //Route::get('/home', 'HomeController@index');
