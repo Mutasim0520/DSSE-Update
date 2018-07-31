@@ -203,7 +203,7 @@
                                     </div>
                                     <div class="col-md-6" id="fund_ins_container" style="display:none;">
                                         <label class="item-head log">Funding Organization</label>
-                                        <input type="text" class="form-control" id="fund_ins">
+                                        <input type="text" class="form-control" name="fund_ins" id="fund_ins">
                                     </div>
                                     <div class="col-md-6" id="fund_amount_container" style="display:none;">
                                         <label class="item-head log">Fund Amount</label>
@@ -235,7 +235,7 @@
                                         </div>
                                         <div class="col-md-7">
                                             <label class="item-head log">File URL</label>
-                                            <input type="url"  class="form-control" name="src_link">
+                                            <input type="url"  class="form-control" name="src_link" id="src_link">
                                         </div>
                                     </div>
                                 </div>
@@ -249,11 +249,11 @@
                                         <div class="col-md-5">
                                             <label class="item-head log">
                                                 <i id="dataset_file_exist" style="display: none;" class="fa fa-check-circle"></i>Upload file</label>
-                                            <input type="file" name="file" id="dataset">
+                                            <input type="file" name="dataset_file" id="dataset">
                                         </div>
                                         <div class="col-md-7">
                                             <label class="item-head log">File URL</label>
-                                            <input type="url" class="form-control" name="dataset_link">
+                                            <input type="url" class="form-control" name="dataset_link" id="dataset_link">
                                         </div>
                                     </div>
                                 </div>

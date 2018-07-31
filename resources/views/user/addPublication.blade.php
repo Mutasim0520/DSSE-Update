@@ -204,7 +204,7 @@
                                 </div>
                                 <div class="col-md-6" id="fund_ins_container" style="display:none;">
                                     <label class="item-head log">Funding Organization</label>
-                                    <input type="text" class="form-control" id="fund_ins">
+                                    <input type="text" class="form-control" name="fund_ins" id="fund_ins">
                                 </div>
                                 <div class="col-md-6" id="fund_amount_container" style="display:none;">
                                     <label class="item-head log">Fund Amount</label>
@@ -249,7 +249,7 @@
                                 <div class="col-md-9 form-group" id="dataset_container" style="display:none;">
                                     <div class="col-md-5">
                                         <label class="item-head log">Upload file</label>
-                                        <input type="file" name="file" id="dataset">
+                                        <input type="file" name="dataset_file" id="dataset">
                                     </div>
                                     <div class="col-md-7">
                                         <label class="item-head log">File URL</label>

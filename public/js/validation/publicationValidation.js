@@ -56,7 +56,7 @@ $(document).ready(function () {
                     url: '/checkPublication'
                 }
             },
-            src_code:{
+            src_link:{
                 src_code_validation:true,
             },
             research:{
@@ -69,18 +69,21 @@ $(document).ready(function () {
                 required:true
             },
             file:{
-                extension:"pdf"
+                src_code_validation:true,
             },
             description:{
                 required:true
             },
-            dataset:{
+            dataset_file:{
                 dataset_validation:true
             },
-            fund_status:{
+            dataset_link:{
+                dataset_validation:true
+            },
+            fund_ins:{
                 fund_status_validation:true
             },
-            aff_ins:{
+            ins_name:{
                 affiliated_status_validation:true
             }
 

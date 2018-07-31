@@ -152,6 +152,7 @@
             <div class="memberMenu">
                 @include('partials/user._memnav')
             </div><br>
+
             <div id="education-tab" class="tab-pane fade item-container">
                 <div class="section-head">Education<span style="float: right; font-size: small;"><i class="fa fa-graduation-cap"></i><a href="javascript:void(0);" data-toggle="modal" data-target="#addGraduationInfo" style="text-align: center;">Add Graduation Info</a></span>
                 </div><br>
@@ -171,7 +172,7 @@
                                         @endif
                                         <span class="item-head">Session: </span><span>{{ $item->passing_year }}</span><br>
                                     </div>
-                                    <span style="float: right;margin-left: 5px;"><a class="btn" href="/delete/graduation/{{$item->degree_name}}"><i class="fa fa-trash"></i></a></span>
+                                    <span style="float: right;margin-left: 5px;"><a data-toggle="confirmation" data-title="Sure you want to delete?" class="btn" href="/delete/graduation/{{$item->degree_name}}"><i class="fa fa-trash"></i></a></span>
                                     <span style="float: right;margin-left: 5px;"><a class="btn" href="/update/graduation/{{$item->degree_name}}"><i class="fa fa-pencil"></i></a></span><br>
                                 </figure>
                             </article>
@@ -242,7 +243,7 @@
                                         <span class="item-head">Designation: </span><span>{{ $item->designation }}</span><br>
                                         <span class="item-head">Working Period: </span><span>{{ $item->duration }}</span>
                                     </div>
-                                    <span style="float: right;margin-left: 5px;"><a class="btn" href="/delete/career/{{$item->id}}"><i class="fa fa-trash"></i></a></span>
+                                    <span style="float: right;margin-left: 5px;"><a data-toggle="confirmation" data-title="Sure you want to delete?"  class="btn" href="/delete/career/{{$item->id}}"><i class="fa fa-trash"></i></a></span>
                                     <span style="float: right;margin-left: 5px;"><a class="btn" href="/update/career/{{$item->id}}"><i class="fa fa-pencil"></i></a></span>
 
                                 </figure>
@@ -380,7 +381,7 @@
                                                     <article class="full">
                                                         <figure class="list member_item">
                                                             <span class=" item-head"> Name: </span><span><a href="/indivisual/publication/{{encrypt($item->publication_id)}}">{{ $item->name }}</a></span><br>
-                                                            <span style="float: right; margin-left: 5px;"><a class="btn" href="/delete/publication/{{$item->publication_id}}"><i class="fa fa-trash"></i></a></span>
+                                                            <span style="float: right; margin-left: 5px;"><a data-toggle="confirmation" data-title="Sure you want to delete?"  class="btn" href="/delete/publication/{{$item->publication_id}}"><i class="fa fa-trash"></i></a></span>
                                                             <span style="float: right"><a class="btn" href="/update/publication/{{$item->publication_id}}"><i class="fa fa-pencil"></i></a></span>
                                                             <span class=" item-head"><a href="/conferenceWiseItem/{{$item->conference_name}}">{{ $item->conference_name }}</a></span><br>
                                                             <span class=" item-head"> Date: </span><span> {{ $item->date }}</span><br>
@@ -390,7 +391,7 @@
                                                     <article class="full">
                                                         <figure class="list member_item">
                                                             <span class=" item-head"> Name: </span><span><a href="/indivisual/publication/{{encrypt($item->publication_id)}}">{{ $item->name }}</a></span><br>
-                                                            <span style="float: right; margin-left: 5px;"><a class="btn" href="/delete/publication/{{$item->publication_id}}"><i class="fa fa-trash"></i></a></span>
+                                                            <span style="float: right; margin-left: 5px;"><a class="btn" data-toggle="confirmation" data-title="Sure you want to delete?"  href="/delete/publication/{{$item->publication_id}}"><i class="fa fa-trash"></i></a></span>
                                                             <span style="float: right"><a class="btn" href="/update/publication/{{$item->publication_id}}"><i class="fa fa-pencil"></i></a></span>
                                                             <span class=" item-head"><a href="/conferenceWiseItem/{{$item->conference_name}}">{{ $item->conference_name }}</a></span><br>
                                                             <span class=" item-head"> Date: </span><span> {{ $item->date }}</span><br>
@@ -400,7 +401,7 @@
                                                     <article class="full">
                                                         <figure class="list member_item">
                                                             <span class=" item-head"> Name: </span><span><a href="/indivisual/publication/{{encrypt($item->publication_id)}}">{{ $item->name }}</a></span><br>
-                                                            <span style="float: right; margin-left: 5px;"><a class="btn" href="/delete/publication/{{$item->publication_id}}"><i class="fa fa-trash"></i></a></span>
+                                                            <span style="float: right; margin-left: 5px;"><a class="btn" data-toggle="confirmation" data-title="Sure you want to delete?"  href="/delete/publication/{{$item->publication_id}}"><i class="fa fa-trash"></i></a></span>
                                                             <span style="float: right"><a class="btn" href="/update/publication/{{$item->publication_id}}"><i class="fa fa-pencil"></i></a></span>
                                                             <span class=" item-head"><a href="/conferenceWiseItem/{{$item->conference_name}}">{{ $item->conference_name }}</a></span><br>
                                                             <span class=" item-head"> Date: </span><span> {{ $item->date }}</span><br>
@@ -410,7 +411,7 @@
                                                     <article class="full">
                                                         <figure class="list member_item">
                                                             <span class=" item-head"> Name: </span><span><a href="/indivisual/publication/{{encrypt($item->publication_id)}}">{{ $item->name }}</a></span><br>
-                                                            <span style="float: right; margin-left: 5px;"><a class="btn" href="/delete/publication/{{$item->publication_id}}"><i class="fa fa-trash"></i></a></span>
+                                                            <span style="float: right; margin-left: 5px;"><a class="btn" data-toggle="confirmation" data-title="Sure you want to delete?"  href="/delete/publication/{{$item->publication_id}}"><i class="fa fa-trash"></i></a></span>
                                                             <span style="float: right"><a class="btn" href="/update/publication/{{$item->publication_id}}"><i class="fa fa-pencil"></i></a></span>
                                                             <span class=" item-head"><a href="/conferenceWiseItem/{{$item->conference_name}}">{{ $item->conference_name }}</a></span><br>
                                                             <span class=" item-head"> Date: </span><span> {{ $item->date }}</span><br>
@@ -420,7 +421,7 @@
                                                     <article class="full">
                                                         <figure class="list member_item">
                                                             <span class=" item-head"> Name: </span><span><a href="/indivisual/publication/{{encrypt($item->publication_id)}}">{{ $item->name }}</a></span><br>
-                                                            <span style="float: right; margin-left: 5px;"><a class="btn" href="/delete/publication/{{$item->publication_id}}"><i class="fa fa-trash"></i></a></span>
+                                                            <span style="float: right; margin-left: 5px;"><a class="btn" data-toggle="confirmation" data-title="Sure you want to delete?"  href="/delete/publication/{{$item->publication_id}}"><i class="fa fa-trash"></i></a></span>
                                                             <span style="float: right"><a class="btn" href="/update/publication/{{$item->publication_id}}"><i class="fa fa-pencil"></i></a></span>
                                                             <span class=" item-head"><a href="/conferenceWiseItem/{{$item->conference_name}}">{{ $item->conference_name }}</a></span><br>
                                                             <span class=" item-head"> Date: </span><span> {{ $item->date }}</span><br>
@@ -440,7 +441,7 @@
                                                     <article class="full">
                                                         <figure class="list member_item">
                                                             <span class=" item-head"> Name: </span><span><a href="/indivisual/publication/{{encrypt($item->publication_id)}}">{{ $item->name }}</a></span><br>
-                                                            <span style="float: right; margin-left: 5px;"><a class="btn" href="/delete/publication/{{$item->publication_id}}"><i class="fa fa-trash"></i></a></span>
+                                                            <span style="float: right; margin-left: 5px;"><a class="btn" data-toggle="confirmation" data-title="Sure you want to delete?"  href="/delete/publication/{{$item->publication_id}}"><i class="fa fa-trash"></i></a></span>
                                                             <span style="float: right"><a class="btn" href="/update/publication/{{$item->publication_id}}"><i class="fa fa-pencil"></i></a></span>
                                                             <span class=" item-head"><a href="/conferenceWiseItem/{{$item->conference_name}}">{{ $item->conference_name }}</a></span><br>
                                                             <span class=" item-head"> Date: </span><span> {{ $item->date }}</span><br>
@@ -450,7 +451,7 @@
                                                     <article class="full">
                                                         <figure class="list member_item">
                                                             <span class=" item-head"> Name: </span><span><a href="/indivisual/publication/{{encrypt($item->publication_id)}}">{{ $item->name }}</a></span><br>
-                                                            <span style="float: right; margin-left: 5px;"><a class="btn" href="/delete/publication/{{$item->publication_id}}"><i class="fa fa-trash"></i></a></span>
+                                                            <span style="float: right; margin-left: 5px;"><a class="btn" data-toggle="confirmation" data-title="Sure you want to delete?"  href="/delete/publication/{{$item->publication_id}}"><i class="fa fa-trash"></i></a></span>
                                                             <span style="float: right"><a class="btn" href="/update/publication/{{$item->publication_id}}"><i class="fa fa-pencil"></i></a></span>
                                                             <span class=" item-head"><a href="/conferenceWiseItem/{{$item->conference_name}}">{{ $item->conference_name }}</a></span><br>
                                                             <span class=" item-head"> Date: </span><span> {{ $item->date }}</span><br>
@@ -460,7 +461,7 @@
                                                     <article class="full">
                                                         <figure class="list member_item">
                                                             <span class=" item-head"> Name: </span><span><a href="/indivisual/publication/{{encrypt($item->publication_id)}}">{{ $item->name }}</a></span><br>
-                                                            <span style="float: right; margin-left: 5px;"><a class="btn" href="/delete/publication/{{$item->publication_id}}"><i class="fa fa-trash"></i></a></span>
+                                                            <span style="float: right; margin-left: 5px;"><a class="btn" data-toggle="confirmation" data-title="Sure you want to delete?"  href="/delete/publication/{{$item->publication_id}}"><i class="fa fa-trash"></i></a></span>
                                                             <span style="float: right"><a class="btn" href="/update/publication/{{$item->publication_id}}"><i class="fa fa-pencil"></i></a></span>
                                                             <span class=" item-head"><a href="/conferenceWiseItem/{{$item->conference_name}}">{{ $item->conference_name }}</a></span><br>
                                                             <span class=" item-head"> Date: </span><span> {{ $item->date }}</span><br>
@@ -470,7 +471,7 @@
                                                     <article class="full">
                                                         <figure class="list member_item">
                                                             <span class=" item-head"> Name: </span><span><a href="/indivisual/publication/{{encrypt($item->publication_id)}}">{{ $item->name }}</a></span><br>
-                                                            <span style="float: right; margin-left: 5px;"><a class="btn" href="/delete/publication/{{$item->publication_id}}"><i class="fa fa-trash"></i></a></span>
+                                                            <span style="float: right; margin-left: 5px;"><a class="btn" data-toggle="confirmation" data-title="Sure you want to delete?"  href="/delete/publication/{{$item->publication_id}}"><i class="fa fa-trash"></i></a></span>
                                                             <span style="float: right"><a class="btn" href="/update/publication/{{$item->publication_id}}"><i class="fa fa-pencil"></i></a></span>
                                                             <span class=" item-head"><a href="/conferenceWiseItem/{{$item->conference_name}}">{{ $item->conference_name }}</a></span><br>
                                                             <span class=" item-head"> Date: </span><span> {{ $item->date }}</span><br>
@@ -480,7 +481,7 @@
                                                     <article class="full">
                                                         <figure class="list member_item">
                                                             <span class=" item-head"> Name: </span><span><a href="/indivisual/publication/{{encrypt($item->publication_id)}}">{{ $item->name }}</a></span><br>
-                                                            <span style="float: right; margin-left: 5px;"><a class="btn" href="/delete/publication/{{$item->publication_id}}"><i class="fa fa-trash"></i></a></span>
+                                                            <span style="float: right; margin-left: 5px;"><a class="btn" data-toggle="confirmation" data-title="Sure you want to delete?"  href="/delete/publication/{{$item->publication_id}}"><i class="fa fa-trash"></i></a></span>
                                                             <span style="float: right"><a class="btn" href="/update/publication/{{$item->publication_id}}"><i class="fa fa-pencil"></i></a></span>
                                                             <span class=" item-head"><a href="/conferenceWiseItem/{{$item->conference_name}}">{{ $item->conference_name }}</a></span><br>
                                                             <span class=" item-head"> Date: </span><span> {{ $item->date }}</span><br>
@@ -537,7 +538,7 @@
                                             <article class="full">
                                                 <figure class="list member_item">
                                                     <span class=" item-head"> Name: </span><span><a href="/indivisual/project/{{encrypt($item->project_id)}}">{{ $item->name }}</a></span><br>
-                                                    <span style="float: right;margin-left: 5px;"><a class="btn" href="/delete/project/{{$item->project_id}}"><i class="fa fa-trash"></i></a></span>
+                                                    <span style="float: right;margin-left: 5px;"><a class="btn" data-toggle="confirmation" data-title="Sure you want to delete?"  href="/delete/project/{{$item->project_id}}"><i class="fa fa-trash"></i></a></span>
                                                     <span style="float: right;margin-left: 5px;"><a class="btn" href="/update/project/{{$item->project_id}}"><i class="fa fa-pencil"></i></a></span><br>
 
                                                     <?php
@@ -558,7 +559,7 @@
                                             <article class="full">
                                                 <figure class="list member_item">
                                                     <span class=" item-head"> Name: </span><span><a href="/indivisual/project/{{encrypt($item->project_id)}}">{{ $item->name }}</a></span><br>
-                                                    <span style="float: right;margin-left: 5px;"><a class="btn" href="/delete/project/{{$item->project_id}}"><i class="fa fa-trash"></i></a></span>
+                                                    <span style="float: right;margin-left: 5px;"><a class="btn" data-toggle="confirmation" data-title="Sure you want to delete?"  href="/delete/project/{{$item->project_id}}"><i class="fa fa-trash"></i></a></span>
                                                     <span style="float: right;margin-left: 5px;"><a class="btn" href="/update/project/{{$item->project_id}}"><i class="fa fa-pencil"></i></a></span><br>
 
                                                     <?php
@@ -710,12 +711,15 @@
     </div>
 @endsection
 @section('scripts')
+    <script src="/js/bootstrap-confirmation.js"></script>
     <script src="http://ajax.aspnetcdn.com/ajax/jquery.validate/1.15.0/jquery.validate.js"></script>
     <script src="/js/validation/graduationValidation.js"></script>
     <script src="https://cdn.jsdelivr.net/jquery.validation/1.15.0/additional-methods.min.js"></script>
     <script>
         $(document).ready(function () {
-            console.log($('#memnav').eq(3));
+            $('[data-toggle=confirmation]').confirmation({
+                rootSelector: '[data-toggle=confirmation]',
+            });
 
             var active_tab = sessionStorage.getItem('active_tab');
             if(active_tab){
@@ -736,7 +740,7 @@
                 $("#memnav li").eq(3).addClass('active');
                 $("#publication-tab").removeClass('in active');
                 $("#career-tab").addClass('in active');
-            @elseif(Session::has('GraduationDelete') || Session::has('GraduationUpdate') || Session::has('GraduationDelete'))
+            @elseif(Session::has('GraduationDelete') || Session::has('GraduationUpdate') || Session::has('GraduationAdd'))
                 $('#memnav .active').removeClass('active');
                 $("#memnav li").eq(2).addClass('active');
                 $("#publication-tab").removeClass('in active');
