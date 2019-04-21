@@ -11,6 +11,9 @@ php, XAMPP and Composer should be installed in you machine. To run the project i
   <li>
    Create a database as stated in the .env file of <b>"pustokbd repository"</b>. This file contains some data paired in key value. Find the key <b>"DB_DATABASE"</b>. It's value is the name of database.
   </li>
+  <li>
+   Set yout email and password in the .env file of <b>"DSSE-Update repository"</b>. Find the key <b>MAIL_USERNAME=yourmail</b> and <b>MAIL_PASSWORD=password</b>. Change the values.
+  </li>
     <li>
       Go to your local directory where you have the project and open a command prompt in the directory.
   </li>
