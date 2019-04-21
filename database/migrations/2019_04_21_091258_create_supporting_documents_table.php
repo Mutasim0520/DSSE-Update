@@ -14,12 +14,13 @@ class CreateSupportingDocumentsTable extends Migration
     public function up()
     {
         Schema::create('supporting_documents', function (Blueprint $table) {
-            $table->unsignedInteger('id')->index();
+            $table->increments('id');
             $table->unsignedInteger('publication_id')->index()->nullable();
             $table->unsignedInteger('project_id')->index()->nullable();
             $table->unsignedInteger('member_id')->index();
             $table->string('belongs_to');
             $table->string('type');
+            $table->timestamps();
         
         });
     }

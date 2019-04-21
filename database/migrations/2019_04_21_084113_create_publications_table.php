@@ -21,7 +21,7 @@ class CreatePublicationsTable extends Migration
             $table->string('fundStatus');
             $table->string('fundingOrganization')->nullable();
             $table->string('fundAmount')->nullable();
-            $table->date('date');
+            $table->string('date');
             $table->string('publication_type');
             $table->string('book_addition')->nullable();
             $table->string('publisher')->nullable();

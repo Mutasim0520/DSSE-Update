@@ -20,15 +20,14 @@ class CreateMembersTable extends Migration
             $table->string('email')->unique();
             $table->string('current_designation');
             $table->string('organization');
-            $table->string('password');
             $table->string('status');
-            $table->string('punlication_name')->nullable();
+            $table->string('publication_name')->nullable();
             $table->string('external_author')->nullable();
             $table->string('additional_email')->nullable();
             $table->string('address')->nullable();
             $table->string('contact')->nullable();
             $table->string('photo')->nullable();
-            $table->unsignedInteger('user_id')->index();
+            $table->unsignedInteger('user_id')->index()->nullable();
         
         });
     }

@@ -84,7 +84,7 @@ class RegisterController extends Controller
                 'email' => $data['email'],
                 'password' => bcrypt($data['password']),
                 'role' => 'Member',
-                'Status' => 'Pending'
+                'status' => 'Pending'
             ]);
 
 

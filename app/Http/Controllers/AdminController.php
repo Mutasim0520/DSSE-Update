@@ -20,7 +20,7 @@ class AdminController extends Controller
     public function showIndex(){
         $Members = Member::where(['status' => 'Active'])->get();;
         $external_author = ex_auth::all();
-        $User = User::with('member')->where(['status' => 'Pending'])->get();
+        $User = User::with('member')->where(['status' => 'Pending'],['role' => 'Member'])->get();
         return view('admin.index',['members'=>$Members,'User' => $User ,'external_author'=>$external_author]);
     }
 
