@@ -15,6 +15,7 @@ class CreateEventsPhotosTable extends Migration
     {
         Schema::create('events_photos', function (Blueprint $table) {
             $table->increments('id');
+            $table->string('path')->nullable();
             $table->unsignedInteger('event_id')->index();
         
         });
