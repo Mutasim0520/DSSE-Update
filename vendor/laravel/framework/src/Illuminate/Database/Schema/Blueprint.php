@@ -6,6 +6,7 @@ use Closure;
 use Illuminate\Support\Fluent;
 use Illuminate\Database\Connection;
 use Illuminate\Database\Schema\Grammars\Grammar;
+use Illuminate\Support\Facades\DB;
 
 class Blueprint
 {
@@ -804,9 +805,9 @@ class Blueprint
      */
     public function timestamps()
     {
-        $this->timestamp('created_at')->nullable();
+        $this->timestamp('created_at')->useCurrent();
 
-        $this->timestamp('updated_at')->nullable();
+        $this->timestamp('updated_at')->default(DB::raw('CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP'));
     }
 
     /**
