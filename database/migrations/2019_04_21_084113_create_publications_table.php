@@ -17,10 +17,9 @@ class CreatePublicationsTable extends Migration
             $table->increments('publication_id');
             $table->string('name');
             $table->text('abstract');
-            $table->string('status');
-            $table->string('fundStatus');
-            $table->string('fundingOrganization')->nullable();
-            $table->string('fundAmount')->nullable();
+            $table->string('fund_status')->nullable();
+            $table->string('fund_organization')->nullable();
+            $table->string('fund_amount')->nullable();
             $table->string('date');
             $table->string('publication_type');
             $table->string('book_addition')->nullable();
@@ -39,7 +38,7 @@ class CreatePublicationsTable extends Migration
             $table->string('affiliated_institute')->nullable();
             $table->string('dataset_file')->nullable();
             $table->string('dataset_url')->nullable();
-            $table->string('src_code_path')->nullable();
+            $table->string('src_code_file')->nullable();
             $table->string('src_code_url')->nullable();
             $table->string('paper_path')->nullable();
             $table->string('paper_url')->nullable();

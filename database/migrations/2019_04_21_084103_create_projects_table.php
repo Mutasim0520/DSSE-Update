@@ -18,7 +18,7 @@ class CreateProjectsTable extends Migration
             $table->string('name');
             $table->text('description');
             $table->string('status');
-            $table->string('fundStatus');
+            $table->string('fundStatus')->nullable();
             $table->string('fundingOrganization')->nullable();
             $table->string('fundAmount')->nullable();
             $table->string('start_date');
