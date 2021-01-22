@@ -1,6 +1,6 @@
 <h1>The Project</h1>
 <p>
-DSSE is a website of a research groups (Distributed System and Software Engineering) of the University of Dhaka to showcase all their projects, research works, members and their profile. 
+DSSE is a website of a research groups (Distributed System and Software Engineering) of the University of Dhaka to showcase all their projects, research works, members and their profile and a complete admin panel that conducts CRUD on different task.
 </p>
 <h1>Instruction</h1>
 php, XAMPP and Composer should be installed in you machine. To run the project in your local server follow the following steps.
